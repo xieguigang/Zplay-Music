@@ -6,7 +6,7 @@ Namespace App
     Public Class MediaPlayer
         Implements IDisposable
 
-        ReadOnly __api As ZPlay
+        Friend ReadOnly __api As ZPlay
 
         ''' <summary>
         ''' 
@@ -60,7 +60,7 @@ Namespace App
         ''' <param name="autoStart"></param>
         ''' <returns></returns>
         ''' <remarks>除了一些需要实时进行更新的数据，所有的静态的信息都是在这里一次性的完成读取操作的</remarks>
-        Public Function PlayBack(uri As String,
+        Public Function Playback(uri As String,
                                  Optional format As TStreamFormat = TStreamFormat.sfAutodetect,
                                  Optional autoStart As Boolean = False) As Boolean
 
@@ -74,7 +74,7 @@ Namespace App
                 Call __api.GetStreamInfo(_StreamInfo)
 
                 If autoStart Then
-                    Call Play()
+                    Call Playback()
                 End If
             Else
                 Return False
@@ -83,10 +83,30 @@ Namespace App
             Return True
         End Function
 
-        Public Function Play() As TickEvent
-            Call __api.StartPlayback()
-            Return New TickEvent(Me)
+        Dim __validState As Action
+
+        Private Function __initEvents() As TickEvent
+            Dim args As New TickEvent(Me)
+            __validState = AddressOf args.ValidStatus
+            Return args
         End Function
+
+        Public Function Playback() As TickEvent
+            Call __api.StartPlayback()
+            Return __initEvents()
+        End Function
+
+        Public Sub Pause()
+
+        End Sub
+
+        Public Sub [Resume]()
+
+        End Sub
+
+        Public Sub [Stop]()
+
+        End Sub
 
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' To detect redundant calls

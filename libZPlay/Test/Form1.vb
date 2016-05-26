@@ -13,11 +13,11 @@ Public Class Form1
 
         Dim play As New libZPlay.App.MediaPlayer
 
-        Call play.PlayBack("E:\116. 宇多田光Beautiful World.flac")
+        Call play.Playback("E:\116. 宇多田光Beautiful World.flac")
 
         Me.BackgroundImage = play.AlbumArt
 
-        ticks = play.Play()
+        ticks = play.Playback()
 
     End Sub
 

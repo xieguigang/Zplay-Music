@@ -36,6 +36,10 @@ Namespace App
             RaiseEvent Tick(__player, cur, progress)
         End Sub
 
+        Friend Sub ValidStatus()
+
+        End Sub
+
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' To detect redundant calls
 
