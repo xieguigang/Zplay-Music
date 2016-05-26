@@ -16,6 +16,7 @@ Namespace App
         ''' <param name="progress">进度条的百分比</param>
         Public Event Tick(sender As MediaPlayer, cur As TStreamTime, progress As Double)
         Public Event StateValidate(sender As MediaPlayer, stat As TStreamStatus)
+        Public Event EndOfTrack(sender As MediaPlayer)
 
         Public ReadOnly Property StreamInfo As TStreamInfo
             Get
@@ -33,11 +34,30 @@ Namespace App
         Private Sub __triggerEvent()
             Dim cur As TStreamTime = __player.CurrentPosition
             Dim progress As Double = cur.ms / __player.StreamInfo.Length.ms
+
+            If __stopState(cur) Then
+                _timer.Stop()
+                RaiseEvent EndOfTrack(__player)
+            End If
+
             RaiseEvent Tick(__player, cur, progress)
         End Sub
 
-        Friend Sub ValidStatus()
+        Private Function __stopState(cur As TStreamTime) As Boolean
+            If cur.ms <> 0 Then
+                Return False
+            Else
+                Dim st As TStreamStatus = __player.status
+                Return st.fPlay = False AndAlso st.fPause = False
+            End If
+        End Function
 
+        Public Function StopStatus() As Boolean
+            Return __stopState(__player.CurrentPosition)
+        End Function
+
+        Friend Sub ValidStatus()
+            RaiseEvent StateValidate(__player, __player.status)
         End Sub
 
 #Region "IDisposable Support"

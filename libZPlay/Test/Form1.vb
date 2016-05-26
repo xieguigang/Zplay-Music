@@ -18,11 +18,23 @@ Public Class Form1
         Me.BackgroundImage = play.AlbumArt
 
         ticks = play.Playback()
-
+        '  play.SeeksByPercent(0.96)
     End Sub
 
     Private Sub ticks_Tick(sender As MediaPlayer, cur As TStreamTime, p As Double) Handles ticks.Tick
-        Call Me.Invoke(Sub() Text = $"[{Math.Round(p * 100, 2)}%] " & cur.GetJson)
+        Try
+            Call Me.Invoke(Sub() Text = $"[{Math.Round(p * 100, 2)}%] " & cur.GetJson)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub ticks_StateValidate(sender As MediaPlayer, stat As TStreamStatus) Handles ticks.StateValidate
+        MsgBox(stat.GetJson)
+    End Sub
+
+    Private Sub ticks_EndOfTrack(sender As MediaPlayer) Handles ticks.EndOfTrack
+        MsgBox(sender.status.GetJson)
     End Sub
 
     Dim WithEvents ticks As TickEvent
