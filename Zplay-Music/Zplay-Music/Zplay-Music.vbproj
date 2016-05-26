@@ -125,6 +125,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayListAnimation.vb" />
     <Compile Include="FormZplay.vb">
       <SubType>Form</SubType>
     </Compile>
