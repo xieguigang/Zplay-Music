@@ -58,7 +58,7 @@ Partial Class FormZplay
         Me.PictureBox3.TabIndex = 4
         Me.PictureBox3.TabStop = False
         '
-        'Form1
+        'FormZplay
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -69,7 +69,7 @@ Partial Class FormZplay
         Me.Controls.Add(Me.PictureBox1)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "Form1"
+        Me.Name = "FormZplay"
         Me.Text = "Form1"
         Me.TransparencyKey = System.Drawing.Color.LightGreen
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
