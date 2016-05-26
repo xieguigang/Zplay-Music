@@ -24,15 +24,15 @@ Partial Class FormZplay
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormZplay))
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.btnCloselist = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.btnPlayList = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox3
@@ -44,19 +44,19 @@ Partial Class FormZplay
         Me.PictureBox3.TabIndex = 4
         Me.PictureBox3.TabStop = False
         '
-        'PictureBox4
+        'btnCloselist
         '
-        Me.PictureBox4.BackgroundImage = CType(resources.GetObject("PictureBox4.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(507, 0)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(34, 21)
-        Me.PictureBox4.TabIndex = 5
-        Me.PictureBox4.TabStop = False
+        Me.btnCloselist.BackgroundImage = CType(resources.GetObject("btnCloselist.BackgroundImage"), System.Drawing.Image)
+        Me.btnCloselist.Location = New System.Drawing.Point(507, 0)
+        Me.btnCloselist.Name = "btnCloselist"
+        Me.btnCloselist.Size = New System.Drawing.Size(34, 21)
+        Me.btnCloselist.TabIndex = 5
+        Me.btnCloselist.TabStop = False
         '
         'Panel1
         '
         Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
-        Me.Panel1.Controls.Add(Me.PictureBox4)
+        Me.Panel1.Controls.Add(Me.btnCloselist)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(541, 507)
@@ -65,20 +65,20 @@ Partial Class FormZplay
         'Panel2
         '
         Me.Panel2.BackgroundImage = CType(resources.GetObject("Panel2.BackgroundImage"), System.Drawing.Image)
-        Me.Panel2.Controls.Add(Me.PictureBox1)
+        Me.Panel2.Controls.Add(Me.btnPlayList)
         Me.Panel2.Location = New System.Drawing.Point(0, 507)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(541, 115)
         Me.Panel2.TabIndex = 7
         '
-        'PictureBox1
+        'btnPlayList
         '
-        Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(455, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(23, 28)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.btnPlayList.BackgroundImage = CType(resources.GetObject("btnPlayList.BackgroundImage"), System.Drawing.Image)
+        Me.btnPlayList.Location = New System.Drawing.Point(455, 0)
+        Me.btnPlayList.Name = "btnPlayList"
+        Me.btnPlayList.Size = New System.Drawing.Size(23, 28)
+        Me.btnPlayList.TabIndex = 0
+        Me.btnPlayList.TabStop = False
         '
         'FormZplay
         '
@@ -95,16 +95,16 @@ Partial Class FormZplay
         Me.Text = "Zplay-Music"
         Me.TransparencyKey = System.Drawing.Color.LightGreen
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents btnCloselist As PictureBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents btnPlayList As PictureBox
 End Class
