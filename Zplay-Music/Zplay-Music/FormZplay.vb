@@ -2,17 +2,13 @@
 
 Public Class FormZplay
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        Call New Thread(AddressOf sousuo).Start()
-    End Sub
-
     Private Sub sousuo()
         run1 = True
         run2 = False
         Call Me.Invoke(Sub() Call __sss())
     End Sub
 
-    Dim d As Integer = 50
+    Dim d As Integer = 80
 
     ''' <summary>
     ''' 收缩
@@ -25,12 +21,12 @@ Public Class FormZplay
                 Exit Do
             End If
 
-            If PictureBox1.Height > 0 Then
-                PictureBox1.Height -= d
-                loci = PictureBox1.Location
-                PictureBox1.Location = New Point(loci.X, loci.Y + d)
+            If Panel1.Height > 0 Then
+                Panel1.Height -= d
+                loci = Panel1.Location
+                Panel1.Location = New Point(loci.X, loci.Y + d)
             Else
-                PictureBox1.Height = 0
+                Panel1.Height = 0
                 Exit Do
             End If
 
@@ -54,12 +50,12 @@ Public Class FormZplay
                 Exit Do
             End If
 
-            If PictureBox1.Height < 507 Then
-                PictureBox1.Height += d
-                loci = PictureBox1.Location
-                PictureBox1.Location = New Point(loci.X, loci.Y - d)
+            If Panel1.Height < 507 Then
+                Panel1.Height += d
+                loci = Panel1.Location
+                Panel1.Location = New Point(loci.X, loci.Y - d)
             Else
-                PictureBox1.Height = 507
+                Panel1.Height = 507
                 Exit Do
             End If
 
@@ -77,6 +73,15 @@ Public Class FormZplay
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
+        Call New Thread(AddressOf sousuo).Start()
+
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         Call New Thread(AddressOf s2).Start()
     End Sub
 
