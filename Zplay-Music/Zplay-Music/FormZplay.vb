@@ -1,7 +1,16 @@
 ﻿Imports System.ComponentModel
 Imports System.Threading
+Imports System
+Imports System.Drawing
+Imports System.IO
+Imports System.Linq
+Imports System.Windows.Forms
 Imports libZPlay.App
 Imports libZPlay.InternalTypes
+Imports Microsoft.VisualBasic
+Imports Microsoft.Windows.Shell
+Imports Microsoft.Windows.Taskbar
+Imports Microsoft.Windows.Dialogs
 
 Public Class FormZplay
 
@@ -10,6 +19,28 @@ Public Class FormZplay
 
     Dim play As New libZPlay.App.MediaPlayer
     Dim WithEvents ticks As TickEvent
+
+    Dim buttonPrevious As ThumbnailToolBarButton
+    Dim buttonNext As ThumbnailToolBarButton
+    Dim buttonPause As ThumbnailToolBarButton
+
+    Private Sub FormZplay_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        buttonPrevious = New ThumbnailToolBarButton(My.Resources.start, "Previous")
+        ' AddHandler buttonPrevious.Click, AddressOf buttonPrevious_Click
+
+        buttonNext = New ThumbnailToolBarButton(My.Resources._end, "Next")
+        ' AddHandler buttonNext.Click, AddressOf buttonNext_Click
+
+        buttonPause = New ThumbnailToolBarButton(My.Resources.pause, "play/pause")
+        'AddHandler buttonLast.Click, AddressOf buttonLast_Click
+
+        TaskbarManager.Instance.ThumbnailToolBars.AddButtons(Handle, buttonPrevious, buttonPause, buttonNext)
+        TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(Handle, New Rectangle(New Point(10, 517), picAlbumArt.Size))
+    End Sub
+
+    Private Sub FormZplay_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(Me.Handle, New Rectangle(New Point(10, 517), picAlbumArt.Size))
+    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Location = New Point(0, My.Computer.Screen.WorkingArea.Height - 10 - Height)
@@ -22,7 +53,7 @@ Public Class FormZplay
     Public Sub ChangePlayback(file As String)
         Call play.Playback(file)
 
-        PictureBox1.BackgroundImage = play.AlbumArt
+        picAlbumArt.BackgroundImage = play.AlbumArt
         lbTime.Text = play.StreamInfo.Length.FormatTime
         lbArtist.Text = play.ID3v2.Artist
         lbTitle.Text = play.ID3v2.Title

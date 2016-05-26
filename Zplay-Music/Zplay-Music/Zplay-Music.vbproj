@@ -103,6 +103,7 @@
     <Reference Include="Microsoft.Windows.FeatureAPI">
       <HintPath>F:\Microsoft.VisualBasic.Windows.Forms\Microsoft.Windows.FeatureAPI\bin\Release\Microsoft.Windows.FeatureAPI.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -113,6 +114,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -189,6 +191,10 @@
     <None Include="Resources\Docker-Shrinkage.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\start.ico" />
+    <None Include="Resources\play.ico" />
+    <None Include="Resources\pause.ico" />
+    <None Include="Resources\end.ico" />
     <Content Include="wmp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

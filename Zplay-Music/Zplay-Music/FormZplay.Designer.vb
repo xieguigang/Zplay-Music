@@ -30,13 +30,13 @@ Partial Class FormZplay
         Me.lbTitle = New System.Windows.Forms.Label()
         Me.lbArtist = New System.Windows.Forms.Label()
         Me.lbTime = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.picAlbumArt = New System.Windows.Forms.PictureBox()
         Me.btnPlayList = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -73,7 +73,7 @@ Partial Class FormZplay
         Me.Panel2.Controls.Add(Me.lbTitle)
         Me.Panel2.Controls.Add(Me.lbArtist)
         Me.Panel2.Controls.Add(Me.lbTime)
-        Me.Panel2.Controls.Add(Me.PictureBox1)
+        Me.Panel2.Controls.Add(Me.picAlbumArt)
         Me.Panel2.Controls.Add(Me.btnPlayList)
         Me.Panel2.Location = New System.Drawing.Point(0, 507)
         Me.Panel2.Name = "Panel2"
@@ -113,14 +113,14 @@ Partial Class FormZplay
         Me.lbTime.TabIndex = 2
         Me.lbTime.Text = "Label1"
         '
-        'PictureBox1
+        'picAlbumArt
         '
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.Location = New System.Drawing.Point(10, 10)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(90, 90)
-        Me.PictureBox1.TabIndex = 1
-        Me.PictureBox1.TabStop = False
+        Me.picAlbumArt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picAlbumArt.Location = New System.Drawing.Point(10, 10)
+        Me.picAlbumArt.Name = "picAlbumArt"
+        Me.picAlbumArt.Size = New System.Drawing.Size(90, 90)
+        Me.picAlbumArt.TabIndex = 1
+        Me.picAlbumArt.TabStop = False
         '
         'btnPlayList
         '
@@ -152,7 +152,7 @@ Partial Class FormZplay
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -162,7 +162,7 @@ Partial Class FormZplay
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents btnPlayList As PictureBox
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents picAlbumArt As PictureBox
     Friend WithEvents lbTime As Label
     Friend WithEvents lbTitle As Label
     Friend WithEvents lbArtist As Label
