@@ -3,21 +3,35 @@ Imports libZPlay.InternalTypes
 
 Namespace App
 
-    Public Class MediaPlayer
+    Public MustInherit Class ZPlayInterface
+
+        Protected ReadOnly __api As ZPlay
+
+        Protected Sub New(api As ZPlay)
+            __api = api
+        End Sub
+
+        Protected Sub New(libzplay As String)
+            If Not String.IsNullOrEmpty(libzplay) Then
+
+            End If
+
+            __api = New ZPlay
+        End Sub
+    End Class
+
+    Public Class MediaPlayer : Inherits ZPlayInterface
         Implements IDisposable
 
-        Friend ReadOnly __api As ZPlay
+        ReadOnly __seeks As Seeks
 
         ''' <summary>
         ''' 
         ''' </summary>
         ''' <param name="libzplay">libzplay.dll的文件夹的位置，默认是<see cref="Microsoft.VisualBasic.App.HOME"/></param>
         Sub New(Optional libzplay As String = Nothing)
-            If Not String.IsNullOrEmpty(libzplay) Then
-
-            End If
-
-            __api = New ZPlay
+            Call MyBase.New(libzplay)
+            __seeks = New Seeks(__api)
         End Sub
 
         ''' <summary>
@@ -97,16 +111,21 @@ Namespace App
         End Function
 
         Public Sub Pause()
-
+            Call __api.PausePlayback()
+            Call __validState()
         End Sub
 
         Public Sub [Resume]()
-
+            Call __api.ResumePlayback()
+            Call __validState()
         End Sub
 
         Public Sub [Stop]()
-
+            Call __api.StopPlayback()
+            Call __validState()
         End Sub
+
+
 
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' To detect redundant calls
