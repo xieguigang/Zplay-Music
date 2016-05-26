@@ -27,14 +27,14 @@ Partial Class FormZplay
         Me.btnCloselist = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.btnPlayList = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.btnPlayList = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox3
@@ -74,15 +74,6 @@ Partial Class FormZplay
         Me.Panel2.Size = New System.Drawing.Size(541, 115)
         Me.Panel2.TabIndex = 7
         '
-        'btnPlayList
-        '
-        Me.btnPlayList.BackgroundImage = CType(resources.GetObject("btnPlayList.BackgroundImage"), System.Drawing.Image)
-        Me.btnPlayList.Location = New System.Drawing.Point(455, 0)
-        Me.btnPlayList.Name = "btnPlayList"
-        Me.btnPlayList.Size = New System.Drawing.Size(23, 28)
-        Me.btnPlayList.TabIndex = 0
-        Me.btnPlayList.TabStop = False
-        '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
@@ -91,6 +82,15 @@ Partial Class FormZplay
         Me.PictureBox1.Size = New System.Drawing.Size(90, 90)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
+        '
+        'btnPlayList
+        '
+        Me.btnPlayList.BackgroundImage = CType(resources.GetObject("btnPlayList.BackgroundImage"), System.Drawing.Image)
+        Me.btnPlayList.Location = New System.Drawing.Point(455, 0)
+        Me.btnPlayList.Name = "btnPlayList"
+        Me.btnPlayList.Size = New System.Drawing.Size(23, 28)
+        Me.btnPlayList.TabIndex = 0
+        Me.btnPlayList.TabStop = False
         '
         'FormZplay
         '
@@ -104,14 +104,15 @@ Partial Class FormZplay
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FormZplay"
+        Me.Opacity = 0.95R
         Me.Text = "Zplay-Music"
         Me.TransparencyKey = System.Drawing.Color.LightGreen
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
-        CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
