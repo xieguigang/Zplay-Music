@@ -20,9 +20,9 @@ Public Class FormZplay
     Dim play As New libZPlay.App.MediaPlayer
     Dim WithEvents ticks As TickEvent
 
-    Dim buttonPrevious As ThumbnailToolBarButton
-    Dim buttonNext As ThumbnailToolBarButton
-    Dim buttonPause As ThumbnailToolBarButton
+    Dim WithEvents buttonPrevious As ThumbnailToolBarButton
+    Dim WithEvents buttonNext As ThumbnailToolBarButton
+    Dim WithEvents buttonPause As ThumbnailToolBarButton
 
     Private Sub FormZplay_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         buttonPrevious = New ThumbnailToolBarButton(My.Resources.start, "Previous")
@@ -87,5 +87,15 @@ Public Class FormZplay
 
     Private Sub ticks_EndOfTrack(sender As MediaPlayer) Handles ticks.EndOfTrack
 
+    End Sub
+
+    Private Sub buttonPause_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonPause.Click
+        If ticks.StopStatus Then
+            Call play.Playback()
+        ElseIf play.status.fPause Then
+            Call play.Resume()
+        Else
+            Call play.Pause()
+        End If
     End Sub
 End Class
