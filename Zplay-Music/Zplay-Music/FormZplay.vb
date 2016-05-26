@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Threading
 Imports libZPlay.App
+Imports libZPlay.InternalTypes
 
 Public Class FormZplay
 
@@ -15,9 +16,16 @@ Public Class FormZplay
         __playListInvoke = New PlayListAnimation(Me)
         __formInvoke = New FormAnimation(Me)
 
-        Call play.Playback("E:\116. 宇多田光Beautiful World.flac")
+        Call ChangePlayback("E:\日漫\01. STYX HELIX.mp3")
+    End Sub
+
+    Public Sub ChangePlayback(file As String)
+        Call play.Playback(file)
 
         PictureBox1.BackgroundImage = play.AlbumArt
+        lbTime.Text = play.StreamInfo.Length.FormatTime
+        lbArtist.Text = play.ID3v2.Artist
+        lbTitle.Text = play.ID3v2.Title
 
         ticks = play.Playback()
     End Sub
@@ -36,5 +44,17 @@ Public Class FormZplay
 
     Private Sub FormZplay_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Call play.Dispose()
+    End Sub
+
+    Private Sub ticks_Tick(sender As MediaPlayer, cur As TStreamTime, progress As Double) Handles ticks.Tick
+
+    End Sub
+
+    Private Sub ticks_StateValidate(sender As MediaPlayer, stat As TStreamStatus) Handles ticks.StateValidate
+
+    End Sub
+
+    Private Sub ticks_EndOfTrack(sender As MediaPlayer) Handles ticks.EndOfTrack
+
     End Sub
 End Class

@@ -18,5 +18,10 @@ Namespace App
             }
             Return time
         End Function
+
+        <Extension>
+        Public Function FormatTime(time As TStreamTime) As String
+            Return $"{ZeroFill(time.hms.minute, 2)}:{ZeroFill(time.hms.second, 2)}"
+        End Function
     End Module
 End Namespace
