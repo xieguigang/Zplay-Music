@@ -7,6 +7,12 @@ Namespace App
 
         Protected ReadOnly __api As ZPlay
 
+        Public ReadOnly Property ZPlay As ZPlay
+            Get
+                Return __api
+            End Get
+        End Property
+
         Protected Sub New(api As ZPlay)
             __api = api
         End Sub
@@ -23,15 +29,12 @@ Namespace App
     Public Class MediaPlayer : Inherits ZPlayInterface
         Implements IDisposable
 
-        ReadOnly __seeks As Seeks
-
         ''' <summary>
         ''' 
         ''' </summary>
         ''' <param name="libzplay">libzplay.dll的文件夹的位置，默认是<see cref="Microsoft.VisualBasic.App.HOME"/></param>
         Sub New(Optional libzplay As String = Nothing)
             Call MyBase.New(libzplay)
-            __seeks = New Seeks(__api)
         End Sub
 
         ''' <summary>
@@ -125,7 +128,19 @@ Namespace App
             Call __validState()
         End Sub
 
+        Public Sub SeeksByTime(time As TStreamTime)
+            Call ZPlay.Seek(TTimeFormat.tfHMS, time, TSeekMethod.smFromBeginning)
+        End Sub
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="p">0 - 1</param>
+        Public Sub SeeksByPercent(p As Double)
+            Call ZPlay.Seek(TTimeFormat.tfMillisecond,
+                            TimePercentage(p),
+                            TSeekMethod.smFromBeginning)
+        End Sub
 
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' To detect redundant calls

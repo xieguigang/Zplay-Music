@@ -92,7 +92,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Seeks.vb" />
+    <Compile Include="App\Extensions.vb" />
     <Compile Include="App\TickEvent.vb" />
     <Compile Include="App\MediaPlayer.vb" />
     <Compile Include="DLL_API\InternalTypes.vb" />
