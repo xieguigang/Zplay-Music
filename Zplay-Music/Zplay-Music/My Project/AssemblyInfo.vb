@@ -8,12 +8,12 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("WindowsApplication1")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("WindowsApplication1")>
-<Assembly: AssemblyCopyright("Copyright ©  2016")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyTitle("Zplay-Music")>
+<Assembly: AssemblyDescription("Zplay-Music")>
+<Assembly: AssemblyCompany("libZplay")>
+<Assembly: AssemblyProduct("Zplay-Music")>
+<Assembly: AssemblyCopyright("Copyright © gpl3 2016")>
+<Assembly: AssemblyTrademark("I@xieguigang.me")>
 
 <Assembly: ComVisible(False)>
 
