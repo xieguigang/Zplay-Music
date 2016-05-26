@@ -27,11 +27,11 @@ Partial Class FormZplay
         Me.btnCloselist = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lbTitle = New System.Windows.Forms.Label()
+        Me.lbArtist = New System.Windows.Forms.Label()
         Me.lbTime = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnPlayList = New System.Windows.Forms.PictureBox()
-        Me.lbArtist = New System.Windows.Forms.Label()
-        Me.lbTitle = New System.Windows.Forms.Label()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -80,6 +80,28 @@ Partial Class FormZplay
         Me.Panel2.Size = New System.Drawing.Size(541, 115)
         Me.Panel2.TabIndex = 7
         '
+        'lbTitle
+        '
+        Me.lbTitle.AutoSize = True
+        Me.lbTitle.BackColor = System.Drawing.Color.Black
+        Me.lbTitle.ForeColor = System.Drawing.Color.White
+        Me.lbTitle.Location = New System.Drawing.Point(106, 10)
+        Me.lbTitle.Name = "lbTitle"
+        Me.lbTitle.Size = New System.Drawing.Size(39, 13)
+        Me.lbTitle.TabIndex = 4
+        Me.lbTitle.Text = "Label1"
+        '
+        'lbArtist
+        '
+        Me.lbArtist.AutoSize = True
+        Me.lbArtist.BackColor = System.Drawing.Color.Black
+        Me.lbArtist.ForeColor = System.Drawing.Color.DimGray
+        Me.lbArtist.Location = New System.Drawing.Point(106, 32)
+        Me.lbArtist.Name = "lbArtist"
+        Me.lbArtist.Size = New System.Drawing.Size(39, 13)
+        Me.lbArtist.TabIndex = 3
+        Me.lbArtist.Text = "Label1"
+        '
         'lbTime
         '
         Me.lbTime.AutoSize = True
@@ -109,28 +131,6 @@ Partial Class FormZplay
         Me.btnPlayList.TabIndex = 0
         Me.btnPlayList.TabStop = False
         '
-        'lbArtist
-        '
-        Me.lbArtist.AutoSize = True
-        Me.lbArtist.BackColor = System.Drawing.Color.Black
-        Me.lbArtist.ForeColor = System.Drawing.Color.DimGray
-        Me.lbArtist.Location = New System.Drawing.Point(106, 32)
-        Me.lbArtist.Name = "lbArtist"
-        Me.lbArtist.Size = New System.Drawing.Size(39, 13)
-        Me.lbArtist.TabIndex = 3
-        Me.lbArtist.Text = "Label1"
-        '
-        'lbTitle
-        '
-        Me.lbTitle.AutoSize = True
-        Me.lbTitle.BackColor = System.Drawing.Color.Black
-        Me.lbTitle.ForeColor = System.Drawing.Color.White
-        Me.lbTitle.Location = New System.Drawing.Point(106, 10)
-        Me.lbTitle.Name = "lbTitle"
-        Me.lbTitle.Size = New System.Drawing.Size(39, 13)
-        Me.lbTitle.TabIndex = 4
-        Me.lbTitle.Text = "Label1"
-        '
         'FormZplay
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -142,6 +142,7 @@ Partial Class FormZplay
         Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormZplay"
         Me.Opacity = 0.95R
         Me.Text = "Zplay-Music"
