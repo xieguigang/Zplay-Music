@@ -50,6 +50,7 @@ Public Class FormZplay
     Dim WithEvents _progress As ProgressIndicator
 
     Friend _toolTips As PictureBox
+    Friend _playList As List
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Location = New Point(0, My.Computer.Screen.WorkingArea.Height - 10 - Height)
@@ -67,6 +68,9 @@ Public Class FormZplay
         Panel2.Controls.Add(_toolTips)
         picAlbumArt.SendToBack()
         _toolTips.BringToFront()
+        _playList = New List
+        Panel1.Controls.Add(_playList)
+        _playList.Location = New Point(0, Panel1.Height - _playList.Height)
 
         Call ChangePlayback("E:\日漫\01. STYX HELIX.mp3")
 
@@ -98,6 +102,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub FormZplay_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Call ticks.Dispose()
         Call play.Dispose()
     End Sub
 

@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D408BA67-E4FE-424C-BAB8-DA623DA8C5F0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>ZplayMusic.My.MyApplication</StartupObject>
+    <StartupObject>ZplayMusic.Program</StartupObject>
     <RootNamespace>ZplayMusic</RootNamespace>
     <AssemblyName>Zplay-Music</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -96,6 +96,9 @@
   <PropertyGroup>
     <ApplicationIcon>wmp.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a">
       <HintPath>..\..\libZPlay\packages\VB_AppFramework.1.0.26\x86\Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a.dll</HintPath>
@@ -130,7 +133,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Program.vb" />
     <Compile Include="FormAnimation.vb" />
+    <Compile Include="App\NotificationIcon.vb" />
     <Compile Include="PlayListAnimation.vb" />
     <Compile Include="FormZplay.vb">
       <SubType>Form</SubType>
@@ -160,10 +165,19 @@
     <Compile Include="ProgressIndicator.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="List.Designer.vb">
+      <DependentUpon>List.vb</DependentUpon>
+    </Compile>
+    <Compile Include="List.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormZplay.resx">
       <DependentUpon>FormZplay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="List.resx">
+      <DependentUpon>List.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -171,11 +185,15 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="App\NotificationIcon.resx">
+      <DependentUpon>NotificationIcon.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressIndicator.resx">
       <DependentUpon>ProgressIndicator.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
