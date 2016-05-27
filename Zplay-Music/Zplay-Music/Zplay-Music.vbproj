@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D408BA67-E4FE-424C-BAB8-DA623DA8C5F0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>ZplayMusic.Program</StartupObject>
+    <StartupObject>ZplayMusic.My.MyApplication</StartupObject>
     <RootNamespace>ZplayMusic</RootNamespace>
     <AssemblyName>Zplay-Music</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -133,9 +133,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Program.vb" />
+    <Compile Include="Config.vb" />
     <Compile Include="FormAnimation.vb" />
-    <Compile Include="App\NotificationIcon.vb" />
     <Compile Include="PlayListAnimation.vb" />
     <Compile Include="FormZplay.vb">
       <SubType>Form</SubType>
@@ -184,9 +183,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App\NotificationIcon.resx">
-      <DependentUpon>NotificationIcon.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressIndicator.resx">
       <DependentUpon>ProgressIndicator.vb</DependentUpon>

@@ -119,13 +119,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub buttonPause_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonPause.Click
-        If ticks.StopStatus Then
-            Call play.Playback()
-        ElseIf play.status.fPause Then
-            Call play.Resume()
-        Else
-            Call play.Pause()
-        End If
+        Call PlaypauseToolStripMenuItem_Click(Nothing, Nothing)
     End Sub
 
     Private Sub picDocker_Click(sender As Object, e As EventArgs) Handles picDocker.Click
@@ -135,5 +129,27 @@ Public Class FormZplay
         Else
             Call __formInvoke.Open()
         End If
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Call Me.Close()
+    End Sub
+
+    Private Sub NextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NextToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub PlaypauseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlaypauseToolStripMenuItem.Click
+        If ticks.StopStatus Then
+            Call play.Playback()
+        ElseIf play.status.fPause Then
+            Call play.Resume()
+        Else
+            Call play.Pause()
+        End If
+    End Sub
+
+    Private Sub PreviousToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreviousToolStripMenuItem.Click
+
     End Sub
 End Class
