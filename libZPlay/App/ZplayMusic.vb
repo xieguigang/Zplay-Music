@@ -4,29 +4,6 @@ Imports Microsoft.VisualBasic.Language
 
 Namespace App
 
-    Public MustInherit Class ZPlayInterface
-
-        Protected ReadOnly __api As ZPlay
-
-        Public ReadOnly Property ZPlay As ZPlay
-            Get
-                Return __api
-            End Get
-        End Property
-
-        Protected Sub New(api As ZPlay)
-            __api = api
-        End Sub
-
-        Protected Sub New(libzplay As String)
-            If Not String.IsNullOrEmpty(libzplay) Then
-
-            End If
-
-            __api = New ZPlay
-        End Sub
-    End Class
-
     Public Class ZplayMusic : Inherits ZPlayInterface
         Implements IDisposable
 
@@ -43,7 +20,7 @@ Namespace App
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public ReadOnly Property CurrentPosition As TStreamTime
+        Public Overrides ReadOnly Property CurrentPosition As TStreamTime
             Get
                 Dim time As New TStreamTime
                 Call __api.GetPosition(time)
@@ -51,24 +28,8 @@ Namespace App
             End Get
         End Property
 
-        Public ReadOnly Property ID3v2 As TID3InfoEx
-
-        Public ReadOnly Property AlbumArt As Bitmap
-            Get
-                Return ID3v2.Picture.Bitmap
-            End Get
-        End Property
-
-        Public ReadOnly Property PlaybackURI As String
-        Public ReadOnly Property StreamInfo As TStreamInfo
-
-        Public ReadOnly Property status As TStreamStatus
-            Get
-                Dim s As New TStreamStatus
-                Call __api.GetStatus(s)
-                Return s
-            End Get
-        End Property
+        Public Overrides ReadOnly Property ID3v2 As TID3InfoEx
+        Public Overrides ReadOnly Property StreamInfo As TStreamInfo
 
         ''' <summary>
         ''' 
@@ -85,7 +46,7 @@ Namespace App
             If __api.OpenFile(uri, TStreamFormat.sfAutodetect) Then
                 ' 成功的话则开始获取文件的标签信息
                 _ID3v2 = New TID3InfoEx
-                _PlaybackURI = uri
+                _uri = uri
                 _StreamInfo = New TStreamInfo
 
                 Call __api.LoadID3Ex(_ID3v2, True)

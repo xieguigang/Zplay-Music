@@ -4,113 +4,117 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 
-Public Class Cue : Inherits ClassObject
+Namespace App
 
-    Public Property [Date] As String
-    Public Property Genre As String
-    Public Property Title As String
-    Public Property File As NamedValue(Of String)
-    Public Property Tracks As Track()
+    ''' <summary>
+    ''' Parser for cue list
+    ''' </summary>
+    Public Class Cue : Inherits ClassObject
 
-    Sub New(cue As String)
-        Dim lines As String() = cue.ReadAllLines
-        Dim i As New Pointer(Scan0)
-        Dim s As String = Nothing
-        Dim key As String
+        Public Property [Date] As String
+        Public Property Genre As String
+        Public Property Title As String
+        Public Property File As NamedValue(Of String)
+        Public Property Tracks As Track()
 
-        Do While lines(++i).ShadowCopy(s).FirstOrDefault <> " "c
-            If InStr(s, "REM", CompareMethod.Text) = 1 Then
-                s = Mid(s, 5)
-            End If
-            key = s.Split.First
-            s = Mid(s, key.Length + 1).Trim
+        Sub New(cue As String)
+            Dim lines As String() = cue.ReadAllLines
+            Dim i As New Pointer(Scan0)
+            Dim s As String = Nothing
+            Dim key As String
 
-            If key.TextEquals("DATE") Then
-                [Date] = s.GetString
-            ElseIf key.TextEquals("GENRE") Then
-                Genre = s.GetString
-            ElseIf key.TextEquals("TITLE") Then
-                Title = s.GetString
-            ElseIf key.TextEquals("FILE") Then
-                Dim tokens As String() = CommandLine.GetTokens(s)
-                File = New NamedValue(Of String)(
-                    tokens(Scan0),
-                    tokens(1))
-            End If
-        Loop
+            Do While lines(++i).ShadowCopy(s).FirstOrDefault <> " "c
+                If InStr(s, "REM", CompareMethod.Text) = 1 Then
+                    s = Mid(s, 5)
+                End If
+                key = s.Split.First
+                s = Mid(s, key.Length + 1).Trim
 
-        Tracks = Track.TracksParser(
+                If key.TextEquals("DATE") Then
+                    [Date] = s.GetString
+                ElseIf key.TextEquals("GENRE") Then
+                    Genre = s.GetString
+                ElseIf key.TextEquals("TITLE") Then
+                    Title = s.GetString
+                ElseIf key.TextEquals("FILE") Then
+                    Dim tokens As String() = CommandLine.GetTokens(s)
+                    File = New NamedValue(Of String)(
+                        tokens(Scan0),
+                        tokens(1))
+                End If
+            Loop
+
+            Tracks = Track.TracksParser(
             lines.Skip(CType(i, Integer) - 1) _
                 .ToArray(AddressOf Trim)).ToArray
-    End Sub
+        End Sub
+    End Class
 
+    Public Class Track
 
-End Class
+        Public Property Index As Integer
+        Public Property Type As String
+        Public Property Title As String
+        Public Property Performer As String
+        Public Property Index00 As TimeSpan
+        Public Property Index01 As TimeSpan
 
-Public Class Track
+        Public Overrides Function ToString() As String
+            Return Me.GetJson
+        End Function
 
-    Public Property Index As Integer
-    Public Property Type As String
-    Public Property Title As String
-    Public Property Performer As String
-    Public Property Index00 As TimeSpan
-    Public Property Index01 As TimeSpan
+        Public Function HaveIndexed() As Boolean
+            Return Index00.TotalMilliseconds > 0 OrElse
+                Index01.TotalMilliseconds > 0
+        End Function
 
-    Public Overrides Function ToString() As String
-        Return Me.GetJson
-    End Function
+        Public Function HaveValue() As Boolean
+            Return HaveIndexed() OrElse
+                Not String.IsNullOrEmpty(Title) OrElse
+                Not String.IsNullOrEmpty(Performer) OrElse
+                Index > 0 OrElse
+                Not String.IsNullOrEmpty(Type)
+        End Function
 
-    Public Function HaveIndexed() As Boolean
-        Return Index00.TotalMilliseconds > 0 OrElse
-            Index01.TotalMilliseconds > 0
-    End Function
+        Public Shared Iterator Function TracksParser(tokens As String()) As IEnumerable(Of Track)
+            Dim track As New Track
+            Dim key As String
+            Dim ts As String()
+            Dim idx As Integer
 
-    Public Function HaveValue() As Boolean
-        Return HaveIndexed() OrElse
-            Not String.IsNullOrEmpty(Title) OrElse
-            Not String.IsNullOrEmpty(Performer) OrElse
-            Index > 0 OrElse
-            Not String.IsNullOrEmpty(Type)
-    End Function
+            For Each s As String In tokens
+                key = s.Split.First
+                s = Mid(s, key.Length + 1).Trim
 
-    Public Shared Iterator Function TracksParser(tokens As String()) As IEnumerable(Of Track)
-        Dim track As New Track
-        Dim key As String
-        Dim ts As String()
-        Dim idx As Integer
+                If key.TextEquals("Title") Then
+                    track.Title = s.GetString
+                ElseIf key.TextEquals("Performer") Then
+                    track.Performer = s.GetString
+                ElseIf key.TextEquals("Index") Then
+                    ts = s.Split
+                    idx = CTypeDynamic(Of Integer)(ts(Scan0))
+                    s = ts(1)
 
-        For Each s As String In tokens
-            key = s.Split.First
-            s = Mid(s, key.Length + 1).Trim
+                    If idx = 0 Then
+                        track.Index00 = TimeSpan.Parse(s)
+                    Else
+                        track.Index01 = TimeSpan.Parse(s)
+                    End If
+                ElseIf key.TextEquals("Track") Then
+                    If track.HaveValue Then
+                        Yield track
+                        track = New Track
+                    End If
 
-            If key.TextEquals("Title") Then
-                track.Title = s.GetString
-            ElseIf key.TextEquals("Performer") Then
-                track.Performer = s.GetString
-            ElseIf key.TextEquals("Index") Then
-                ts = s.Split
-                idx = CTypeDynamic(Of Integer)(ts(Scan0))
-                s = ts(1)
-
-                If idx = 0 Then
-                    track.Index00 = TimeSpan.Parse(s)
+                    ts = s.Split
+                    track.Index = CTypeDynamic(Of Integer)(ts(Scan0))
+                    track.Type = ts(1)
                 Else
-                    track.Index01 = TimeSpan.Parse(s)
+                    Throw New NotImplementedException
                 End If
-            ElseIf key.TextEquals("Track") Then
-                If track.HaveValue Then
-                    Yield track
-                    track = New Track
-                End If
+            Next
 
-                ts = s.Split
-                track.Index = CTypeDynamic(Of Integer)(ts(Scan0))
-                track.Type = ts(1)
-            Else
-                Throw New NotImplementedException
-            End If
-        Next
-
-        Yield track
-    End Function
-End Class
+            Yield track
+        End Function
+    End Class
+End Namespace

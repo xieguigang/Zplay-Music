@@ -1,3 +1,6 @@
-﻿Public Class M3u
+﻿Namespace App
 
-End Class
+    Public Class M3u
+
+    End Class
+End Namespace

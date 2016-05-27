@@ -92,6 +92,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\ZPlayInterface.vb" />
+    <Compile Include="App\ZplayCue.vb" />
     <Compile Include="App\M3u.vb" />
     <Compile Include="App\Cue.vb" />
     <Compile Include="App\Extensions.vb" />
