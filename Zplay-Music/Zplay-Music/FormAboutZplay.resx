@@ -902,10 +902,11 @@
   </data>
   <data name="Label2.Text" xml:space="preserve">
     <value>Just for some programming practice of WinForm programming.
+
 Zplay-Music is based on the libzplay playback driver kernel, 
 which is available at SourceForge(http://libzplay.sourceforge.net/). 
 Art designing is original from QQMusic(http://y.qq.com), 
-icon was extracted from Microsoft Windows Media Player.
+Icon was extracted from Microsoft Windows Media Player.
 
 Source code is available download from github:</value>
   </data>
