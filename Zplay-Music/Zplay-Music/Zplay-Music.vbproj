@@ -133,6 +133,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAboutZplay.Designer.vb">
+      <DependentUpon>FormAboutZplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAboutZplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Playlist.vb" />
     <Compile Include="Config.vb" />
     <Compile Include="FormAnimation.vb" />

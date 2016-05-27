@@ -122,7 +122,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub ticks_EndOfTrack(sender As libZPlay.App.ZplayMusic) Handles ticks.EndOfTrack
-
+        Call buttonNext_Click(Nothing, Nothing)
     End Sub
 
     Private Sub buttonPause_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonPause.Click
