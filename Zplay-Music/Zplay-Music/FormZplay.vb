@@ -17,7 +17,7 @@ Public Class FormZplay
     Dim __playListInvoke As PlayListAnimation
     Dim __formInvoke As FormAnimation
 
-    Dim play As New libZPlay.App.ZplayMusic
+    Friend play As New libZPlay.App.ZplayMusic
     Dim WithEvents ticks As TickEvent
 
     Dim WithEvents buttonPrevious As ThumbnailToolBarButton

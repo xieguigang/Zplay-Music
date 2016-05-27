@@ -67,4 +67,18 @@ Public Class ProgressIndicator
             ParentMain._toolTips.BackgroundImage = g.ImageResource
         End Using
     End Sub
+
+    Private Sub ProgressIndicator_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        If Length = 0 Then
+            Return
+        Else
+            ParentMain._toolTips.Location =
+                New Point(e.X - ttWidth, ParentMain._toolTips.Location.Y)
+        End If
+
+        Dim x As Integer = e.X
+        Dim p As Double = x / Width ' 长度的百分比
+
+        ParentMain.play.SeeksByPercent(p)
+    End Sub
 End Class
