@@ -30,6 +30,26 @@ Public Class Playlist : Implements IEnumerable(Of MediaFile)
         End Using
     End Function
 
+    Public ReadOnly Property Index As Integer
+        Get
+            Return p
+        End Get
+    End Property
+
+    Public Function IndexOf(file As String) As Integer
+        Dim i As Integer = 0
+
+        For Each mediaFile In _files
+            If file.GetFullPath.TextEquals(mediaFile.FileName.GetFullPath) Then
+                Return i
+            Else
+                i += 1
+            End If
+        Next
+
+        Return -1
+    End Function
+
     Public Sub SetCurrentRead(index As Integer)
         p = index
     End Sub

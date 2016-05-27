@@ -2,18 +2,23 @@
 Imports ZplayMusic
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
+Imports Microsoft.VisualBasic
 
 Public Class List : Implements IEnumerable(Of ListItem)
 
     Public Event ChangePlayback(file As String, index As Integer)
 
+    Dim list As New List(Of ListItem)
+
     Public Sub Add(file As MediaFile, i As Integer)
         Dim item As New ListItem(file) With {
             .Size = ListItem.sz,
-            .Index = i
+            .Index = i,
+            .Name = "file" & i
         }
         Call FlowLayoutPanel1.Controls.Add(item)
         Call ToolTip1.SetToolTip(item, file.FileName)
+        Call list.Add(item)
 
         AddHandler item.Click, AddressOf __click
     End Sub
@@ -27,12 +32,20 @@ Public Class List : Implements IEnumerable(Of ListItem)
     End Sub
 
     Public Sub Clear()
-        For Each item In Me
-            Call FlowLayoutPanel1.Controls.Remove(item)
+        For Each item As ListItem In list.ToArray
+            Call FlowLayoutPanel1.Controls.RemoveByKey("file" & item.Index)
+            Call list.Remove(item)
+            Call item.Dispose()
         Next
     End Sub
 
     Dim _nowPlaying As ListItem
+
+    Public Sub SetNowplaying(index As Integer)
+        If index <> -1 Then
+            Call __setNowPlaying(list(index))
+        End If
+    End Sub
 
     Private Sub __setNowPlaying(item As ListItem)
         If Not _nowPlaying Is Nothing Then

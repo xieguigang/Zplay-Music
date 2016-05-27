@@ -122,6 +122,7 @@ Public Class FormZplay
         ticks = play.Playback()
 
         _progress.Length = play.StreamInfo.Length.ms
+        List1.SetNowplaying(list.IndexOf(file))
     End Sub
 
     Private Sub btnCloselist_Click(sender As Object, e As EventArgs) Handles btnCloselist.Click
@@ -150,7 +151,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub ticks_EndOfTrack(sender As libZPlay.App.ZplayMusic) Handles ticks.EndOfTrack
-        Call buttonNext_Click(Nothing, Nothing)
+        Call Me.Invoke(Sub() Call buttonNext_Click(Nothing, Nothing))
     End Sub
 
     Private Sub buttonPause_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonPause.Click
