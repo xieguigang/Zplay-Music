@@ -7,6 +7,10 @@ Namespace App
     Public Class ZplayMusic : Inherits ZPlayInterface
         Implements IDisposable
 
+        Sub New(libzplay As ZPlay)
+            Call MyBase.New(libzplay)
+        End Sub
+
         ''' <summary>
         ''' 
         ''' </summary>
