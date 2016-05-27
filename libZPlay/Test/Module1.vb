@@ -8,5 +8,8 @@ Module Module1
         Dim play As New ZplayCue
 
         Call play.Playback("E:\日漫\[160511] TVアニメ「マクロスΔ」OP／ED／挿入歌「一度だけの恋なら／ルンがピカッと光ったら／いけないボーダー\一度だけの恋なら&ルンがピカッと光ったら／ワルキューレ.cue")
+        Call play.Playback()
+
+        Pause()
     End Sub
 End Module

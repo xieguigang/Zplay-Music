@@ -43,9 +43,9 @@ Namespace App
         ''' <param name="autoStart"></param>
         ''' <returns></returns>
         ''' <remarks>除了一些需要实时进行更新的数据，所有的静态的信息都是在这里一次性的完成读取操作的</remarks>
-        Public Function Playback(uri As String,
-                                 Optional format As TStreamFormat = TStreamFormat.sfAutodetect,
-                                 Optional autoStart As Boolean = False) As Boolean
+        Public Overloads Function Playback(uri As String,
+                                           Optional format As TStreamFormat = TStreamFormat.sfAutodetect,
+                                           Optional autoStart As Boolean = False) As Boolean
 
             If __api.OpenFile(uri, TStreamFormat.sfAutodetect) Then
                 ' 成功的话则开始获取文件的标签信息
@@ -57,7 +57,7 @@ Namespace App
                 Call __api.GetStreamInfo(_StreamInfo)
 
                 If autoStart Then
-                    Call Playback()
+                    Call MyBase.Playback()
                 End If
             Else
                 Return False
@@ -65,48 +65,6 @@ Namespace App
 
             Return True
         End Function
-
-        Dim __validState As Action
-
-        Private Function __initEvents() As TickEvent
-            Dim args As New TickEvent(Me)
-            __validState = AddressOf args.ValidStatus
-            Return args
-        End Function
-
-        Public Function Playback() As TickEvent
-            Call __api.StartPlayback()
-            Return __initEvents()
-        End Function
-
-        Public Sub Pause()
-            Call __api.PausePlayback()
-            Call __validState()
-        End Sub
-
-        Public Sub [Resume]()
-            Call __api.ResumePlayback()
-            Call __validState()
-        End Sub
-
-        Public Sub [Stop]()
-            Call __api.StopPlayback()
-            Call __validState()
-        End Sub
-
-        Public Sub SeeksByTime(time As TStreamTime)
-            Call ZPlay.Seek(TTimeFormat.tfHMS, time, TSeekMethod.smFromBeginning)
-        End Sub
-
-        ''' <summary>
-        ''' 
-        ''' </summary>
-        ''' <param name="p">0 - 1</param>
-        Public Sub SeeksByPercent(p As Double)
-            Call ZPlay.Seek(TTimeFormat.tfMillisecond,
-                            TimePercentage(p),
-                            TSeekMethod.smFromBeginning)
-        End Sub
 
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' To detect redundant calls

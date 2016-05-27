@@ -44,6 +44,7 @@ Namespace App
                 _uri = value
             End Set
         End Property
+
         Public MustOverride ReadOnly Property StreamInfo As TStreamInfo
 
         Public ReadOnly Property status As TStreamStatus
@@ -53,5 +54,47 @@ Namespace App
                 Return s
             End Get
         End Property
+
+        Dim __validState As Action
+
+        Private Function __initEvents() As TickEvent
+            Dim args As New TickEvent(Me)
+            __validState = AddressOf args.ValidStatus
+            Return args
+        End Function
+
+        Public Function Playback() As TickEvent
+            Call __api.StartPlayback()
+            Return __initEvents()
+        End Function
+
+        Public Sub Pause()
+            Call __api.PausePlayback()
+            Call __validState()
+        End Sub
+
+        Public Sub [Resume]()
+            Call __api.ResumePlayback()
+            Call __validState()
+        End Sub
+
+        Public Sub [Stop]()
+            Call __api.StopPlayback()
+            Call __validState()
+        End Sub
+
+        Public Sub SeeksByTime(time As TStreamTime)
+            Call ZPlay.Seek(TTimeFormat.tfHMS, time, TSeekMethod.smFromBeginning)
+        End Sub
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="p">0 - 1</param>
+        Public Sub SeeksByPercent(p As Double)
+            Call ZPlay.Seek(TTimeFormat.tfMillisecond,
+                            TimePercentage(p),
+                            TSeekMethod.smFromBeginning)
+        End Sub
     End Class
 End Namespace

@@ -8,21 +8,13 @@ Namespace App
 
         Public Overrides ReadOnly Property CurrentPosition As TStreamTime
             Get
-                Throw New NotImplementedException()
+
             End Get
         End Property
 
         Public Overrides ReadOnly Property ID3v2 As TID3InfoEx
-            Get
-                Throw New NotImplementedException()
-            End Get
-        End Property
 
         Public Overrides ReadOnly Property StreamInfo As TStreamInfo
-            Get
-                Throw New NotImplementedException()
-            End Get
-        End Property
 
         ''' <summary>
         ''' 
@@ -40,11 +32,13 @@ Namespace App
         ''' <param name="autoStart"></param>
         ''' <returns></returns>
         ''' <remarks>除了一些需要实时进行更新的数据，所有的静态的信息都是在这里一次性的完成读取操作的</remarks>
-        Public Function Playback(uri As String, Optional autoStart As Boolean = False) As Boolean
+        Public Overloads Function Playback(uri As String, Optional autoStart As Boolean = False) As Boolean
             Dim cue As New Cue(uri)
 
             uri = uri.ParentPath & "/" & cue.File.Name
             ZplayMusic.Playback(uri)
+            _StreamInfo = ZplayMusic.StreamInfo
+            _ID3v2 = ZplayMusic.ID3v2
 
             Return True
         End Function
