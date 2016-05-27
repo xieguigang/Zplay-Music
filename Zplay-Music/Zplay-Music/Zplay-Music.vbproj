@@ -204,6 +204,7 @@
     <None Include="Resources\play.ico" />
     <None Include="Resources\pause.ico" />
     <None Include="Resources\end.ico" />
+    <None Include="Resources\tooltip.png" />
     <Content Include="wmp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

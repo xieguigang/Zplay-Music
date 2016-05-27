@@ -49,13 +49,24 @@ Public Class FormZplay
 
     Dim WithEvents _progress As ProgressIndicator
 
+    Friend _toolTips As PictureBox
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Location = New Point(0, My.Computer.Screen.WorkingArea.Height - 10 - Height)
         __playListInvoke = New PlayListAnimation(Me)
         __formInvoke = New FormAnimation(Me, __playListInvoke)
-        _progress = New ProgressIndicator
+        _progress = New ProgressIndicator With {.ParentMain = Me}
         Panel2.Controls.Add(_progress)
         _progress.Location = New Point(Scan0, Panel2.Height - 4)
+        _toolTips = New PictureBox With {
+            .BackgroundImage = My.Resources.tooltip,
+            .Size = My.Resources.tooltip.Size,
+            .Location = New Point(0, Panel2.Height - 8 - My.Resources.tooltip.Height),
+            .Visible = False
+        }
+        Panel2.Controls.Add(_toolTips)
+        picAlbumArt.SendToBack()
+        _toolTips.BringToFront()
 
         Call ChangePlayback("E:\日漫\01. STYX HELIX.mp3")
 
