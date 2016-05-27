@@ -44,7 +44,7 @@ Public Class Playlist : Implements IEnumerable(Of MediaFile)
     Public Function ReadNext() As String
         p += 1
 
-        If p = _files.Count Then
+        If p >= _files.Count Then
             Call _eolist()
         Else
             Return _files(p).FileName

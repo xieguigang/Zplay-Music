@@ -84,7 +84,7 @@ Public Class ListItem : Inherits PictureBox
     End Property
 
     Public Shared ReadOnly highlightFore As Color = Color.FromArgb(16, 165, 45)
-    Public Shared ReadOnly sz As New Size(529, 23)
+    Public Shared ReadOnly sz As New Size(522, 23)
 
     Shared ReadOnly t As Integer = 3
     Shared ReadOnly a As Integer = 300

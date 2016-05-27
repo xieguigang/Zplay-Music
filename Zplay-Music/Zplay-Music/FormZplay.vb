@@ -96,7 +96,7 @@ Public Class FormZplay
     Dim list As Playlist
 
     Private Sub __EOList()
-
+        Call play.Stop()
     End Sub
 
     Public Sub ChangePlaylist(list As Playlist)
