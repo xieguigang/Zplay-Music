@@ -47,12 +47,18 @@ Public Class FormZplay
                           picAlbumArt.Size))
     End Sub
 
+    Dim WithEvents _progress As ProgressIndicator
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Location = New Point(0, My.Computer.Screen.WorkingArea.Height - 10 - Height)
         __playListInvoke = New PlayListAnimation(Me)
         __formInvoke = New FormAnimation(Me, __playListInvoke)
+        _progress = New ProgressIndicator
+        Panel2.Controls.Add(_progress)
+        _progress.Location = New Point(Scan0, Panel2.Height - 4)
 
         Call ChangePlayback("E:\日漫\01. STYX HELIX.mp3")
+
     End Sub
 
     Public Sub ChangePlayback(file As String)
@@ -64,6 +70,8 @@ Public Class FormZplay
         lbTitle.Text = play.ID3v2.Title
 
         ticks = play.Playback()
+
+        _progress.Length = play.StreamInfo.Length.ms
     End Sub
 
     Private Sub btnCloselist_Click(sender As Object, e As EventArgs) Handles btnCloselist.Click
@@ -83,7 +91,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub ticks_Tick(sender As libZPlay.App.ZplayMusic, cur As TStreamTime, progress As Double) Handles ticks.Tick
-
+        Call Me.Invoke(Sub() _progress.Time = cur)
     End Sub
 
     Private Sub ticks_StateValidate(sender As libZPlay.App.ZplayMusic, stat As TStreamStatus) Handles ticks.StateValidate
