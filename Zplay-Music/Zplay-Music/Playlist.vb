@@ -28,6 +28,11 @@ Public Class Playlist : Implements IEnumerable(Of MediaFile)
 
     Public Function ReadPrevious() As String
         p -= 1
+
+        If p = -1 Then
+            p = 0
+        End If
+
         Return _files(p).FileName
     End Function
 

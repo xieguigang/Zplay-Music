@@ -74,7 +74,7 @@ Public Class FormZplay
 
         list = New Playlist(Playlist.GetFiles("E:\日漫", False), AddressOf __EOList)
 
-        Call ChangePlayback(list.First.FileName)
+        Call ChangePlayback(list.ReadNext)
     End Sub
 
     Dim list As Playlist
@@ -158,5 +158,21 @@ Public Class FormZplay
 
     Private Sub PreviousToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreviousToolStripMenuItem.Click
 
+    End Sub
+
+    Private Sub buttonNext_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonNext.Click
+        Dim file As String = list.ReadNext
+
+        If file.FileExists Then
+            Call ChangePlayback(file)
+        End If
+    End Sub
+
+    Private Sub buttonPrevious_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonPrevious.Click
+        Dim file As String = list.ReadPrevious
+
+        If file.FileExists Then
+            Call ChangePlayback(file)
+        End If
     End Sub
 End Class
