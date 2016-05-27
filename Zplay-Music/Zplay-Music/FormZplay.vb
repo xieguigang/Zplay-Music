@@ -106,6 +106,9 @@ Public Class FormZplay
         Using config As Config = Config.Load
             config.lastplay = New NamedValue(Of ListTypes)(list.URI, list.Type)
         End Using
+
+        Call List1.Clear()
+        Call List1.AddList(list)
     End Sub
 
     Public Sub ChangePlayback(file As String)
@@ -217,5 +220,10 @@ Public Class FormZplay
                 Call ChangePlayback(list.ReadNext)
             End If
         End Using
+    End Sub
+
+    Private Sub List1_ChangePlayback(file As String, index As Integer) Handles List1.ChangePlayback
+        Call ChangePlayback(file)
+        Call list.SetCurrentRead(index)
     End Sub
 End Class

@@ -30,6 +30,10 @@ Public Class Playlist : Implements IEnumerable(Of MediaFile)
         End Using
     End Function
 
+    Public Sub SetCurrentRead(index As Integer)
+        p = index
+    End Sub
+
     Sub New(files As IEnumerable(Of String), EOList As Action, type As ListTypes, URL As String)
         _files = GetFilesInfo(files).ToList
         _eolist = EOList

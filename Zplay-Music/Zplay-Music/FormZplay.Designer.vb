@@ -49,6 +49,7 @@ Partial Class FormZplay
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.List1 = New ZplayMusic.List()
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -81,6 +82,7 @@ Partial Class FormZplay
         '
         Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
         Me.Panel1.Controls.Add(Me.btnCloselist)
+        Me.Panel1.Controls.Add(Me.List1)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(541, 507)
@@ -258,6 +260,14 @@ Partial Class FormZplay
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
+        'List1
+        '
+        Me.List1.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer))
+        Me.List1.Location = New System.Drawing.Point(0, 58)
+        Me.List1.Name = "List1"
+        Me.List1.Size = New System.Drawing.Size(541, 453)
+        Me.List1.TabIndex = 6
+        '
         'FormZplay
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -311,4 +321,5 @@ Partial Class FormZplay
     Friend WithEvents OpenPlaylistToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents List1 As List
 End Class

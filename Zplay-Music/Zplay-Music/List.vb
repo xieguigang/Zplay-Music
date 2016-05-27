@@ -1,15 +1,50 @@
 ﻿Imports libZPlay.App
 Imports ZplayMusic
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 
-Public Class List
-    Implements IEnumerable(Of ListItem)
+Public Class List : Implements IEnumerable(Of ListItem)
 
-    Public Sub Add(file As MediaFile)
+    Public Event ChangePlayback(file As String, index As Integer)
+
+    Public Sub Add(file As MediaFile, i As Integer)
         Dim item As New ListItem(file) With {
-            .Size = ListItem.sz
+            .Size = ListItem.sz,
+            .Index = i
         }
         Call FlowLayoutPanel1.Controls.Add(item)
+
+        AddHandler item.Click, AddressOf __click
+    End Sub
+
+    Public Sub AddList(list As Playlist)
+        Dim i As New Pointer
+
+        For Each file In list
+            Call Add(file, ++i)
+        Next
+    End Sub
+
+    Public Sub Clear()
+        For Each item In Me
+            Call FlowLayoutPanel1.Controls.Remove(item)
+        Next
+    End Sub
+
+    Dim _nowPlaying As ListItem
+
+    Private Sub __setNowPlaying(item As ListItem)
+        If Not _nowPlaying Is Nothing Then
+            _nowPlaying.IsNowPlaying = False
+        End If
+        _nowPlaying = item
+        _nowPlaying.IsNowPlaying = True
+    End Sub
+
+    Private Sub __click(sender As Object, args As EventArgs)
+        Dim item As ListItem = DirectCast(sender, ListItem)
+        Call __setNowPlaying(item)
+        RaiseEvent ChangePlayback(item.MediaTag.FileName, item.Index)
     End Sub
 
     Public Iterator Function GetEnumerator() As IEnumerator(Of ListItem) Implements IEnumerable(Of ListItem).GetEnumerator
@@ -51,19 +86,25 @@ Public Class ListItem : Inherits PictureBox
     Public Shared ReadOnly highlightFore As Color = Color.FromArgb(16, 165, 45)
     Public Shared ReadOnly sz As New Size(529, 23)
 
-    Shared ReadOnly t As Integer = 5
-    Shared ReadOnly a As Integer = 180
-    Shared ReadOnly l As Integer = 230
+    Shared ReadOnly t As Integer = 3
+    Shared ReadOnly a As Integer = 230
+
+    Public ReadOnly Property MediaTag As MediaFile
+    Public Property Index As Integer
 
     Sub New(file As MediaFile)
         Dim font As New Font(FontFace.MicrosoftYaHei, 8)
         Dim size As SizeF
         Dim h As Integer
         Dim br As SolidBrush = Brushes.White
+        Dim rw As Integer
+        Dim l As Integer
 
         Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
-            size = g.Gr_Device.MeasureString(NameOf(ListItem), font)
+            size = g.Gr_Device.MeasureString("00:00", font)
             h = (sz.Height - size.Height) / 2
+            rw = sz.Width - size.Width - 3
+            l = rw
             g.Gr_Device.DrawString(file.Id3v2.Title, font, br, New Point(t, h))
             g.Gr_Device.DrawString(file.Id3v2.Artist, font, br, New Point(a, h))
             g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
@@ -85,6 +126,9 @@ Public Class ListItem : Inherits PictureBox
             g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
             highlight = g.ImageResource
         End Using
+
+        BackgroundImage = normal
+        MediaTag = file
     End Sub
 
     Private Sub ListItem_MouseEnter(sender As Object, e As EventArgs) Handles Me.MouseEnter
