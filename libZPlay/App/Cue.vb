@@ -14,6 +14,10 @@ Namespace App
         Public Property [Date] As String
         Public Property Genre As String
         Public Property Title As String
+        Public Property DiscId As String
+        Public Property Comment As String
+        Public Property Catalog As String
+        Public Property Performer As String
         Public Property File As NamedValue(Of String)
         Public Property Tracks As Track()
 
@@ -32,6 +36,14 @@ Namespace App
 
                 If key.TextEquals("DATE") Then
                     [Date] = s.GetString
+                ElseIf key.TextEquals("PERFORMER") Then
+                    Performer = s.GetString
+                ElseIf key.TextEquals("CATALOG") Then
+                    Catalog = s.GetString
+                ElseIf key.TextEquals("DISCID") Then
+                    DiscId = s.GetString
+                ElseIf key.TextEquals("COMMENT") Then
+                    Comment = s.GetString
                 ElseIf key.TextEquals("GENRE") Then
                     Genre = s.GetString
                 ElseIf key.TextEquals("TITLE") Then
@@ -58,6 +70,7 @@ Namespace App
         Public Property Performer As String
         Public Property Index00 As TimeSpan
         Public Property Index01 As TimeSpan
+        Public Property ISRC As String
 
         Public Overrides Function ToString() As String
             Return Me.GetJson
@@ -96,9 +109,9 @@ Namespace App
                     s = ts(1)
 
                     If idx = 0 Then
-                        track.Index00 = TimeSpan.Parse(s)
+                        track.Index00 = __timeParser(s)
                     Else
-                        track.Index01 = TimeSpan.Parse(s)
+                        track.Index01 = __timeParser(s)
                     End If
                 ElseIf key.TextEquals("Track") Then
                     If track.HaveValue Then
@@ -109,12 +122,22 @@ Namespace App
                     ts = s.Split
                     track.Index = CTypeDynamic(Of Integer)(ts(Scan0))
                     track.Type = ts(1)
+                ElseIf key.TextEquals("ISRC") Then
+                    track.ISRC = s.GetString
                 Else
                     Throw New NotImplementedException
                 End If
             Next
 
             Yield track
+        End Function
+
+        Private Shared Function __timeParser(s As String) As TimeSpan
+            Dim tokens As String() = s.Split(":"c)
+            Return New TimeSpan(0, 0,
+                CTypeDynamic(Of Integer)(tokens(0)),
+                CTypeDynamic(Of Integer)(tokens(1)),
+                CTypeDynamic(Of Integer)(tokens(2)))
         End Function
     End Class
 End Namespace
