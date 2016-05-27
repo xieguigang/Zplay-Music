@@ -72,7 +72,15 @@ Public Class FormZplay
         Panel1.Controls.Add(_playList)
         _playList.Location = New Point(0, Panel1.Height - _playList.Height)
 
+        list = New Playlist(Playlist.GetFiles("E:\日漫", False), AddressOf __EOList)
+
         Call ChangePlayback("E:\日漫\01. STYX HELIX.mp3")
+
+    End Sub
+
+    Dim list As Playlist
+
+    Private Sub __EOList()
 
     End Sub
 

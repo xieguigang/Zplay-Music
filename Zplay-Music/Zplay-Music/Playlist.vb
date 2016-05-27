@@ -1,6 +1,7 @@
 ﻿Imports libZPlay.App
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
+Imports Microsoft.VisualBasic.Language.UnixBash
 
 Public Class Playlist
 
@@ -8,12 +9,9 @@ Public Class Playlist
     Dim p As Integer = -1
     Dim _eolist As Action
 
-    Sub New(EOList As Action)
-        _eolist = EOList
-    End Sub
-
-    Sub New(files As IEnumerator(Of String))
+    Sub New(files As IEnumerable(Of String), EOList As Action)
         _files = GetFilesInfo(files).ToList
+        _eolist = EOList
     End Sub
 
     Public Function ReadNext() As String
@@ -36,5 +34,13 @@ Public Class Playlist
     Public Function Reset() As String
         p = -1
         Return ReadNext()
+    End Function
+
+    Public Shared Function GetFiles(DIR As String, recurve As Boolean) As IEnumerable(Of String)
+        If recurve Then
+            Return ls - l - r - wildcards("*.mp3", "*.wav", "*.flac", "*.ape") <= DIR
+        Else
+            Return ls - l - wildcards("*.mp3", "*.wav", "*.flac", "*.ape") <= DIR
+        End If
     End Function
 End Class
