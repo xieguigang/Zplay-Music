@@ -46,17 +46,16 @@ Public Class FormZplay
             buttonPrevious,
             buttonPause,
             buttonNext)
-        TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(
-            Handle,
-            New Rectangle(New Point(10, 517),
-                          picAlbumArt.Size))
+        Call FormZplay_SizeChanged(Nothing, Nothing)
     End Sub
 
     Private Sub FormZplay_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        Dim d As Integer = 5
+        Dim sz = picAlbumArt.Size
+        sz = New Size(sz.Width + d * 2, sz.Height + d * 2)
         TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(
             Handle,
-            New Rectangle(New Point(10, 517),
-                          picAlbumArt.Size))
+            New Rectangle(New Point(10 - d, 517 - d), sz))
     End Sub
 
     Dim WithEvents _progress As ProgressIndicator
@@ -236,10 +235,6 @@ Public Class FormZplay
     End Sub
 
     Private Sub picAlbumArt_Click(sender As Object, e As EventArgs) Handles picAlbumArt.Click
-
-    End Sub
-
-    Private Sub picAlbumArt_DoubleClick(sender As Object, e As EventArgs) Handles picAlbumArt.DoubleClick
         Dim tmp As String = App.GetAppSysTempFile(".png")
         Call picAlbumArt.BackgroundImage.SaveAs(tmp, ImageFormats.Png)
         Call System.Diagnostics.Process.Start(tmp)
