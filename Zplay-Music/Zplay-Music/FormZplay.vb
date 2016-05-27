@@ -124,6 +124,10 @@ Public Class FormZplay
 
         _progress.Length = play.StreamInfo.Length.ms
         List1.SetNowplaying(list.IndexOf(file))
+
+        If picAlbumArt.BackgroundImage Is Nothing Then
+            picAlbumArt.BackgroundImage = My.Resources.YuumincoDisc
+        End If
     End Sub
 
     Private Sub btnCloselist_Click(sender As Object, e As EventArgs) Handles btnCloselist.Click

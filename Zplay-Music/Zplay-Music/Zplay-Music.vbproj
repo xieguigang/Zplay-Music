@@ -237,6 +237,7 @@
     <None Include="Resources\end.ico" />
     <None Include="Resources\tooltip.png" />
     <None Include="Resources\Numbers.png" />
+    <None Include="Resources\YuumincoDisc.png" />
     <Content Include="wmp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
