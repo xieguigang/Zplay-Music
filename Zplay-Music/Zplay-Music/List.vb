@@ -87,13 +87,13 @@ Public Class ListItem : Inherits PictureBox
     Public Shared ReadOnly sz As New Size(529, 23)
 
     Shared ReadOnly t As Integer = 3
-    Shared ReadOnly a As Integer = 230
+    Shared ReadOnly a As Integer = 300
 
     Public ReadOnly Property MediaTag As MediaFile
     Public Property Index As Integer
 
     Sub New(file As MediaFile)
-        Dim font As New Font(FontFace.MicrosoftYaHei, 8)
+        Dim font As New Font(FontFace.MicrosoftYaHei, 9)
         Dim size As SizeF
         Dim h As Integer
         Dim br As SolidBrush = Brushes.White
@@ -115,7 +115,7 @@ Public Class ListItem : Inherits PictureBox
             g.Gr_Device.DrawString(file.Id3v2.Title, font, br, New Point(t, h))
             g.Gr_Device.DrawString(file.Id3v2.Artist, font, br, New Point(a, h))
             g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
-            nowPlaying = g.ImageResource
+            highlight = g.ImageResource
         End Using
 
         br = New SolidBrush(highlightFore)
@@ -124,7 +124,7 @@ Public Class ListItem : Inherits PictureBox
             g.Gr_Device.DrawString(file.Id3v2.Title, font, br, New Point(t, h))
             g.Gr_Device.DrawString(file.Id3v2.Artist, font, br, New Point(a, h))
             g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
-            highlight = g.ImageResource
+            nowPlaying = g.ImageResource
         End Using
 
         BackgroundImage = normal
