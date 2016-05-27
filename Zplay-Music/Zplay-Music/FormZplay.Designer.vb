@@ -27,6 +27,7 @@ Partial Class FormZplay
         Me.picDocker = New System.Windows.Forms.PictureBox()
         Me.btnCloselist = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.List1 = New ZplayMusic.List()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -50,16 +51,16 @@ Partial Class FormZplay
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PlaybackControl1 = New ZplayMusic.PlaybackControl()
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'picDocker
@@ -93,6 +94,16 @@ Partial Class FormZplay
         Me.Panel1.Size = New System.Drawing.Size(541, 507)
         Me.Panel1.TabIndex = 6
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox2.Location = New System.Drawing.Point(461, 0)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(48, 52)
+        Me.PictureBox2.TabIndex = 7
+        Me.PictureBox2.TabStop = False
+        '
         'List1
         '
         Me.List1.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer))
@@ -114,6 +125,7 @@ Partial Class FormZplay
         'Panel2
         '
         Me.Panel2.BackgroundImage = CType(resources.GetObject("Panel2.BackgroundImage"), System.Drawing.Image)
+        Me.Panel2.Controls.Add(Me.PlaybackControl1)
         Me.Panel2.Controls.Add(Me.PictureBox1)
         Me.Panel2.Controls.Add(Me.lbTitle)
         Me.Panel2.Controls.Add(Me.lbArtist)
@@ -275,15 +287,13 @@ Partial Class FormZplay
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
-        'PictureBox2
+        'PlaybackControl1
         '
-        Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
-        Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox2.Location = New System.Drawing.Point(461, 0)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(48, 52)
-        Me.PictureBox2.TabIndex = 7
-        Me.PictureBox2.TabStop = False
+        Me.PlaybackControl1.BackColor = System.Drawing.Color.Black
+        Me.PlaybackControl1.Location = New System.Drawing.Point(239, 46)
+        Me.PlaybackControl1.Name = "PlaybackControl1"
+        Me.PlaybackControl1.Size = New System.Drawing.Size(138, 42)
+        Me.PlaybackControl1.TabIndex = 7
         '
         'FormZplay
         '
@@ -304,13 +314,13 @@ Partial Class FormZplay
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -341,4 +351,5 @@ Partial Class FormZplay
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents List1 As List
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents PlaybackControl1 As PlaybackControl
 End Class

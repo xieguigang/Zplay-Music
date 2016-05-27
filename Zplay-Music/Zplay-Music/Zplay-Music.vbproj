@@ -183,6 +183,12 @@
     <Compile Include="List.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PlaybackControl.Designer.vb">
+      <DependentUpon>PlaybackControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PlaybackControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormAboutZplay.resx">
@@ -199,6 +205,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaybackControl.resx">
+      <DependentUpon>PlaybackControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressIndicator.resx">
       <DependentUpon>ProgressIndicator.vb</DependentUpon>
@@ -238,6 +247,12 @@
     <None Include="Resources\tooltip.png" />
     <None Include="Resources\Numbers.png" />
     <None Include="Resources\YuumincoDisc.png" />
+    <None Include="Resources\Next.png" />
+    <None Include="Resources\Next-highlight.png" />
+    <None Include="Resources\Play.png" />
+    <None Include="Resources\Play-highlight.png" />
+    <None Include="Resources\Previous.png" />
+    <None Include="Resources\Previous-highlight.png" />
     <Content Include="wmp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
