@@ -11,7 +11,7 @@ Namespace App
         ''' <param name="p">0 - 1</param>
         ''' 
         <Extension>
-        Public Function TimePercentage(zplay As MediaPlayer, p As Double) As TStreamTime
+        Public Function TimePercentage(zplay As ZplayMusic, p As Double) As TStreamTime
             Dim ms As Integer = p * zplay.StreamInfo.Length.ms
             Dim time As New TStreamTime With {
                 .ms = ms

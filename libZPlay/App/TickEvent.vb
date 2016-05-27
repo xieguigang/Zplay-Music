@@ -5,7 +5,7 @@ Namespace App
 
     Public Class TickEvent : Implements IDisposable
 
-        ReadOnly __player As MediaPlayer
+        ReadOnly __player As ZplayMusic
         ReadOnly _timer As New UpdateThread(PerSecond, AddressOf __triggerEvent)
 
         ''' <summary>
@@ -14,9 +14,9 @@ Namespace App
         ''' <param name="sender"></param>
         ''' <param name="cur"></param>
         ''' <param name="progress">进度条的百分比</param>
-        Public Event Tick(sender As MediaPlayer, cur As TStreamTime, progress As Double)
-        Public Event StateValidate(sender As MediaPlayer, stat As TStreamStatus)
-        Public Event EndOfTrack(sender As MediaPlayer)
+        Public Event Tick(sender As ZplayMusic, cur As TStreamTime, progress As Double)
+        Public Event StateValidate(sender As ZplayMusic, stat As TStreamStatus)
+        Public Event EndOfTrack(sender As ZplayMusic)
 
         Public ReadOnly Property StreamInfo As TStreamInfo
             Get
@@ -24,7 +24,7 @@ Namespace App
             End Get
         End Property
 
-        Sub New(api As MediaPlayer)
+        Sub New(api As ZplayMusic)
             __player = api
             _timer.Start()
         End Sub

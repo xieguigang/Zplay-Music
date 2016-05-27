@@ -17,7 +17,7 @@ Public Class FormZplay
     Dim __playListInvoke As PlayListAnimation
     Dim __formInvoke As FormAnimation
 
-    Dim play As New libZPlay.App.MediaPlayer
+    Dim play As New libZPlay.App.ZplayMusic
     Dim WithEvents ticks As TickEvent
 
     Dim WithEvents buttonPrevious As ThumbnailToolBarButton
@@ -29,12 +29,22 @@ Public Class FormZplay
         buttonNext = New ThumbnailToolBarButton(My.Resources._end, "Next")
         buttonPause = New ThumbnailToolBarButton(My.Resources.pause, "play/pause")
 
-        TaskbarManager.Instance.ThumbnailToolBars.AddButtons(Handle, buttonPrevious, buttonPause, buttonNext)
-        TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(Handle, New Rectangle(New Point(10, 517), picAlbumArt.Size))
+        TaskbarManager.Instance.ThumbnailToolBars.AddButtons(
+            Handle,
+            buttonPrevious,
+            buttonPause,
+            buttonNext)
+        TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(
+            Handle,
+            New Rectangle(New Point(10, 517),
+                          picAlbumArt.Size))
     End Sub
 
     Private Sub FormZplay_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(Me.Handle, New Rectangle(New Point(10, 517), picAlbumArt.Size))
+        TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(
+            Handle,
+            New Rectangle(New Point(10, 517),
+                          picAlbumArt.Size))
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -72,15 +82,15 @@ Public Class FormZplay
         Call play.Dispose()
     End Sub
 
-    Private Sub ticks_Tick(sender As MediaPlayer, cur As TStreamTime, progress As Double) Handles ticks.Tick
+    Private Sub ticks_Tick(sender As libZPlay.App.ZplayMusic, cur As TStreamTime, progress As Double) Handles ticks.Tick
 
     End Sub
 
-    Private Sub ticks_StateValidate(sender As MediaPlayer, stat As TStreamStatus) Handles ticks.StateValidate
+    Private Sub ticks_StateValidate(sender As libZPlay.App.ZplayMusic, stat As TStreamStatus) Handles ticks.StateValidate
 
     End Sub
 
-    Private Sub ticks_EndOfTrack(sender As MediaPlayer) Handles ticks.EndOfTrack
+    Private Sub ticks_EndOfTrack(sender As libZPlay.App.ZplayMusic) Handles ticks.EndOfTrack
 
     End Sub
 

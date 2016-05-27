@@ -26,7 +26,7 @@ Namespace App
         End Sub
     End Class
 
-    Public Class MediaPlayer : Inherits ZPlayInterface
+    Public Class ZplayMusic : Inherits ZPlayInterface
         Implements IDisposable
 
         ''' <summary>
