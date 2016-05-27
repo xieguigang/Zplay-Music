@@ -74,8 +74,7 @@ Public Class FormZplay
 
         list = New Playlist(Playlist.GetFiles("E:\日漫", False), AddressOf __EOList)
 
-        Call ChangePlayback("E:\日漫\01. STYX HELIX.mp3")
-
+        Call ChangePlayback(list.First.FileName)
     End Sub
 
     Dim list As Playlist

@@ -3,7 +3,7 @@ Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language.UnixBash
 
-Public Class Playlist
+Public Class Playlist : Implements IEnumerable(Of MediaFile)
 
     Dim _files As List(Of MediaFile)
     Dim p As Integer = -1
@@ -42,5 +42,15 @@ Public Class Playlist
         Else
             Return ls - l - wildcards("*.mp3", "*.wav", "*.flac", "*.ape") <= DIR
         End If
+    End Function
+
+    Public Iterator Function GetEnumerator() As IEnumerator(Of MediaFile) Implements IEnumerable(Of MediaFile).GetEnumerator
+        For Each x In _files
+            Yield x
+        Next
+    End Function
+
+    Private Iterator Function IEnumerable_GetEnumerator() As IEnumerator Implements IEnumerable.GetEnumerator
+        Yield GetEnumerator()
     End Function
 End Class
