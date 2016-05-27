@@ -12,6 +12,7 @@ Imports Microsoft.Windows.Shell
 Imports Microsoft.Windows.Taskbar
 Imports Microsoft.Windows.Dialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Windows.Forms
 
 Public Class FormZplay
 
@@ -24,6 +25,15 @@ Public Class FormZplay
     Dim WithEvents buttonPrevious As ThumbnailToolBarButton
     Dim WithEvents buttonNext As ThumbnailToolBarButton
     Dim WithEvents buttonPause As ThumbnailToolBarButton
+
+    Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        ToolStripManager.Renderer = New ChromeUIRender
+    End Sub
 
     Private Sub FormZplay_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         buttonPrevious = New ThumbnailToolBarButton(My.Resources.start, "Previous")
