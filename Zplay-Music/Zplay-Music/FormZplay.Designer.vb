@@ -23,7 +23,7 @@ Partial Class FormZplay
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormZplay))
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.picDocker = New System.Windows.Forms.PictureBox()
         Me.btnCloselist = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -32,7 +32,7 @@ Partial Class FormZplay
         Me.lbTime = New System.Windows.Forms.Label()
         Me.picAlbumArt = New System.Windows.Forms.PictureBox()
         Me.btnPlayList = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picDocker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -40,14 +40,14 @@ Partial Class FormZplay
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PictureBox3
+        'picDocker
         '
-        Me.PictureBox3.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.Docker_Expand
-        Me.PictureBox3.Location = New System.Drawing.Point(541, 507)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(22, 115)
-        Me.PictureBox3.TabIndex = 4
-        Me.PictureBox3.TabStop = False
+        Me.picDocker.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.Docker_Expand
+        Me.picDocker.Location = New System.Drawing.Point(541, 507)
+        Me.picDocker.Name = "picDocker"
+        Me.picDocker.Size = New System.Drawing.Size(22, 115)
+        Me.picDocker.TabIndex = 4
+        Me.picDocker.TabStop = False
         '
         'btnCloselist
         '
@@ -138,7 +138,7 @@ Partial Class FormZplay
         Me.BackColor = System.Drawing.Color.LightGreen
         Me.ClientSize = New System.Drawing.Size(563, 622)
         Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.PictureBox3)
+        Me.Controls.Add(Me.picDocker)
         Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -147,7 +147,7 @@ Partial Class FormZplay
         Me.Opacity = 0.95R
         Me.Text = "Zplay-Music"
         Me.TransparencyKey = System.Drawing.Color.LightGreen
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picDocker, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
@@ -157,7 +157,7 @@ Partial Class FormZplay
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents picDocker As PictureBox
     Friend WithEvents btnCloselist As PictureBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel

@@ -26,13 +26,8 @@ Public Class FormZplay
 
     Private Sub FormZplay_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         buttonPrevious = New ThumbnailToolBarButton(My.Resources.start, "Previous")
-        ' AddHandler buttonPrevious.Click, AddressOf buttonPrevious_Click
-
         buttonNext = New ThumbnailToolBarButton(My.Resources._end, "Next")
-        ' AddHandler buttonNext.Click, AddressOf buttonNext_Click
-
         buttonPause = New ThumbnailToolBarButton(My.Resources.pause, "play/pause")
-        'AddHandler buttonLast.Click, AddressOf buttonLast_Click
 
         TaskbarManager.Instance.ThumbnailToolBars.AddButtons(Handle, buttonPrevious, buttonPause, buttonNext)
         TaskbarManager.Instance.TabbedThumbnail.SetThumbnailClip(Handle, New Rectangle(New Point(10, 517), picAlbumArt.Size))
@@ -45,7 +40,7 @@ Public Class FormZplay
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Location = New Point(0, My.Computer.Screen.WorkingArea.Height - 10 - Height)
         __playListInvoke = New PlayListAnimation(Me)
-        __formInvoke = New FormAnimation(Me)
+        __formInvoke = New FormAnimation(Me, __playListInvoke)
 
         Call ChangePlayback("E:\日漫\01. STYX HELIX.mp3")
     End Sub
@@ -61,7 +56,7 @@ Public Class FormZplay
         ticks = play.Playback()
     End Sub
 
-    Private Sub btnCloselist_Click(sender As Object, e As EventArgs) Handles btnCloselist.Click, PictureBox3.Click
+    Private Sub btnCloselist_Click(sender As Object, e As EventArgs) Handles btnCloselist.Click
         Call __playListInvoke.Close()
     End Sub
 
@@ -96,6 +91,15 @@ Public Class FormZplay
             Call play.Resume()
         Else
             Call play.Pause()
+        End If
+    End Sub
+
+    Private Sub picDocker_Click(sender As Object, e As EventArgs) Handles picDocker.Click
+        If __formInvoke.IsOpen Then
+            Call __playListInvoke.Close()
+            Call __formInvoke.Close()
+        Else
+            Call __formInvoke.Open()
         End If
     End Sub
 End Class
