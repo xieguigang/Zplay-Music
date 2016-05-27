@@ -133,6 +133,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Playlist.vb" />
     <Compile Include="Config.vb" />
     <Compile Include="FormAnimation.vb" />
     <Compile Include="PlayListAnimation.vb" />

@@ -94,7 +94,7 @@
   <ItemGroup>
     <Compile Include="App\Extensions.vb" />
     <Compile Include="App\TickEvent.vb" />
-    <Compile Include="App\MediaPlayer.vb" />
+    <Compile Include="App\ZplayMusic.vb" />
     <Compile Include="DLL_API\InternalTypes.vb" />
     <Compile Include="DLL_API\libZPlay.dll.vb" />
     <Compile Include="DLL_API\libZPlay.vb" />

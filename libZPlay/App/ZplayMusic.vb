@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports libZPlay.InternalTypes
+Imports Microsoft.VisualBasic.Language
 
 Namespace App
 
@@ -175,5 +176,13 @@ Namespace App
             ' GC.SuppressFinalize(Me)
         End Sub
 #End Region
+    End Class
+
+    Public Class MediaFile : Inherits ClassObject
+
+        Public Property FileName As String
+        Public Property Id3v2 As TID3InfoEx
+        Public Property StreamInfo As TStreamInfo
+
     End Class
 End Namespace
