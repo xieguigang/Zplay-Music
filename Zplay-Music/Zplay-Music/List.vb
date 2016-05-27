@@ -13,6 +13,7 @@ Public Class List : Implements IEnumerable(Of ListItem)
             .Index = i
         }
         Call FlowLayoutPanel1.Controls.Add(item)
+        Call ToolTip1.SetToolTip(item, file.FileName)
 
         AddHandler item.Click, AddressOf __click
     End Sub
@@ -84,36 +85,49 @@ Public Class ListItem : Inherits PictureBox
     End Property
 
     Public Shared ReadOnly highlightFore As Color = Color.FromArgb(16, 165, 45)
-    Public Shared ReadOnly sz As New Size(522, 23)
+    Public Shared ReadOnly sz As New Size(515, 23)
 
     Shared ReadOnly t As Integer = 3
-    Shared ReadOnly a As Integer = 300
+    Shared ReadOnly a As Integer = 290
 
     Public ReadOnly Property MediaTag As MediaFile
     Public Property Index As Integer
 
+    Shared ReadOnly tl As Integer = 50
+    Shared ReadOnly al As Integer = 30
+
     Sub New(file As MediaFile)
-        Dim font As New Font(FontFace.MicrosoftYaHei, 9)
+        Dim font As New Font(FontFace.MicrosoftYaHei, 8)
         Dim size As SizeF
         Dim h As Integer
         Dim br As SolidBrush = Brushes.White
         Dim rw As Integer
         Dim l As Integer
 
+        Dim ts As String = file.Id3v2.Title
+        Dim [as] As String = file.Id3v2.Artist
+
+        If Len(ts) > tl Then
+            ts = Mid(ts, 1, tl) & "..."
+        End If
+        If Len([as]) > al Then
+            [as] = Mid([as], 1, al) & "..."
+        End If
+
         Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
             size = g.Gr_Device.MeasureString("00:00", font)
             h = (sz.Height - size.Height) / 2
             rw = sz.Width - size.Width - 3
             l = rw
-            g.Gr_Device.DrawString(file.Id3v2.Title, font, br, New Point(t, h))
-            g.Gr_Device.DrawString(file.Id3v2.Artist, font, br, New Point(a, h))
+            g.Gr_Device.DrawString(ts, font, br, New Point(t, h))
+            g.Gr_Device.DrawString([as], font, br, New Point(a, h))
             g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
             normal = g.ImageResource
         End Using
 
         Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.Black)
-            g.Gr_Device.DrawString(file.Id3v2.Title, font, br, New Point(t, h))
-            g.Gr_Device.DrawString(file.Id3v2.Artist, font, br, New Point(a, h))
+            g.Gr_Device.DrawString(ts, font, br, New Point(t, h))
+            g.Gr_Device.DrawString([as], font, br, New Point(a, h))
             g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
             highlight = g.ImageResource
         End Using
@@ -121,8 +135,8 @@ Public Class ListItem : Inherits PictureBox
         br = New SolidBrush(highlightFore)
 
         Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
-            g.Gr_Device.DrawString(file.Id3v2.Title, font, br, New Point(t, h))
-            g.Gr_Device.DrawString(file.Id3v2.Artist, font, br, New Point(a, h))
+            g.Gr_Device.DrawString(ts, font, br, New Point(t, h))
+            g.Gr_Device.DrawString([as], font, br, New Point(a, h))
             g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
             nowPlaying = g.ImageResource
         End Using

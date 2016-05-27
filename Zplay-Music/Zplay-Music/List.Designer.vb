@@ -22,17 +22,23 @@ Partial Class List
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'FlowLayoutPanel1
         '
+        Me.FlowLayoutPanel1.AutoScroll = True
+        Me.FlowLayoutPanel1.AutoSize = True
+        Me.FlowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(541, 453)
         Me.FlowLayoutPanel1.TabIndex = 0
+        Me.FlowLayoutPanel1.WrapContents = False
         '
         'List
         '
@@ -43,8 +49,10 @@ Partial Class List
         Me.Name = "List"
         Me.Size = New System.Drawing.Size(541, 453)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
