@@ -38,12 +38,13 @@ Partial Class FormZplay
         Me.PreviousToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlaypauseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlaybackModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShuffleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoopsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -153,47 +154,36 @@ Partial Class FormZplay
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreviousToolStripMenuItem, Me.PlaypauseToolStripMenuItem, Me.NextToolStripMenuItem, Me.PlaybackModeToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreviousToolStripMenuItem, Me.PlaypauseToolStripMenuItem, Me.NextToolStripMenuItem, Me.PlaybackModeToolStripMenuItem, Me.ToolStripMenuItem1, Me.AboutToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(156, 142)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(177, 164)
         '
         'PreviousToolStripMenuItem
         '
         Me.PreviousToolStripMenuItem.Image = CType(resources.GetObject("PreviousToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PreviousToolStripMenuItem.Name = "PreviousToolStripMenuItem"
-        Me.PreviousToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.PreviousToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.PreviousToolStripMenuItem.Text = "Previous"
         '
         'PlaypauseToolStripMenuItem
         '
         Me.PlaypauseToolStripMenuItem.Image = CType(resources.GetObject("PlaypauseToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PlaypauseToolStripMenuItem.Name = "PlaypauseToolStripMenuItem"
-        Me.PlaypauseToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.PlaypauseToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.PlaypauseToolStripMenuItem.Text = "Play/pause"
         '
         'NextToolStripMenuItem
         '
         Me.NextToolStripMenuItem.Image = CType(resources.GetObject("NextToolStripMenuItem.Image"), System.Drawing.Image)
         Me.NextToolStripMenuItem.Name = "NextToolStripMenuItem"
-        Me.NextToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.NextToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.NextToolStripMenuItem.Text = "Next"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 6)
-        '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'PlaybackModeToolStripMenuItem
         '
         Me.PlaybackModeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OrderToolStripMenuItem, Me.ShuffleToolStripMenuItem, Me.LoopsToolStripMenuItem})
         Me.PlaybackModeToolStripMenuItem.Name = "PlaybackModeToolStripMenuItem"
-        Me.PlaybackModeToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.PlaybackModeToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.PlaybackModeToolStripMenuItem.Text = "Playback Mode"
         '
         'OrderToolStripMenuItem
@@ -216,6 +206,23 @@ Partial Class FormZplay
         Me.LoopsToolStripMenuItem.Name = "LoopsToolStripMenuItem"
         Me.LoopsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.LoopsToolStripMenuItem.Text = "Loops"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(173, 6)
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.AboutToolStripMenuItem.Text = "About Zplay-Music"
         '
         'FormZplay
         '
@@ -264,4 +271,5 @@ Partial Class FormZplay
     Friend WithEvents OrderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShuffleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoopsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
 End Class

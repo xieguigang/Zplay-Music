@@ -175,4 +175,8 @@ Public Class FormZplay
             Call ChangePlayback(file)
         End If
     End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        Call New FormAboutZplay().ShowDialog()
+    End Sub
 End Class

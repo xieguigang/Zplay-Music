@@ -179,6 +179,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormAboutZplay.resx">
+      <DependentUpon>FormAboutZplay.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormZplay.resx">
       <DependentUpon>FormZplay.vb</DependentUpon>
     </EmbeddedResource>
