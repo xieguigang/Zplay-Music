@@ -1,4 +1,5 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports libZPlay.InternalTypes
 
 Namespace App
@@ -56,6 +57,16 @@ Namespace App
                     Yield __tagServices.GetFileInfo(file)
                 Next
             End SyncLock
+        End Function
+
+        <Extension>
+        Public Function IsNullOrNothing(art As Bitmap) As Boolean
+            If art Is Nothing Then
+                Return True
+            Else
+                Dim sz = art.Size
+                Return sz.Width = 1 AndAlso sz.Height = 1
+            End If
         End Function
     End Module
 End Namespace

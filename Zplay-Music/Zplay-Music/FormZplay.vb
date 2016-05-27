@@ -83,6 +83,8 @@ Public Class FormZplay
         _playList = New List
         Panel1.Controls.Add(_playList)
         _playList.Location = New Point(0, Panel1.Height - _playList.Height)
+        picAlbumArt.BackgroundImage = My.Resources.YuumincoDisc
+        picAlbumArt.BackColor = Color.Black
 
         Dim config As Config = Config.Load
 
@@ -125,7 +127,7 @@ Public Class FormZplay
         _progress.Length = play.StreamInfo.Length.ms
         List1.SetNowplaying(list.IndexOf(file))
 
-        If picAlbumArt.BackgroundImage Is Nothing Then
+        If play.AlbumArt.IsNullOrNothing Then
             picAlbumArt.BackgroundImage = My.Resources.YuumincoDisc
         End If
     End Sub
