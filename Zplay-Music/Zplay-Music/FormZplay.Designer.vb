@@ -89,6 +89,7 @@ Partial Class FormZplay
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Black
         Me.PictureBox1.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.Numbers
         Me.PictureBox1.Location = New System.Drawing.Point(478, 0)
         Me.PictureBox1.Name = "PictureBox1"
@@ -154,6 +155,7 @@ Partial Class FormZplay
         '
         'btnPlayList
         '
+        Me.btnPlayList.BackColor = System.Drawing.Color.Black
         Me.btnPlayList.BackgroundImage = CType(resources.GetObject("btnPlayList.BackgroundImage"), System.Drawing.Image)
         Me.btnPlayList.Location = New System.Drawing.Point(455, 0)
         Me.btnPlayList.Name = "btnPlayList"

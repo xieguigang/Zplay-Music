@@ -11,6 +11,7 @@ Imports Microsoft.VisualBasic
 Imports Microsoft.Windows.Shell
 Imports Microsoft.Windows.Taskbar
 Imports Microsoft.Windows.Dialogs
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 
 Public Class FormZplay
 
@@ -72,8 +73,12 @@ Public Class FormZplay
         Panel1.Controls.Add(_playList)
         _playList.Location = New Point(0, Panel1.Height - _playList.Height)
 
-        Call ChangePlaylist(New Playlist(Playlist.GetFiles("E:\日漫", False), AddressOf __EOList))
-        Call ChangePlayback(list.ReadNext)
+        Dim config As Config = Config.Load
+
+        If Not config.lastplay.Name Is Nothing Then
+            Call ChangePlaylist(config.GetList(AddressOf __EOList))
+            Call ChangePlayback(list.ReadNext)
+        End If
     End Sub
 
     Dim list As Playlist
@@ -85,6 +90,10 @@ Public Class FormZplay
     Public Sub ChangePlaylist(list As Playlist)
         Me.list = list
         Me.PictureBox1.BackgroundImage = list.DrawListCount
+
+        Using config As Config = Config.Load
+            config.lastplay = New NamedValue(Of ListTypes)(list.URI, list.Type)
+        End Using
     End Sub
 
     Public Sub ChangePlayback(file As String)
@@ -187,7 +196,12 @@ Public Class FormZplay
     Private Sub OpenFolderToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OpenFolderToolStripMenuItem1.Click
         Using DIR As New FolderBrowserDialog With {.ShowNewFolderButton = False}
             If DIR.ShowDialog = DialogResult.OK Then
-                Call ChangePlaylist(New Playlist(Playlist.GetFiles(DIR.SelectedPath, False), AddressOf __EOList))
+                Call ChangePlaylist(
+                    New Playlist(
+                    Playlist.GetFiles(DIR.SelectedPath, False),
+                    AddressOf __EOList,
+                    ListTypes.DIR,
+                    DIR.SelectedPath))
                 Call ChangePlayback(list.ReadNext)
             End If
         End Using
