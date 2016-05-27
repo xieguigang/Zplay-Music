@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Linq
 
 Public Class Cue : Inherits ClassObject
 
@@ -38,7 +39,9 @@ Public Class Cue : Inherits ClassObject
             End If
         Loop
 
-        Tracks = Track.TracksParser(lines.Skip(i).ToArray)
+        Tracks = Track.TracksParser(
+            lines.Skip(CType(i, Integer) - 1) _
+                .ToArray(AddressOf Trim)).ToArray
     End Sub
 
 
@@ -57,7 +60,57 @@ Public Class Track
         Return Me.GetJson
     End Function
 
-    Public Shared Function TracksParser(tokens As String()) As Track()
+    Public Function HaveIndexed() As Boolean
+        Return Index00.TotalMilliseconds > 0 OrElse
+            Index01.TotalMilliseconds > 0
+    End Function
 
+    Public Function HaveValue() As Boolean
+        Return HaveIndexed() OrElse
+            Not String.IsNullOrEmpty(Title) OrElse
+            Not String.IsNullOrEmpty(Performer) OrElse
+            Index > 0 OrElse
+            Not String.IsNullOrEmpty(Type)
+    End Function
+
+    Public Shared Iterator Function TracksParser(tokens As String()) As IEnumerable(Of Track)
+        Dim track As New Track
+        Dim key As String
+        Dim ts As String()
+        Dim idx As Integer
+
+        For Each s As String In tokens
+            key = s.Split.First
+            s = Mid(s, key.Length + 1).Trim
+
+            If key.TextEquals("Title") Then
+                track.Title = s.GetString
+            ElseIf key.TextEquals("Performer") Then
+                track.Performer = s.GetString
+            ElseIf key.TextEquals("Index") Then
+                ts = s.Split
+                idx = CTypeDynamic(Of Integer)(ts(Scan0))
+                s = ts(1)
+
+                If idx = 0 Then
+                    track.Index00 = TimeSpan.Parse(s)
+                Else
+                    track.Index01 = TimeSpan.Parse(s)
+                End If
+            ElseIf key.TextEquals("Track") Then
+                If track.HaveValue Then
+                    Yield track
+                    track = New Track
+                End If
+
+                ts = s.Split
+                track.Index = CTypeDynamic(Of Integer)(ts(Scan0))
+                track.Type = ts(1)
+            Else
+                Throw New NotImplementedException
+            End If
+        Next
+
+        Yield track
     End Function
 End Class
