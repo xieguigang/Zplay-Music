@@ -72,8 +72,7 @@ Public Class FormZplay
         Panel1.Controls.Add(_playList)
         _playList.Location = New Point(0, Panel1.Height - _playList.Height)
 
-        list = New Playlist(Playlist.GetFiles("E:\日漫", False), AddressOf __EOList)
-
+        Call ChangePlaylist(New Playlist(Playlist.GetFiles("E:\日漫", False), AddressOf __EOList))
         Call ChangePlayback(list.ReadNext)
     End Sub
 
@@ -81,6 +80,11 @@ Public Class FormZplay
 
     Private Sub __EOList()
 
+    End Sub
+
+    Public Sub ChangePlaylist(list As Playlist)
+        Me.list = list
+        Me.PictureBox1.BackgroundImage = list.DrawListCount
     End Sub
 
     Public Sub ChangePlayback(file As String)
@@ -178,5 +182,14 @@ Public Class FormZplay
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         Call New FormAboutZplay().ShowDialog()
+    End Sub
+
+    Private Sub OpenFolderToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OpenFolderToolStripMenuItem1.Click
+        Using DIR As New FolderBrowserDialog With {.ShowNewFolderButton = False}
+            If DIR.ShowDialog = DialogResult.OK Then
+                Call ChangePlaylist(New Playlist(Playlist.GetFiles(DIR.SelectedPath, False), AddressOf __EOList))
+                Call ChangePlayback(list.ReadNext)
+            End If
+        End Using
     End Sub
 End Class

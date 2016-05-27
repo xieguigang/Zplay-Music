@@ -27,6 +27,7 @@ Partial Class FormZplay
         Me.picDocker = New System.Windows.Forms.PictureBox()
         Me.btnCloselist = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lbTitle = New System.Windows.Forms.Label()
         Me.lbArtist = New System.Windows.Forms.Label()
@@ -42,12 +43,17 @@ Partial Class FormZplay
         Me.OrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShuffleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoopsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OpenFolderToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenPlaylistToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,9 +87,19 @@ Partial Class FormZplay
         Me.Panel1.Size = New System.Drawing.Size(541, 507)
         Me.Panel1.TabIndex = 6
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.Numbers
+        Me.PictureBox1.Location = New System.Drawing.Point(478, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(24, 28)
+        Me.PictureBox1.TabIndex = 6
+        Me.PictureBox1.TabStop = False
+        '
         'Panel2
         '
         Me.Panel2.BackgroundImage = CType(resources.GetObject("Panel2.BackgroundImage"), System.Drawing.Image)
+        Me.Panel2.Controls.Add(Me.PictureBox1)
         Me.Panel2.Controls.Add(Me.lbTitle)
         Me.Panel2.Controls.Add(Me.lbArtist)
         Me.Panel2.Controls.Add(Me.lbTime)
@@ -154,9 +170,9 @@ Partial Class FormZplay
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreviousToolStripMenuItem, Me.PlaypauseToolStripMenuItem, Me.NextToolStripMenuItem, Me.PlaybackModeToolStripMenuItem, Me.ToolStripMenuItem1, Me.AboutToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PreviousToolStripMenuItem, Me.PlaypauseToolStripMenuItem, Me.NextToolStripMenuItem, Me.PlaybackModeToolStripMenuItem, Me.ToolStripMenuItem2, Me.OpenFolderToolStripMenuItem1, Me.OpenFolderToolStripMenuItem, Me.OpenPlaylistToolStripMenuItem, Me.ToolStripMenuItem1, Me.AboutToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(177, 164)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(177, 214)
         '
         'PreviousToolStripMenuItem
         '
@@ -190,39 +206,62 @@ Partial Class FormZplay
         '
         Me.OrderToolStripMenuItem.CheckOnClick = True
         Me.OrderToolStripMenuItem.Name = "OrderToolStripMenuItem"
-        Me.OrderToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OrderToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.OrderToolStripMenuItem.Text = "Order"
         '
         'ShuffleToolStripMenuItem
         '
         Me.ShuffleToolStripMenuItem.CheckOnClick = True
         Me.ShuffleToolStripMenuItem.Name = "ShuffleToolStripMenuItem"
-        Me.ShuffleToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ShuffleToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.ShuffleToolStripMenuItem.Text = "Shuffle"
         '
         'LoopsToolStripMenuItem
         '
         Me.LoopsToolStripMenuItem.CheckOnClick = True
         Me.LoopsToolStripMenuItem.Name = "LoopsToolStripMenuItem"
-        Me.LoopsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.LoopsToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.LoopsToolStripMenuItem.Text = "Loops"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(173, 6)
+        '
+        'OpenFolderToolStripMenuItem1
+        '
+        Me.OpenFolderToolStripMenuItem1.Name = "OpenFolderToolStripMenuItem1"
+        Me.OpenFolderToolStripMenuItem1.Size = New System.Drawing.Size(176, 22)
+        Me.OpenFolderToolStripMenuItem1.Text = "Open Folder"
+        '
+        'OpenFolderToolStripMenuItem
+        '
+        Me.OpenFolderToolStripMenuItem.Name = "OpenFolderToolStripMenuItem"
+        Me.OpenFolderToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.OpenFolderToolStripMenuItem.Text = "Open Playlist"
+        '
+        'OpenPlaylistToolStripMenuItem
+        '
+        Me.OpenPlaylistToolStripMenuItem.Name = "OpenPlaylistToolStripMenuItem"
+        Me.OpenPlaylistToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.OpenPlaylistToolStripMenuItem.Text = "Open Playlist"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(173, 6)
         '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
-        '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.AboutToolStripMenuItem.Text = "About Zplay-Music"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'FormZplay
         '
@@ -243,6 +282,7 @@ Partial Class FormZplay
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).EndInit()
@@ -272,4 +312,9 @@ Partial Class FormZplay
     Friend WithEvents ShuffleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoopsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenFolderToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents OpenFolderToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenPlaylistToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

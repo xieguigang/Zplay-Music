@@ -2,12 +2,30 @@
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Imaging
 
 Public Class Playlist : Implements IEnumerable(Of MediaFile)
 
     Dim _files As List(Of MediaFile)
     Dim p As Integer = -1
     Dim _eolist As Action
+
+    Public Function DrawListCount() As Image
+        Dim s As String = _files.Count.ToString
+        Dim font As New Font(FontFace.MicrosoftYaHei, 8)
+
+        Using g As GDIPlusDeviceHandle =
+            My.Resources.Numbers.Size.CreateGDIDevice
+
+            Dim sz = g.Gr_Device.MeasureString(s, font)
+            Dim loc As New Point((g.Width - sz.Width) / 2, (g.Height - sz.Height) / 2)
+
+            Call g.Gr_Device.DrawImage(My.Resources.Numbers, New Point)
+            Call g.Gr_Device.DrawString(s, font, Brushes.White, loc)
+
+            Return g.ImageResource
+        End Using
+    End Function
 
     Sub New(files As IEnumerable(Of String), EOList As Action)
         _files = GetFilesInfo(files).ToList
