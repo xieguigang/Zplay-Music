@@ -13,6 +13,7 @@ Imports Microsoft.Windows.Taskbar
 Imports Microsoft.Windows.Dialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Windows.Forms
+Imports Microsoft.VisualBasic.Imaging
 
 Public Class FormZplay
 
@@ -226,5 +227,15 @@ Public Class FormZplay
     Private Sub List1_ChangePlayback(file As String, index As Integer) Handles List1.ChangePlayback
         Call ChangePlayback(file)
         Call list.SetCurrentRead(index)
+    End Sub
+
+    Private Sub picAlbumArt_Click(sender As Object, e As EventArgs) Handles picAlbumArt.Click
+
+    End Sub
+
+    Private Sub picAlbumArt_DoubleClick(sender As Object, e As EventArgs) Handles picAlbumArt.DoubleClick
+        Dim tmp As String = App.GetAppSysTempFile(".png")
+        Call picAlbumArt.BackgroundImage.SaveAs(tmp, ImageFormats.Png)
+        Call System.Diagnostics.Process.Start(tmp)
     End Sub
 End Class

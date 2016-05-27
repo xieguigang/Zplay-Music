@@ -27,6 +27,7 @@ Partial Class FormZplay
         Me.picDocker = New System.Windows.Forms.PictureBox()
         Me.btnCloselist = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.List1 = New ZplayMusic.List()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lbTitle = New System.Windows.Forms.Label()
@@ -49,7 +50,6 @@ Partial Class FormZplay
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.List1 = New ZplayMusic.List()
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -63,6 +63,7 @@ Partial Class FormZplay
         'picDocker
         '
         Me.picDocker.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.Docker_Expand
+        Me.picDocker.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picDocker.Location = New System.Drawing.Point(541, 507)
         Me.picDocker.Name = "picDocker"
         Me.picDocker.Size = New System.Drawing.Size(22, 115)
@@ -72,6 +73,7 @@ Partial Class FormZplay
         'btnCloselist
         '
         Me.btnCloselist.BackgroundImage = CType(resources.GetObject("btnCloselist.BackgroundImage"), System.Drawing.Image)
+        Me.btnCloselist.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCloselist.Location = New System.Drawing.Point(507, 0)
         Me.btnCloselist.Name = "btnCloselist"
         Me.btnCloselist.Size = New System.Drawing.Size(34, 21)
@@ -87,6 +89,14 @@ Partial Class FormZplay
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(541, 507)
         Me.Panel1.TabIndex = 6
+        '
+        'List1
+        '
+        Me.List1.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer))
+        Me.List1.Location = New System.Drawing.Point(0, 58)
+        Me.List1.Name = "List1"
+        Me.List1.Size = New System.Drawing.Size(541, 453)
+        Me.List1.TabIndex = 6
         '
         'PictureBox1
         '
@@ -148,6 +158,7 @@ Partial Class FormZplay
         'picAlbumArt
         '
         Me.picAlbumArt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.picAlbumArt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picAlbumArt.Location = New System.Drawing.Point(10, 10)
         Me.picAlbumArt.Name = "picAlbumArt"
         Me.picAlbumArt.Size = New System.Drawing.Size(90, 90)
@@ -158,6 +169,7 @@ Partial Class FormZplay
         '
         Me.btnPlayList.BackColor = System.Drawing.Color.Black
         Me.btnPlayList.BackgroundImage = CType(resources.GetObject("btnPlayList.BackgroundImage"), System.Drawing.Image)
+        Me.btnPlayList.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnPlayList.Location = New System.Drawing.Point(455, 0)
         Me.btnPlayList.Name = "btnPlayList"
         Me.btnPlayList.Size = New System.Drawing.Size(23, 28)
@@ -259,14 +271,6 @@ Partial Class FormZplay
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
-        '
-        'List1
-        '
-        Me.List1.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer), CType(CType(27, Byte), Integer))
-        Me.List1.Location = New System.Drawing.Point(0, 58)
-        Me.List1.Name = "List1"
-        Me.List1.Size = New System.Drawing.Size(541, 453)
-        Me.List1.TabIndex = 6
         '
         'FormZplay
         '

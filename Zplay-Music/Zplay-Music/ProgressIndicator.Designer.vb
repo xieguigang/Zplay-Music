@@ -29,6 +29,7 @@ Partial Class ProgressIndicator
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Name = "ProgressIndicator"
         Me.Size = New System.Drawing.Size(541, 4)
         Me.ResumeLayout(False)
