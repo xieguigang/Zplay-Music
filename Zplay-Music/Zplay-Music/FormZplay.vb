@@ -75,7 +75,9 @@ Public Class FormZplay
 
         Dim config As Config = Config.Load
 
-        If Not config.lastplay.Name Is Nothing Then
+        If config.lastplay.Name.FileExists OrElse
+            config.lastplay.Name.DirectoryExists Then
+
             Call ChangePlaylist(config.GetList(AddressOf __EOList))
             Call ChangePlayback(list.ReadNext)
         End If

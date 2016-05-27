@@ -30,7 +30,7 @@ Public Class Config : Implements IDisposable
     End Function
 
     Sub Save()
-        Call Me.GetJson.SaveTo(DefaultFile)
+        Call Me.GetJson.SaveTo(DefaultFile, Encodings.UTF8.GetEncodings)
     End Sub
 
 #Region "IDisposable Support"
