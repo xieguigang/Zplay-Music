@@ -52,6 +52,11 @@ Namespace App
             _URI = URL
         End Sub
 
+        Public Sub Clear()
+            _files.Clear()
+            p = -1
+        End Sub
+
         Public Function ReadNext() As String
             p += 1
 

@@ -50,6 +50,7 @@ Partial Class FormZplay
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(Me.picDocker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCloselist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -58,6 +59,7 @@ Partial Class FormZplay
         CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'picDocker
@@ -83,6 +85,7 @@ Partial Class FormZplay
         'Panel1
         '
         Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
+        Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.btnCloselist)
         Me.Panel1.Controls.Add(Me.List1)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
@@ -272,6 +275,16 @@ Partial Class FormZplay
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox2.Location = New System.Drawing.Point(461, 0)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(48, 52)
+        Me.PictureBox2.TabIndex = 7
+        Me.PictureBox2.TabStop = False
+        '
         'FormZplay
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -297,6 +310,7 @@ Partial Class FormZplay
         CType(Me.picAlbumArt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnPlayList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -326,4 +340,5 @@ Partial Class FormZplay
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents List1 As List
+    Friend WithEvents PictureBox2 As PictureBox
 End Class

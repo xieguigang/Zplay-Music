@@ -9,6 +9,7 @@ Public Class List : Implements IEnumerable(Of ListItem)
     Public Event ChangePlayback(file As String, index As Integer)
 
     Dim list As New List(Of ListItem)
+    Dim curplaying As Playlist
 
     Public Sub Add(file As MediaFile, i As Integer)
         Dim item As New ListItem(file) With {
@@ -29,6 +30,8 @@ Public Class List : Implements IEnumerable(Of ListItem)
         For Each file In list
             Call Add(file, ++i)
         Next
+
+        curplaying = list
     End Sub
 
     Public Sub Clear()
@@ -37,12 +40,16 @@ Public Class List : Implements IEnumerable(Of ListItem)
             Call list.Remove(item)
             Call item.Dispose()
         Next
+
+        If Not curplaying Is Nothing Then '
+            Call curplaying.Clear()
+        End If
     End Sub
 
     Dim _nowPlaying As ListItem
 
     Public Sub SetNowplaying(index As Integer)
-        If index <> -1 Then
+        If index <> -1 AndAlso list.Count > 0 Then
             Call __setNowPlaying(list(index))
         End If
     End Sub

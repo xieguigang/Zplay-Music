@@ -239,4 +239,8 @@ Public Class FormZplay
         Call picAlbumArt.BackgroundImage.SaveAs(tmp, ImageFormats.Png)
         Call System.Diagnostics.Process.Start(tmp)
     End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Call List1.Clear()
+    End Sub
 End Class
