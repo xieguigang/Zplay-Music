@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+﻿Imports libZPlay.App
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Serialization
 
 Public Class Config : Implements IDisposable
@@ -66,8 +67,3 @@ Public Class Config : Implements IDisposable
     End Sub
 #End Region
 End Class
-
-Public Enum ListTypes
-    Playlist
-    DIR
-End Enum

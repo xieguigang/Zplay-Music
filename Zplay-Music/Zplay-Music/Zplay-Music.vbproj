@@ -100,11 +100,17 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a">
-      <HintPath>..\..\libZPlay\packages\VB_AppFramework.1.0.26\x86\Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a.dll</HintPath>
+    <Reference Include="Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a, Version=3.0.32.35125, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\VisualBasic.WinForm.1.0.0\Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.FeatureAPI">
-      <HintPath>F:\Microsoft.VisualBasic.Windows.Forms\Microsoft.Windows.FeatureAPI\bin\Release\Microsoft.Windows.FeatureAPI.dll</HintPath>
+    <Reference Include="Microsoft.VisualBasic.Windows.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\VisualBasic.WinForm.1.0.0\Microsoft.VisualBasic.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.FeatureAPI, Version=10.0.5968.40149, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\VisualBasic.WinForm.1.0.0\Microsoft.Windows.FeatureAPI.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -216,12 +222,9 @@
       <Project>{822d0a37-7bb5-4ecb-acc8-8e38bdf1f063}</Project>
       <Name>libZPlay.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="F:\Microsoft.VisualBasic.Windows.Forms\Microsoft.VisualBasic.Windows.Forms\Microsoft.VisualBasic.Windows.Forms.vbproj">
-      <Project>{21d7fd22-6aed-4e65-b2ef-f9f5565cf80e}</Project>
-      <Name>Microsoft.VisualBasic.Windows.Forms</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\Docker-Expand.png" />
   </ItemGroup>
   <ItemGroup>
