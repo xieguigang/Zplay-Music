@@ -35,7 +35,7 @@ Namespace App.CUE
 
         Public ReadOnly Property CUE As Cue
         Public ReadOnly Property CUEStream As TStreamInfo
-
+        Public ReadOnly Property CUEID3v2 As TID3InfoEx
         ''' <summary>
         ''' 
         ''' </summary>
@@ -49,7 +49,7 @@ Namespace App.CUE
                 uri = uri.ParentPath & "/" & CUE.File.Name
                 ZplayMusic.Playback(uri)
                 _CUEStream = ZplayMusic.StreamInfo
-                _ID3v2 = ZplayMusic.ID3v2
+                _CUEID3v2 = ZplayMusic.ID3v2
             Else
                 Call PlayTrack(CTypeDynamic(Of Integer)(uri))
             End If
@@ -62,6 +62,9 @@ Namespace App.CUE
         Public Sub PlayTrack(i As Integer)
             Dim l As TimeSpan = CUE.GetLength(i, CUEStream)
             currentTrack = CUE.Tracks(i)
+            _ID3v2 = New TID3InfoEx With {
+                .Album = NotNull(CUEID3v2.Album)
+            }
             _StreamInfo = New TStreamInfo With {
                 .Bitrate = CUEStream.Bitrate,
                 .ChannelNumber = CUEStream.ChannelNumber,

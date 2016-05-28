@@ -6,6 +6,16 @@ Namespace App
 
     Public Module Extensions
 
+        Public Function NotNull(ParamArray args As String()) As String
+            For Each s As String In args
+                If Not String.IsNullOrEmpty(s) Then
+                    Return s
+                End If
+            Next
+
+            Return ""
+        End Function
+
         ''' <summary>
         ''' 
         ''' </summary>
