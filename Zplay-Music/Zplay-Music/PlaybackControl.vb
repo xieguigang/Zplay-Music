@@ -13,13 +13,20 @@
         Set(value As Boolean)
             _paused = value
 
-            If _paused Then
-
+            If Paused Then
+                res = My.Resources.Play1
+                resHighlight = My.Resources.Play_highlight
             Else
-
+                res = My.Resources.Paused
+                resHighlight = My.Resources.Paused_highlight
             End If
+
+            btnPlay.BackgroundImage = res
         End Set
     End Property
+
+    Dim res As Image
+    Dim resHighlight As Image
 
     Private Sub btnNext_MouseEnter(sender As Object, e As EventArgs) Handles btnNext.MouseEnter
         btnNext.BackgroundImage = My.Resources.Next_highlight
@@ -34,11 +41,11 @@
     End Sub
 
     Private Sub btnPlay_MouseEnter(sender As Object, e As EventArgs) Handles btnPlay.MouseEnter
-        btnPlay.BackgroundImage = My.Resources.Play_highlight
+        btnPlay.BackgroundImage = resHighlight
     End Sub
 
     Private Sub btnPlay_MouseLeave(sender As Object, e As EventArgs) Handles btnPlay.MouseLeave
-        btnPlay.BackgroundImage = My.Resources.Play1
+        btnPlay.BackgroundImage = res
     End Sub
 
     Private Sub btnPlay_MouseUp(sender As Object, e As MouseEventArgs) Handles btnPlay.MouseUp

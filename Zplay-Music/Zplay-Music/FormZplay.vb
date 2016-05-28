@@ -126,6 +126,7 @@ Public Class FormZplay
 
         _progress.Length = play.StreamInfo.Length.ms
         List1.SetNowplaying(list.IndexOf(file))
+        PlaybackControl1.Paused = False
 
         If play.AlbumArt.IsNullOrNothing Then
             picAlbumArt.BackgroundImage = My.Resources.YuumincoDisc
@@ -154,7 +155,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub ticks_StateValidate(sender As libZPlay.App.ZplayMusic, stat As TStreamStatus) Handles ticks.StateValidate
-        PlaybackControl1.Paused = stat.fPause
+        Call Me.Invoke(Sub() PlaybackControl1.Paused = stat.fPause)
     End Sub
 
     Private Sub ticks_EndOfTrack(sender As libZPlay.App.ZplayMusic) Handles ticks.EndOfTrack

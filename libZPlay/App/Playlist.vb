@@ -76,6 +76,10 @@ Namespace App
                 p = 0
             End If
 
+            If p = _files.Count Then
+                p = _files.Count - 2
+            End If
+
             Return _files(p).FileName
         End Function
 
