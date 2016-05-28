@@ -1,20 +1,23 @@
 ﻿Imports libZPlay.App
+Imports libZPlay.InternalTypes
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Serialization
 
 Public Class Config : Implements IDisposable
 
-    Public Property lastplay As NamedValue(Of ListTypes)
+    Public Property lastPlaylist As NamedValue(Of ListTypes)
+    Public Property lastPlay As NamedValue(Of TStreamTime)
+    Public Property playbackMode As PlaybackModes
 
     Public Shared ReadOnly Property DefaultFile As String = App.HOME & "/config.json"
 
     Public Function GetList(eop As Action) As Playlist
-        If lastplay.x = ListTypes.DIR Then
+        If lastPlaylist.x = ListTypes.DIR Then
             Return New Playlist(
-                Playlist.GetFiles(lastplay.Name, False),
+                Playlist.GetFiles(lastPlaylist.Name, False),
                 eop,
                 ListTypes.DIR,
-                lastplay.Name)
+                lastPlaylist.Name)
         Else
             Throw New NotImplementedException
         End If

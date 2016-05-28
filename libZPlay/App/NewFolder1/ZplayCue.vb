@@ -1,6 +1,6 @@
 ﻿Imports libZPlay.InternalTypes
 
-Namespace App
+Namespace App.CUE
 
     Public Class ZplayCue : Inherits ZPlayInterface
 
@@ -33,7 +33,7 @@ Namespace App
         ''' <returns></returns>
         ''' <remarks>除了一些需要实时进行更新的数据，所有的静态的信息都是在这里一次性的完成读取操作的</remarks>
         Public Overloads Function Playback(uri As String, Optional autoStart As Boolean = False) As Boolean
-            Dim cue As New Cue(uri)
+            Dim cue As New CUE(uri)
 
             uri = uri.ParentPath & "/" & cue.File.Name
             ZplayMusic.Playback(uri)

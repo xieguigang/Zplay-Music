@@ -88,11 +88,11 @@ Public Class FormZplay
 
         Dim config As Config = Config.Load
 
-        If config.lastplay.Name.FileExists OrElse
-            config.lastplay.Name.DirectoryExists Then
+        If config.lastPlaylist.Name.FileExists OrElse
+            config.lastPlaylist.Name.DirectoryExists Then
 
             Call ChangePlaylist(config.GetList(AddressOf __EOList))
-            Call ChangePlayback(list.ReadNext)
+            Call ChangePlayback(list.ReadNext.FileName)
         End If
     End Sub
 
@@ -107,7 +107,7 @@ Public Class FormZplay
         Me.PictureBox1.BackgroundImage = list.DrawListCount
 
         Using config As Config = Config.Load
-            config.lastplay = New NamedValue(Of ListTypes)(list.URI, list.Type)
+            config.lastPlaylist = New NamedValue(Of ListTypes)(list.URI, list.Type)
         End Using
 
         Call List1.Clear()
@@ -212,7 +212,7 @@ Public Class FormZplay
                     AddressOf __EOList,
                     ListTypes.DIR,
                     DIR.SelectedPath))
-                Call ChangePlayback(list.ReadNext)
+                Call ChangePlayback(list.ReadNext.FileName)
             End If
         End Using
     End Sub
@@ -233,7 +233,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub PlaybackControl1_PlaybackNext() Handles PlaybackControl1.PlaybackNext
-        Dim file As String = list.ReadNext
+        Dim file As String = list.ReadNext.FileName
 
         If file.FileExists Then
             Call ChangePlayback(file)
@@ -251,7 +251,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub PlaybackControl1_PlaybackPrevious() Handles PlaybackControl1.PlaybackPrevious
-        Dim file As String = list.ReadPrevious
+        Dim file As String = list.ReadPrevious.FileName
 
         If file.FileExists Then
             Call ChangePlayback(file)

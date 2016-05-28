@@ -4,23 +4,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 
-Namespace App
-
-    Public Class CUEList
-
-        Public ReadOnly Property Cue As Cue
-
-        Dim p As Integer = -1
-
-        Sub New(cue As Cue)
-            Me.Cue = cue
-        End Sub
-
-        Public Function NextTrack() As Track
-            p += 1
-
-        End Function
-    End Class
+Namespace App.CUE
 
     ''' <summary>
     ''' Parser for cue list
