@@ -112,6 +112,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\VisualBasic.WinForm.1.0.0\Microsoft.Windows.FeatureAPI.dll</HintPath>
     </Reference>
+    <Reference Include="notify_osd">
+      <HintPath>..\packages\Notify-OSD.1.0.0\notify_osd.exe</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -139,6 +142,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Notify.vb" />
     <Compile Include="FormAboutZplay.Designer.vb">
       <DependentUpon>FormAboutZplay.vb</DependentUpon>
     </Compile>

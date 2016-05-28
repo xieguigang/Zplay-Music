@@ -60,6 +60,7 @@ Public Class FormZplay
     End Sub
 
     Dim WithEvents _progress As ProgressIndicator
+    Dim _osd As New Notify
 
     Friend _toolTips As PictureBox
     Friend _playList As List
@@ -131,6 +132,8 @@ Public Class FormZplay
         If play.AlbumArt.IsNullOrNothing Then
             picAlbumArt.BackgroundImage = My.Resources.YuumincoDisc
         End If
+
+        Call _osd.ShowNotify(play.ID3v2, picAlbumArt.BackgroundImage)
     End Sub
 
     Private Sub btnCloselist_Click(sender As Object, e As EventArgs) Handles btnCloselist.Click
@@ -148,6 +151,7 @@ Public Class FormZplay
     Private Sub FormZplay_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Call ticks.Dispose()
         Call play.Dispose()
+        Call _osd.Dispose()
     End Sub
 
     Private Sub ticks_Tick(sender As libZPlay.App.ZplayMusic, cur As TStreamTime, progress As Double) Handles ticks.Tick
