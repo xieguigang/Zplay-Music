@@ -93,7 +93,7 @@ Public Class FormZplay
             config.lastPlaylist.Name.DirectoryExists Then
 
             Call ChangePlaylist(config.GetList(AddressOf __EOList))
-            Call ChangePlayback(list.ReadNext.FileName)
+            Call ChangePlayback(list.ReadNext?.FileName)
         End If
     End Sub
 
@@ -216,7 +216,7 @@ Public Class FormZplay
                     AddressOf __EOList,
                     ListTypes.DIR,
                     DIR.SelectedPath))
-                Call ChangePlayback(list.ReadNext.FileName)
+                Call ChangePlayback(list.ReadNext?.FileName)
             End If
         End Using
     End Sub
@@ -237,7 +237,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub PlaybackControl1_PlaybackNext() Handles PlaybackControl1.PlaybackNext
-        Dim file As String = list.ReadNext.FileName
+        Dim file As String = list.ReadNext?.FileName
 
         If file.FileExists Then
             Call ChangePlayback(file)

@@ -55,7 +55,11 @@ Namespace App
             End Get
         End Property
 
-        Dim __validState As Action
+        Dim __validState As Action = AddressOf __null
+
+        Private Shared Sub __null()
+            ' DO NOTHING
+        End Sub
 
         Private Function __initEvents() As TickEvent
             Dim args As New TickEvent(Me)
