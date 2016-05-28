@@ -2,7 +2,6 @@
 
     Public Event PlaybackNext()
     Public Event PlaybackPrevious()
-    Public Event PlaybackPause()
     Public Event PlaybackPlay()
 
     Dim _paused As Boolean
@@ -43,11 +42,7 @@
     End Sub
 
     Private Sub btnPlay_MouseUp(sender As Object, e As MouseEventArgs) Handles btnPlay.MouseUp
-        If Paused Then
-            RaiseEvent PlaybackPlay()
-        Else
-            RaiseEvent PlaybackPause()
-        End If
+        RaiseEvent PlaybackPlay()
     End Sub
 
     Private Sub btnPrevious_MouseEnter(sender As Object, e As EventArgs) Handles btnPrevious.MouseEnter

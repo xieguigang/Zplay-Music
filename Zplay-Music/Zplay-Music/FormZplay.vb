@@ -5,6 +5,7 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Linq
 Imports System.Windows.Forms
+Imports Browser = System.Diagnostics.Process
 Imports libZPlay.App
 Imports libZPlay.InternalTypes
 Imports Microsoft.VisualBasic
@@ -153,7 +154,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub ticks_StateValidate(sender As libZPlay.App.ZplayMusic, stat As TStreamStatus) Handles ticks.StateValidate
-
+        PlaybackControl1.Paused = stat.fPause
     End Sub
 
     Private Sub ticks_EndOfTrack(sender As libZPlay.App.ZplayMusic) Handles ticks.EndOfTrack
@@ -178,37 +179,23 @@ Public Class FormZplay
     End Sub
 
     Private Sub NextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NextToolStripMenuItem.Click
-
+        Call PlaybackControl1_PlaybackNext()
     End Sub
 
     Private Sub PlaypauseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlaypauseToolStripMenuItem.Click
-        If ticks.StopStatus Then
-            Call play.Playback()
-        ElseIf play.status.fPause Then
-            Call play.Resume()
-        Else
-            Call play.Pause()
-        End If
+        Call PlaybackControl1_PlaybackPlay()
     End Sub
 
     Private Sub PreviousToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreviousToolStripMenuItem.Click
-
+        Call PlaybackControl1_PlaybackPrevious()
     End Sub
 
     Private Sub buttonNext_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonNext.Click
-        Dim file As String = list.ReadNext
-
-        If file.FileExists Then
-            Call ChangePlayback(file)
-        End If
+        Call PlaybackControl1_PlaybackNext()
     End Sub
 
     Private Sub buttonPrevious_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonPrevious.Click
-        Dim file As String = list.ReadPrevious
-
-        If file.FileExists Then
-            Call ChangePlayback(file)
-        End If
+        Call PlaybackControl1_PlaybackPrevious()
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
@@ -237,10 +224,36 @@ Public Class FormZplay
     Private Sub picAlbumArt_Click(sender As Object, e As EventArgs) Handles picAlbumArt.Click
         Dim tmp As String = App.GetAppSysTempFile(".png")
         Call picAlbumArt.BackgroundImage.SaveAs(tmp, ImageFormats.Png)
-        Call System.Diagnostics.Process.Start(tmp)
+        Call Browser.Start(tmp)
     End Sub
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Call List1.Clear()
+    End Sub
+
+    Private Sub PlaybackControl1_PlaybackNext() Handles PlaybackControl1.PlaybackNext
+        Dim file As String = list.ReadNext
+
+        If file.FileExists Then
+            Call ChangePlayback(file)
+        End If
+    End Sub
+
+    Private Sub PlaybackControl1_PlaybackPlay() Handles PlaybackControl1.PlaybackPlay
+        If ticks.StopStatus Then
+            Call play.Playback()
+        ElseIf play.status.fPause Then
+            Call play.Resume()
+        Else
+            Call play.Pause()
+        End If
+    End Sub
+
+    Private Sub PlaybackControl1_PlaybackPrevious() Handles PlaybackControl1.PlaybackPrevious
+        Dim file As String = list.ReadPrevious
+
+        If file.FileExists Then
+            Call ChangePlayback(file)
+        End If
     End Sub
 End Class
