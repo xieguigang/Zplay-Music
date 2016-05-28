@@ -94,8 +94,23 @@ Namespace App.CUE
         Public Property Title As String
         Public Property Performer As String
         Public Property Index00 As TimeSpan
+        ''' <summary>
+        ''' Track start
+        ''' </summary>
+        ''' <returns></returns>
         Public Property Index01 As TimeSpan
         Public Property ISRC As String
+
+        Public Function GetTrackStart() As TStreamTime
+            Return New TStreamTime With {
+                .hms = New TStreamHMSTime With {
+                    .hour = Index01.Hours,
+                    .millisecond = Index01.Milliseconds,
+                    .minute = Index01.Minutes,
+                    .second = Index01.Seconds
+                }
+            }
+        End Function
 
         Public Overrides Function ToString() As String
             Return Me.GetJson

@@ -18,6 +18,10 @@ Namespace App.CUE
 
         Public Overrides ReadOnly Property ID3v2 As TID3InfoEx
 
+        ''' <summary>
+        ''' 当前轨道的长度
+        ''' </summary>
+        ''' <returns></returns>
         Public Overrides ReadOnly Property StreamInfo As TStreamInfo
 
         ''' <summary>
@@ -30,6 +34,7 @@ Namespace App.CUE
         End Sub
 
         Public ReadOnly Property CUE As Cue
+        Public ReadOnly Property CUEStream As TStreamInfo
 
         ''' <summary>
         ''' 
@@ -43,15 +48,56 @@ Namespace App.CUE
                 _CUE = New Cue(uri)
                 uri = uri.ParentPath & "/" & CUE.File.Name
                 ZplayMusic.Playback(uri)
-                _StreamInfo = ZplayMusic.StreamInfo
+                _CUEStream = ZplayMusic.StreamInfo
                 _ID3v2 = ZplayMusic.ID3v2
             Else
-
+                Call PlayTrack(CTypeDynamic(Of Integer)(uri))
             End If
 
             Return True
         End Function
 
+        Dim currentTrack As Track
 
+        Public Sub PlayTrack(i As Integer)
+            Dim l As TimeSpan = CUE.GetLength(i, CUEStream)
+            currentTrack = CUE.Tracks(i)
+            _StreamInfo = New TStreamInfo With {
+                .Bitrate = CUEStream.Bitrate,
+                .ChannelNumber = CUEStream.ChannelNumber,
+                .Description = CUEStream.Description,
+                .SamplingRate = CUEStream.SamplingRate,
+                .VBR = CUEStream.VBR,
+                .Length = New TStreamTime With {
+                    .ms = l.TotalMilliseconds,
+                    .hms = New TStreamHMSTime With {
+                        .hour = l.Hours,
+                        .millisecond = l.Milliseconds,
+                        .minute = l.Minutes,
+                        .second = l.Seconds
+                    }
+                }
+            }
+        End Sub
+
+        Public Overrides Function Playback() As TickEvent
+            Call SeeksByTime(currentTrack.GetTrackStart)
+            Return MyBase.Playback()
+        End Function
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="p">当前音轨的百分比，需要在这里转换为总的进度</param>
+        Public Overrides Sub SeeksByPercent(p As Double)
+            Dim start = currentTrack.Index01
+            Dim pos As Integer = StreamInfo.Length.ms * p
+            start = start + New TimeSpan(pos)
+            Call ZPlay.Seek(TTimeFormat.tfMillisecond,
+                            New TStreamTime With {
+                                .ms = start.TotalMilliseconds
+                            },
+                            TSeekMethod.smFromBeginning)
+        End Sub
     End Class
 End Namespace

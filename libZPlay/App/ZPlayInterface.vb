@@ -63,7 +63,7 @@ Namespace App
             Return args
         End Function
 
-        Public Function Playback() As TickEvent
+        Public Overridable Function Playback() As TickEvent
             Call __api.StartPlayback()
             Return __initEvents()
         End Function
@@ -83,6 +83,10 @@ Namespace App
             Call __validState()
         End Sub
 
+        ''' <summary>
+        ''' hms
+        ''' </summary>
+        ''' <param name="time"></param>
         Public Sub SeeksByTime(time As TStreamTime)
             Call ZPlay.Seek(TTimeFormat.tfHMS, time, TSeekMethod.smFromBeginning)
         End Sub
@@ -91,7 +95,7 @@ Namespace App
         ''' 
         ''' </summary>
         ''' <param name="p">0 - 1</param>
-        Public Sub SeeksByPercent(p As Double)
+        Public Overridable Sub SeeksByPercent(p As Double)
             Call ZPlay.Seek(TTimeFormat.tfMillisecond,
                             TimePercentage(p),
                             TSeekMethod.smFromBeginning)
