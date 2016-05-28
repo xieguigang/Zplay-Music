@@ -6,6 +6,10 @@ Namespace App.CUE
 
         Public ReadOnly Property ZplayMusic As ZplayMusic
 
+        ''' <summary>
+        ''' 在这里需要把总位置转换为每一曲的相对位置
+        ''' </summary>
+        ''' <returns></returns>
         Public Overrides ReadOnly Property CurrentPosition As TStreamTime
             Get
 
@@ -25,22 +29,29 @@ Namespace App.CUE
             ZplayMusic = New ZplayMusic(__api)
         End Sub
 
+        Public ReadOnly Property CUE As Cue
+
         ''' <summary>
         ''' 
         ''' </summary>
-        ''' <param name="uri"></param>
+        ''' <param name="uri">Track index or *.cue list file path</param>
         ''' <param name="autoStart"></param>
         ''' <returns></returns>
         ''' <remarks>除了一些需要实时进行更新的数据，所有的静态的信息都是在这里一次性的完成读取操作的</remarks>
         Public Overloads Function Playback(uri As String, Optional autoStart As Boolean = False) As Boolean
-            Dim cue As New CUE(uri)
+            If uri.FileExists Then
+                _CUE = New Cue(uri)
+                uri = uri.ParentPath & "/" & CUE.File.Name
+                ZplayMusic.Playback(uri)
+                _StreamInfo = ZplayMusic.StreamInfo
+                _ID3v2 = ZplayMusic.ID3v2
+            Else
 
-            uri = uri.ParentPath & "/" & cue.File.Name
-            ZplayMusic.Playback(uri)
-            _StreamInfo = ZplayMusic.StreamInfo
-            _ID3v2 = ZplayMusic.ID3v2
+            End If
 
             Return True
         End Function
+
+
     End Class
 End Namespace

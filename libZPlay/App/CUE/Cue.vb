@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
+Imports libZPlay.InternalTypes
 
 Namespace App.CUE
 
@@ -60,6 +61,30 @@ Namespace App.CUE
             lines.Skip(CType(i, Integer) - 1) _
                 .ToArray(AddressOf Trim)).ToArray
         End Sub
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="track"></param>
+        ''' <param name="total">文件的总长度</param>
+        ''' <returns></returns>
+        Public Function GetLength(track As Integer, total As TStreamInfo) As TimeSpan
+            Dim [next] As TimeSpan
+
+            If track = Tracks.Length - 1 Then
+                [next] = New TimeSpan(0,
+                                      total.Length.hms.hour,
+                                      total.Length.hms.minute,
+                                      total.Length.hms.second,
+                                      total.Length.hms.millisecond)
+            Else
+                [next] = Tracks(track + 1).Index00
+            End If
+
+            Dim cur As Track = Tracks(track)
+            Dim ts = [next] - cur.Index01
+            Return ts
+        End Function
     End Class
 
     Public Class Track

@@ -93,12 +93,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\NewFolder1\CUEList.vb" />
+    <Compile Include="App\CUE\CUEList.vb" />
     <Compile Include="App\Playlist.vb" />
     <Compile Include="App\ZPlayInterface.vb" />
-    <Compile Include="App\NewFolder1\ZplayCue.vb" />
+    <Compile Include="App\CUE\ZplayCue.vb" />
     <Compile Include="App\M3u.vb" />
-    <Compile Include="App\NewFolder1\Cue.vb" />
+    <Compile Include="App\CUE\Cue.vb" />
     <Compile Include="App\Extensions.vb" />
     <Compile Include="App\TickEvent.vb" />
     <Compile Include="App\ZplayMusic.vb" />
