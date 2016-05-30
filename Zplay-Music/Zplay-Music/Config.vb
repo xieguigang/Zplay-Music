@@ -7,7 +7,7 @@ Public Class Config : Implements IDisposable
 
     Public Property lastPlaylist As NamedValue(Of ListTypes)
     Public Property lastPlay As NamedValue(Of TStreamTime)
-    Public Property playbackMode As PlaybackModes
+    Public Property playbackMode As PlaybackModes = PlaybackModes.Order
 
     Public Shared ReadOnly Property DefaultFile As String = App.HOME & "/config.json"
 

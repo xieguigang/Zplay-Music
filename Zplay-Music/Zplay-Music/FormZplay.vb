@@ -95,12 +95,22 @@ Public Class FormZplay
             Call ChangePlaylist(config.GetList(AddressOf __EOList))
             Call ChangePlayback(list.ReadNext?.FileName)
         End If
+
+        Select Case config.playbackMode
+            Case PlaybackModes.Order
+                OrderToolStripMenuItem.Checked = True
+            Case PlaybackModes.Shuffle
+                ShuffleToolStripMenuItem.Checked = True
+            Case PlaybackModes.LoopList
+                LoopsToolStripMenuItem.Checked = True
+        End Select
     End Sub
 
     Dim list As Playlist
 
     Private Sub __EOList()
         Call play.Stop()
+        Call list.Reset()
     End Sub
 
     Public Sub ChangePlaylist(list As Playlist)
@@ -109,6 +119,7 @@ Public Class FormZplay
 
         Using config As Config = Config.Load
             config.lastPlaylist = New NamedValue(Of ListTypes)(list.URI, list.Type)
+            list.Mode = config.playbackMode
         End Using
 
         Call List1.Clear()
@@ -260,5 +271,37 @@ Public Class FormZplay
         If file.FileExists Then
             Call ChangePlayback(file)
         End If
+    End Sub
+
+    Private Sub OpenLibraryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenLibraryToolStripMenuItem.Click
+        Call New FormLibrary().ShowDialog()
+    End Sub
+
+    Private Sub OrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderToolStripMenuItem.Click
+        ShuffleToolStripMenuItem.Checked = False
+        LoopsToolStripMenuItem.Checked = False
+        Call __setMode(PlaybackModes.Order)
+    End Sub
+
+    Private Sub ShuffleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShuffleToolStripMenuItem.Click
+        OrderToolStripMenuItem.Checked = False
+        LoopsToolStripMenuItem.Checked = False
+        Call __setMode(PlaybackModes.Shuffle)
+    End Sub
+
+    Private Sub LoopsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoopsToolStripMenuItem.Click
+        OrderToolStripMenuItem.Checked = False
+        ShuffleToolStripMenuItem.Checked = False
+        Call __setMode(PlaybackModes.LoopList)
+    End Sub
+
+    Private Sub __setMode(mode As PlaybackModes)
+        If Not list Is Nothing Then
+            list.Mode = mode
+        End If
+
+        Using cfg As Config = Config.Load
+            cfg.playbackMode = mode
+        End Using
     End Sub
 End Class

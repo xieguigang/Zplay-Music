@@ -12,7 +12,13 @@ Namespace App
         DIR
     End Enum
 
+    ''' <summary>
+    ''' 默认是顺序播放
+    ''' </summary>
     Public Enum PlaybackModes
+        ''' <summary>
+        ''' 默认是顺序播放
+        ''' </summary>
         Order
         Shuffle
         LoopOne
@@ -142,6 +148,10 @@ Namespace App
             Return _files(p)
         End Function
 
+        ''' <summary>
+        ''' Reset the list pointer to the list start location. 
+        ''' </summary>
+        ''' <returns></returns>
         Public Function Reset() As T
             p = -1
             Return ReadNext()

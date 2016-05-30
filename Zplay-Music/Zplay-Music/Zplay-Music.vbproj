@@ -142,6 +142,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormLibrary.Designer.vb">
+      <DependentUpon>FormLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Notify.vb" />
     <Compile Include="FormAboutZplay.Designer.vb">
       <DependentUpon>FormAboutZplay.vb</DependentUpon>
@@ -197,6 +203,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormAboutZplay.resx">
       <DependentUpon>FormAboutZplay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLibrary.resx">
+      <DependentUpon>FormLibrary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormZplay.resx">
       <DependentUpon>FormZplay.vb</DependentUpon>
