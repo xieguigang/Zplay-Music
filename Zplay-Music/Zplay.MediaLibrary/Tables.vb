@@ -14,7 +14,7 @@ Namespace Tables
 
     Public Class IndexValue : Inherits uid
 
-        <Column(Name:="value", DbType:="varchar(2048)")>
+        <Column(Name:="value", DbType:="varchar(256)")>
         Public Property value As String
     End Class
 
@@ -33,21 +33,23 @@ Namespace Tables
     <Table(Name:="file")>
     Public Class Music : Inherits uid
 
-        <Column(Name:=NameOf(title), DbType:="varchar(512)")>
+        <Column(Name:=NameOf(title), DbType:="varchar(256)")>
         Public Property title As String
-        <Column(Name:=NameOf(artists), DbType:="varchar(512)")>
+        <Column(Name:=NameOf(artists), DbType:="int")>
         Public Property artists As Integer
-        <Column(Name:=NameOf(album), DbType:="varchar(512)")>
+        <Column(Name:=NameOf(album), DbType:="int")>
         Public Property album As Integer
-        <Column(Name:=NameOf(genres), DbType:="varchar(512)")>
+        <Column(Name:=NameOf(genres), DbType:="int")>
         Public Property genres As Integer
         ''' <summary>
         ''' Ticks of the time duration
         ''' </summary>
         ''' <returns></returns>
         ''' 
-        <Column(Name:=NameOf(length), DbType:="varchar(512)")>
+        <Column(Name:=NameOf(length), DbType:="int")>
         Public Property length As Integer
+        <Column(Name:=NameOf(path), DbType:="varchar(512)")>
+        Public Property path As String
 
         Public Overrides Function ToString() As String
             Return Me.GetJson

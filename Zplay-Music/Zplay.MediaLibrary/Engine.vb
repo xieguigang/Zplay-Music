@@ -40,6 +40,19 @@ Public Class Engine
         Call SQLite.CreateTableFor(Of Tables.Genres)()
     End Sub
 
+    ''' <summary>
+    ''' SQL SELECT query
+    ''' </summary>
+    ''' <param name="query"></param>
+    ''' <returns></returns>
+    Public Iterator Function QueryFile(query As String) As IEnumerable(Of libZPlay.App.MediaFile)
+        Dim files As IEnumerable(Of Music) = Music.Fetch(SQL:=query)
+
+        For Each file As Music In files
+
+        Next
+    End Function
+
     Public Overrides Function ToString() As String
         Return Db.ToFileURL
     End Function
@@ -75,6 +88,12 @@ Public Class ObjectIO(Of T As uid)
         Dim SQL As String = String.Format(SQL_DELETE, tableName, key)
         Call Engine.Execute(SQL)
     End Sub
+
+    Public Iterator Function Fetch(SQL As String) As IEnumerable(Of T)
+        For Each x As T In Engine.Load(Of T)(SQL)
+            Yield x
+        Next
+    End Function
 
     Public Function AddNew(entity As T) As Integer Implements IRepositoryWrite(Of Integer, T).AddNew
         Return Engine.Insert(Schema, entity)
