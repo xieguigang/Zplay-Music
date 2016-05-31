@@ -7,7 +7,7 @@ Module Module1
 
     Sub Main()
 
-        Dim n As New Zplay.MediaLibrary.Tables.Music With {.title = RandomDouble(), .artists = 1, .uid = Now.ToBinary}
+        Dim n As New Zplay.MediaLibrary.Tables.Music With {.title = RandomDouble(), .artists = 1, .uid = RandomDouble() * Integer.MaxValue}
         Dim engine As New Engine("x:\test.db")
 
         Call engine.Music.AddNew(n)
