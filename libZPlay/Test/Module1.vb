@@ -10,6 +10,8 @@ Module Module1
         Dim n As New Zplay.MediaLibrary.Tables.Music With {.title = RandomDouble(), .artists = 1}
         Dim engine As New Engine("x:\test.db")
 
+        Call engine.Music.AddNew(n)
+
         Dim cue As New Cue("C:\Users\xieguigang\Source\Repos\Zplay-Music\media\TEST-LACM-14397.cue")
         Dim play As New ZplayCue
 
