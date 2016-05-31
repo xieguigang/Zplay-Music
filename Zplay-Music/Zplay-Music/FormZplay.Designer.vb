@@ -246,21 +246,21 @@ Partial Class FormZplay
         '
         Me.OrderToolStripMenuItem.CheckOnClick = True
         Me.OrderToolStripMenuItem.Name = "OrderToolStripMenuItem"
-        Me.OrderToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OrderToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.OrderToolStripMenuItem.Text = "Order"
         '
         'ShuffleToolStripMenuItem
         '
         Me.ShuffleToolStripMenuItem.CheckOnClick = True
         Me.ShuffleToolStripMenuItem.Name = "ShuffleToolStripMenuItem"
-        Me.ShuffleToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ShuffleToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.ShuffleToolStripMenuItem.Text = "Shuffle"
         '
         'LoopsToolStripMenuItem
         '
         Me.LoopsToolStripMenuItem.CheckOnClick = True
         Me.LoopsToolStripMenuItem.Name = "LoopsToolStripMenuItem"
-        Me.LoopsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.LoopsToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.LoopsToolStripMenuItem.Text = "Loops"
         '
         'ToolStripMenuItem2
@@ -270,6 +270,7 @@ Partial Class FormZplay
         '
         'OpenFolderToolStripMenuItem1
         '
+        Me.OpenFolderToolStripMenuItem1.Image = CType(resources.GetObject("OpenFolderToolStripMenuItem1.Image"), System.Drawing.Image)
         Me.OpenFolderToolStripMenuItem1.Name = "OpenFolderToolStripMenuItem1"
         Me.OpenFolderToolStripMenuItem1.Size = New System.Drawing.Size(176, 22)
         Me.OpenFolderToolStripMenuItem1.Text = "Open Folder"
@@ -293,6 +294,7 @@ Partial Class FormZplay
         '
         'AboutToolStripMenuItem
         '
+        Me.AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.AboutToolStripMenuItem.Text = "About Zplay-Music"
