@@ -7,10 +7,12 @@ Module Module1
 
     Sub Main()
 
-        Dim n As New Zplay.MediaLibrary.Tables.Music With {.title = RandomDouble(), .artists = 1}
+        Dim n As New Zplay.MediaLibrary.Tables.Music With {.title = RandomDouble(), .artists = 1, .uid = Now.ToBinary}
         Dim engine As New Engine("x:\test.db")
 
         Call engine.Music.AddNew(n)
+
+        Dim alll = engine.Music.GetAll
 
         Dim cue As New Cue("C:\Users\xieguigang\Source\Repos\Zplay-Music\media\TEST-LACM-14397.cue")
         Dim play As New ZplayCue

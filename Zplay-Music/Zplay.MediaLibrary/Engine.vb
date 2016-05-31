@@ -1,4 +1,5 @@
-﻿Imports System.Data.Common
+﻿Imports System
+Imports System.Data.Common
 Imports System.Data.SQLite.Linq.DataMapping.Interface
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Zplay.MediaLibrary.Tables
@@ -49,9 +50,11 @@ Public Class ObjectIO(Of T As uid)
 
     Public ReadOnly Property Engine As SQLProcedure
     Public ReadOnly Property tableName As String = GetType(T).GetTableName
+    Public ReadOnly Property Schema As TableSchema
 
     Sub New(sqlite As SQLProcedure)
         Engine = sqlite
+        Schema = New TableSchema(GetType(T))
     End Sub
 
     Public Overrides Function ToString() As String
@@ -59,7 +62,11 @@ Public Class ObjectIO(Of T As uid)
     End Function
 
     Public Sub AddOrUpdate(entity As T, key As Integer) Implements IRepositoryWrite(Of Integer, T).AddOrUpdate
-        Throw New NotImplementedException()
+        If Exists(key) Then
+            Call Engine.Update(entity)
+        Else
+            Call Engine.Insert(entity)
+        End If
     End Sub
 
     Const SQL_DELETE As String = "DELETE FROM {0} where uid='{1}';"
@@ -70,27 +77,38 @@ Public Class ObjectIO(Of T As uid)
     End Sub
 
     Public Function AddNew(entity As T) As Integer Implements IRepositoryWrite(Of Integer, T).AddNew
-        Return Engine.Insert(entity)
+        Return Engine.Insert(Schema, entity)
     End Function
 
     Public Function Exists(key As Integer) As Boolean Implements IRepositoryRead(Of Integer, T).Exists
-        Throw New NotImplementedException()
+        Return Engine.RecordExists(Schema, key.ToString)
     End Function
 
     Public Function GetAll() As IReadOnlyDictionary(Of Integer, T) Implements IRepositoryRead(Of Integer, T).GetAll
         Dim SQL As String = $"SELECT * FROM {tableName};"
         Dim reader As DbDataReader = Engine.Execute(SQL)
+        Dim buf As IEnumerable(Of T) = Engine.Load(Of T)
+        Dim out As Dictionary(Of Integer, T) = buf.ToDictionary(Function(x) x.uid)
 
+        Return out
     End Function
 
     Const SQL_SELECT As String = "SELECT * FROM {0} where uid = '{1}';"
 
     Public Function GetByKey(key As Integer) As T Implements IRepositoryRead(Of Integer, T).GetByKey
         Dim SQL As String = String.Format(SQL_SELECT, key)
-
+        Return Engine.Load(Of T)(SQL).FirstOrDefault
     End Function
 
     Public Function GetWhere(clause As Func(Of T, Boolean)) As IReadOnlyDictionary(Of Integer, T) Implements IRepositoryRead(Of Integer, T).GetWhere
-        Throw New NotImplementedException()
+        Dim result As New Dictionary(Of Integer, T)
+
+        For Each x As T In Engine.Load(Of T)()
+            If clause(x) = True Then
+                Call result.Add(x.uid, x)
+            End If
+        Next
+
+        Return result
     End Function
 End Class
