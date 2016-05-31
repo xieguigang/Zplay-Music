@@ -1,9 +1,15 @@
 ﻿Imports libZPlay
 Imports libZPlay.App
+Imports libZPlay.App.CUE
+Imports Zplay.MediaLibrary
 
 Module Module1
 
     Sub Main()
+
+        Dim n As New Zplay.MediaLibrary.Tables.Music With {.title = RandomDouble(), .artists = 1}
+        Dim engine As New Engine("x:\test.db")
+
         Dim cue As New Cue("C:\Users\xieguigang\Source\Repos\Zplay-Music\media\TEST-LACM-14397.cue")
         Dim play As New ZplayCue
 

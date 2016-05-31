@@ -1,10 +1,12 @@
-﻿Imports Microsoft.VisualBasic.Serialization
+﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
+Imports Microsoft.VisualBasic.Serialization
 
 Namespace Tables
 
     Public MustInherit Class uid
+        Implements IKeyedEntity(Of Integer)
 
-        Public Property uid As Integer
+        Public Property uid As Integer Implements IKeyedEntity(Of Integer).Key
 
     End Class
 
