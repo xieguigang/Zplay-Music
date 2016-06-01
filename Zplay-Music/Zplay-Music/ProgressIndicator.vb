@@ -60,9 +60,9 @@ Public Class ProgressIndicator
         Dim s As String = TimeSpan.FromMilliseconds(p * Length).FormatTime
 
         Using g As GDIPlusDeviceHandle = ParentMain._toolTips.Size.CreateGDIDevice
-            Dim sz = g.Gr_Device.MeasureString(s, tooltipFont)
+            Dim sz = g.Graphics.MeasureString(s, tooltipFont)
 
-            Call g.Gr_Device.DrawImage(My.Resources.tooltip, New Rectangle(New Point, My.Resources.tooltip.Size))
+            Call g.Graphics.DrawImage(My.Resources.tooltip, New Rectangle(New Point, My.Resources.tooltip.Size))
             Call g.DrawString(s, tooltipFont, Brushes.White, New Point((ParentMain._toolTips.Width - sz.Width) / 2, 1))
             ParentMain._toolTips.BackgroundImage = g.ImageResource
         End Using

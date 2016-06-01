@@ -6,6 +6,10 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Zplay.MediaLibrary.Tables
 Imports Microsoft.VisualBasic
 Imports libZPlay.InternalTypes
+Imports System.Text
+Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.SecurityString
 
 ''' <summary>
 ''' This is the zplay-Music media library database engine.
@@ -113,13 +117,23 @@ Public Class Engine
             .length = info.StreamInfo.Length.ms,
             .album = album.uid,
             .genres = genre.uid,
-            .artists = genre.uid,
-            .uid = Music.GetMaxId + 1
+            .artists = genre.uid
         }
 
-        Call Music.AddNew(media)
+        Dim uid As Long = hashLong(media)
+
+        Call Music.AddOrUpdate(media, uid)
 
         Return info
+    End Function
+
+    ReadOnly __md5Hash As New Md5HashProvider
+
+    Private Function hashLong(file As Music) As Long
+        Dim s As String = $"{file.album}|{file.artists}|{file.genres}|{file.title}"
+        Dim data As Byte() = Encoding.UTF8.GetBytes(s)  ' Convert the input string to a byte array and compute the hash.
+        Dim key As Long = __md5Hash.GetMd5hashLong(data)
+        Return key
     End Function
 
     ''' <summary>
@@ -164,6 +178,11 @@ Public Class Engine
         Return SQL
     End Function
 
+    ''' <summary>
+    ''' 通过标题进行查询
+    ''' </summary>
+    ''' <param name="title"></param>
+    ''' <returns></returns>
     Public Iterator Function QueryByTitle(title As String) As IEnumerable(Of MediaFile)
         Dim SQL As String = __like(Music, "title", title)
 

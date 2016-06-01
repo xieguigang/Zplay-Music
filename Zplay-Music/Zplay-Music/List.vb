@@ -135,29 +135,29 @@ Public Class ListItem : Inherits PictureBox
         End If
 
         Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
-            size = g.Gr_Device.MeasureString("00:00", font)
+            size = g.Graphics.MeasureString("00:00", font)
             h = (sz.Height - size.Height) / 2
             rw = sz.Width - size.Width - 3
             l = rw
-            g.Gr_Device.DrawString(ts, font, br, New Point(t, h))
-            g.Gr_Device.DrawString([as], font, br, New Point(a, h))
-            g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
+            g.Graphics.DrawString(ts, font, br, New Point(t, h))
+            g.Graphics.DrawString([as], font, br, New Point(a, h))
+            g.Graphics.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
             normal = g.ImageResource
         End Using
 
         Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.Black)
-            g.Gr_Device.DrawString(ts, font, br, New Point(t, h))
-            g.Gr_Device.DrawString([as], font, br, New Point(a, h))
-            g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
+            g.Graphics.DrawString(ts, font, br, New Point(t, h))
+            g.Graphics.DrawString([as], font, br, New Point(a, h))
+            g.Graphics.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
             highlight = g.ImageResource
         End Using
 
         br = New SolidBrush(highlightFore)
 
         Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
-            g.Gr_Device.DrawString(ts, font, br, New Point(t, h))
-            g.Gr_Device.DrawString([as], font, br, New Point(a, h))
-            g.Gr_Device.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
+            g.Graphics.DrawString(ts, font, br, New Point(t, h))
+            g.Graphics.DrawString([as], font, br, New Point(a, h))
+            g.Graphics.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
             nowPlaying = g.ImageResource
         End Using
 

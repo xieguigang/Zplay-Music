@@ -17,11 +17,11 @@ Public Class Playlist : Inherits libZPlay.App.Playlist
         Using g As GDIPlusDeviceHandle =
             My.Resources.Numbers.Size.CreateGDIDevice
 
-            Dim sz = g.Gr_Device.MeasureString(s, font)
+            Dim sz = g.Graphics.MeasureString(s, font)
             Dim loc As New Point((g.Width - sz.Width) / 2, (g.Height - sz.Height) / 2)
 
-            Call g.Gr_Device.DrawImageUnscaled(My.Resources.Numbers, New Point(0, 0))
-            Call g.Gr_Device.DrawString(s, font, Brushes.White, loc)
+            Call g.Graphics.DrawImageUnscaled(My.Resources.Numbers, New Point(0, 0))
+            Call g.Graphics.DrawString(s, font, Brushes.White, loc)
 
             Return g.ImageResource
         End Using
