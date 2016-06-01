@@ -84,7 +84,7 @@ Public Class SQLiteIO(Of T As uid)
     Const SQL_SELECT As String = "SELECT * FROM {0} where uid = '{1}';"
 
     Public Function GetByKey(key As Long) As T Implements IRepositoryRead(Of Long, T).GetByKey
-        Dim SQL As String = String.Format(SQL_SELECT, key)
+        Dim SQL As String = String.Format(SQL_SELECT, tableName, key)
         Return Engine.Load(Of T)(SQL).FirstOrDefault
     End Function
 
