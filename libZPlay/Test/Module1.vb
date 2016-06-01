@@ -13,7 +13,7 @@ Module Module1
         '     Dim result = engine.AddFile("E:\游戏原声\pastoral landscape\みかん箱,Foxtail-Grass Studio - Romanstone.mp3")
 
         Call engine.ScanDIR("E:\游戏原声\pastoral landscape", True)
-
+        Call engine.ScanDIR("E:\日漫\傳頌之物", True)
         '   Call engine.Music.AddNew(n)
 
         Dim alll = engine.Music.GetAll
