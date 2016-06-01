@@ -76,21 +76,22 @@ Public Class Engine : Inherits ClassObject
     End Sub
 
     Public Function ScanDIR(DIR As String, Optional recursive As Boolean = True) As MediaFile()
-        Dim LQuery As IEnumerable(Of String) = Playlist.GetFiles(DIR, recursive)
+        Dim files As IEnumerable(Of String) = Playlist.GetFiles(DIR, recursive)
+        Return AddFiles(files)
+    End Function
+
+    Public Function AddFiles(files As IEnumerable(Of String)) As MediaFile()
         Dim list As New List(Of MediaFile)
 
-        For Each path As String In LQuery
-            list += AddFile(path)
+        For Each file As MediaFile In GetFilesInfo(files, True)
+            list += AddFile(file)
         Next
 
         Return list
     End Function
 
-    Public Function AddFile(path As String) As MediaFile
-        Dim info As MediaFile = MediaFile.Create(path)
-
-        ' 创建数据库之中的表的记录
-        Dim sql As String
+    Public Function AddFile(info As MediaFile) As MediaFile
+        Dim sql As String ' 创建数据库之中的表的记录
 
         sql = $"SELECT * FROM {Albums.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Album)}' LIMIT 1;"
 
@@ -124,7 +125,7 @@ Public Class Engine : Inherits ClassObject
         End If
 
         Dim media As New Music With {
-            .path = path.GetFullPath,
+            .path = info.FileName.GetFullPath,
             .title = info.Id3v2.Title,
             .length = info.StreamInfo.Length.ms,
             .album = album.uid,

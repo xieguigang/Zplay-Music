@@ -41,7 +41,7 @@ Namespace App
         End Function
 
         <Extension>
-        Public Function GetFileInfo(zplay As ZPlay, path As String) As MediaFile
+        Public Function GetFileInfo(zplay As ZPlay, path As String, Optional decodeArt As Boolean = False) As MediaFile
             Call zplay.OpenFile(path)
 
             Dim file As New MediaFile With {
@@ -50,7 +50,7 @@ Namespace App
                 .StreamInfo = New TStreamInfo
             }
 
-            Call zplay.LoadID3Ex(file.Id3v2, False)
+            Call zplay.LoadID3Ex(file.Id3v2, decodeArt)
             Call zplay.GetStreamInfo(file.StreamInfo)
 
             Call zplay.Close()
@@ -66,17 +66,17 @@ Namespace App
         ''' <param name="path"></param>
         ''' <returns></returns>
         <Extension>
-        Public Function GetMediaInfo(path As String) As MediaFile
+        Public Function GetMediaInfo(path As String, Optional decodeArt As Boolean = False) As MediaFile
             SyncLock __tagServices
-                Return __tagServices.GetFileInfo(path)
+                Return __tagServices.GetFileInfo(path, decodeArt)
             End SyncLock
         End Function
 
         <Extension>
-        Public Iterator Function GetFilesInfo(files As IEnumerable(Of String)) As IEnumerable(Of MediaFile)
+        Public Iterator Function GetFilesInfo(files As IEnumerable(Of String), Optional decodeArt As Boolean = False) As IEnumerable(Of MediaFile)
             SyncLock __tagServices
                 For Each file As String In files
-                    Yield __tagServices.GetFileInfo(file)
+                    Yield __tagServices.GetFileInfo(file, decodeArt)
                 Next
             End SyncLock
         End Function

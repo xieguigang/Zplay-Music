@@ -59,9 +59,14 @@ Public Class SQLiteIO(Of T As uid)
     End Sub
 
     Public Iterator Function Fetch(SQL As String) As IEnumerable(Of T)
-        For Each x As T In Engine.Load(Of T)(SQL)
-            Yield x
-        Next
+        Try
+            For Each x As T In Engine.Load(Of T)(SQL)
+                Yield x
+            Next
+        Catch ex As Exception
+            ex = New Exception(SQL, ex)
+            Call App.LogException(ex)
+        End Try
     End Function
 
     Public Function AddNew(entity As T) As Long Implements IRepositoryWrite(Of Long, T).AddNew

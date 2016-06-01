@@ -127,7 +127,7 @@ Public Class FormZplay
         Call List1.AddList(list)
 
         Using engine As New Engine(App.HOME & "/Zplay-Library.db")
-            Call engine.ScanDIR("E:\日漫\傳頌之物", True)
+            Call engine.AddFiles(list.FileList)
         End Using
     End Sub
 

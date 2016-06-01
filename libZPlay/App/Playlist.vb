@@ -35,6 +35,14 @@ Namespace App
 
     Public Class Playlist : Inherits Playlist(Of MediaFile)
 
+        Public ReadOnly Iterator Property FileList As IEnumerable(Of String)
+            Get
+                For Each file In Me._files
+                    Yield file.FileName
+                Next
+            End Get
+        End Property
+
         Sub New(files As IEnumerable(Of String), EOList As Action, type As ListTypes, URL As String)
             Call MyBase.New(GetFilesInfo(files), EOList, type, URL)
         End Sub
