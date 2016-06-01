@@ -107,5 +107,13 @@ Namespace App
         Public Property Id3v2 As TID3InfoEx
         Public Property StreamInfo As TStreamInfo
 
+        ''' <summary>
+        ''' Create media file model from the ID3v2 tag data and media stream information. 
+        ''' </summary>
+        ''' <param name="path"></param>
+        ''' <returns></returns>
+        Public Shared Function Create(path As String) As MediaFile
+            Return path.GetMediaInfo
+        End Function
     End Class
 End Namespace

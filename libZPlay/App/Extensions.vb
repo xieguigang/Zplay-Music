@@ -60,6 +60,18 @@ Namespace App
 
         ReadOnly __tagServices As New ZPlay
 
+        ''' <summary>
+        ''' Get media file ID3v2 tag data and stream information.
+        ''' </summary>
+        ''' <param name="path"></param>
+        ''' <returns></returns>
+        <Extension>
+        Public Function GetMediaInfo(path As String) As MediaFile
+            SyncLock __tagServices
+                Return __tagServices.GetFileInfo(path)
+            End SyncLock
+        End Function
+
         <Extension>
         Public Iterator Function GetFilesInfo(files As IEnumerable(Of String)) As IEnumerable(Of MediaFile)
             SyncLock __tagServices

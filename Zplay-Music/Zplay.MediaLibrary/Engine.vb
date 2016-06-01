@@ -1,8 +1,10 @@
 ﻿Imports System
 Imports System.Data.Common
 Imports System.Data.SQLite.Linq.DataMapping.Interface
+Imports libZPlay.App
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Zplay.MediaLibrary.Tables
+Imports Microsoft.VisualBasic
 
 Public Class Engine
 
@@ -25,6 +27,11 @@ Public Class Engine
         Genres = New ObjectIO(Of Genres)(SQLite)
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks>这条记录在进行添加的时候是最后进行的</remarks>
     Public ReadOnly Property Music As ObjectIO(Of Music)
     Public ReadOnly Property Albums As ObjectIO(Of Album)
     Public ReadOnly Property Artists As ObjectIO(Of Artists)
@@ -40,12 +47,75 @@ Public Class Engine
         Call SQLite.CreateTableFor(Of Tables.Genres)()
     End Sub
 
+    Public Function ScanDIR(DIR As String, Optional recursive As Boolean = True) As MediaFile()
+        Dim LQuery As IEnumerable(Of String) = Playlist.GetFiles(DIR, recursive)
+        Dim list As New List(Of MediaFile)
+
+        For Each path As String In LQuery
+            list += AddFile(path)
+        Next
+
+        Return list
+    End Function
+
+    Public Function AddFile(path As String) As MediaFile
+        Dim info As MediaFile = MediaFile.Create(path)
+
+        ' 创建数据库之中的表的记录
+        Dim sql As String
+
+        sql = $"SELECT * FROM {Albums.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Album)}' LIMIT 1;"
+
+        Dim album As Album = Albums.Fetch(sql).FirstOrDefault      ' album exists
+        If album Is Nothing Then
+            album = New Album With {
+                .uid = Albums.GetMaxId + 1,
+                .value = info.Id3v2.Album
+            }
+            Call Albums.AddNew(album)
+        End If
+
+        sql = $"SELECT * FROM {Artists.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Artist)}' LIMIT 1;"
+        Dim artist As Artists = Artists.Fetch(sql).FirstOrDefault
+        If artist Is Nothing Then
+            artist = New Artists With {
+                .uid = Artists.GetMaxId + 1,
+                .value = info.Id3v2.Artist
+            }
+            Call Artists.AddNew(artist)
+        End If
+
+        sql = $"SELECT * FROM {Genres.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Genre)}' LIMIT 1;"
+        Dim genre As Genres = Genres.Fetch(sql).FirstOrDefault
+        If genre Is Nothing Then
+            genre = New Genres With {
+                .uid = Genres.GetMaxId + 1,
+                .value = info.Id3v2.Genre
+            }
+            Call Genres.AddNew(genre)
+        End If
+
+        Dim media As New Music With {
+            .path = path.GetFullPath,
+            .title = info.Id3v2.Title,
+            .length = info.StreamInfo.Length.ms,
+            .album = album.uid,
+            .genres = genre.uid,
+            .artists = genre.uid,
+            .uid = Music.GetMaxId + 1
+        }
+
+        Call Music.AddNew(media)
+
+        Return info
+    End Function
+
     ''' <summary>
     ''' SQL SELECT query
     ''' </summary>
     ''' <param name="query"></param>
     ''' <returns></returns>
-    Public Iterator Function QueryFile(query As String) As IEnumerable(Of libZPlay.App.MediaFile)
+    Public Iterator Function QueryFile(query As String) As IEnumerable(Of MediaFile)
         Dim files As IEnumerable(Of Music) = Music.Fetch(SQL:=query)
 
         For Each file As Music In files
@@ -59,7 +129,7 @@ Public Class Engine
 End Class
 
 Public Class ObjectIO(Of T As uid)
-    Implements IRepository(Of Integer, T)
+    Implements IRepository(Of Long, T)
 
     Public ReadOnly Property Engine As SQLProcedure
     Public ReadOnly Property tableName As String = GetType(T).GetTableName
@@ -68,13 +138,37 @@ Public Class ObjectIO(Of T As uid)
     Sub New(sqlite As SQLProcedure)
         Engine = sqlite
         Schema = New TableSchema(GetType(T))
+
+        _maxID_SQL = $"SELECT MAX({NameOf(uid.uid)}) FROM {tableName};"
     End Sub
+
+    ReadOnly _maxID_SQL As String
+
+    Public Function GetMaxId() As Long
+        Dim reader = Engine.Execute(_maxID_SQL)
+
+        If reader.HasRows Then
+            Call reader.Read()
+
+            Dim v As Object = reader.GetValue(Scan0)
+
+            If IsDBNull(v) Then
+                Return 0
+            Else
+                Dim n As Long =
+                    DirectCast(v, Long)
+                Return n
+            End If
+        Else
+            Return 0
+        End If
+    End Function
 
     Public Overrides Function ToString() As String
         Return Engine.ToString
     End Function
 
-    Public Sub AddOrUpdate(entity As T, key As Integer) Implements IRepositoryWrite(Of Integer, T).AddOrUpdate
+    Public Sub AddOrUpdate(entity As T, key As Long) Implements IRepositoryWrite(Of Long, T).AddOrUpdate
         If Exists(key) Then
             Call Engine.Update(entity)
         Else
@@ -84,7 +178,7 @@ Public Class ObjectIO(Of T As uid)
 
     Const SQL_DELETE As String = "DELETE FROM {0} where uid='{1}';"
 
-    Public Sub Delete(key As Integer) Implements IRepositoryWrite(Of Integer, T).Delete
+    Public Sub Delete(key As Long) Implements IRepositoryWrite(Of Long, T).Delete
         Dim SQL As String = String.Format(SQL_DELETE, tableName, key)
         Call Engine.Execute(SQL)
     End Sub
@@ -95,32 +189,32 @@ Public Class ObjectIO(Of T As uid)
         Next
     End Function
 
-    Public Function AddNew(entity As T) As Integer Implements IRepositoryWrite(Of Integer, T).AddNew
+    Public Function AddNew(entity As T) As Long Implements IRepositoryWrite(Of Long, T).AddNew
         Return Engine.Insert(Schema, entity)
     End Function
 
-    Public Function Exists(key As Integer) As Boolean Implements IRepositoryRead(Of Integer, T).Exists
+    Public Function Exists(key As Long) As Boolean Implements IRepositoryRead(Of Long, T).Exists
         Return Engine.RecordExists(Schema, key.ToString)
     End Function
 
-    Public Function GetAll() As IReadOnlyDictionary(Of Integer, T) Implements IRepositoryRead(Of Integer, T).GetAll
+    Public Function GetAll() As IReadOnlyDictionary(Of Long, T) Implements IRepositoryRead(Of Long, T).GetAll
         Dim SQL As String = $"SELECT * FROM {tableName};"
         Dim reader As DbDataReader = Engine.Execute(SQL)
         Dim buf As IEnumerable(Of T) = Engine.Load(Of T)
-        Dim out As Dictionary(Of Integer, T) = buf.ToDictionary(Function(x) x.uid)
+        Dim out As Dictionary(Of Long, T) = buf.ToDictionary(Function(x) x.uid)
 
         Return out
     End Function
 
     Const SQL_SELECT As String = "SELECT * FROM {0} where uid = '{1}';"
 
-    Public Function GetByKey(key As Integer) As T Implements IRepositoryRead(Of Integer, T).GetByKey
+    Public Function GetByKey(key As Long) As T Implements IRepositoryRead(Of Long, T).GetByKey
         Dim SQL As String = String.Format(SQL_SELECT, key)
         Return Engine.Load(Of T)(SQL).FirstOrDefault
     End Function
 
-    Public Function GetWhere(clause As Func(Of T, Boolean)) As IReadOnlyDictionary(Of Integer, T) Implements IRepositoryRead(Of Integer, T).GetWhere
-        Dim result As New Dictionary(Of Integer, T)
+    Public Function GetWhere(clause As Func(Of T, Boolean)) As IReadOnlyDictionary(Of Long, T) Implements IRepositoryRead(Of Long, T).GetWhere
+        Dim result As New Dictionary(Of Long, T)
 
         For Each x As T In Engine.Load(Of T)()
             If clause(x) = True Then
