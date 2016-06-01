@@ -5,10 +5,22 @@ Imports libZPlay.App
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Zplay.MediaLibrary.Tables
 Imports Microsoft.VisualBasic
+Imports libZPlay.InternalTypes
 
+''' <summary>
+''' This is the zplay-Music media library database engine.
+''' </summary>
 Public Class Engine
 
+    ''' <summary>
+    ''' The file path of the media library database file.
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property Db As String
+    ''' <summary>
+    ''' The SQLite database engine.
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property SQLite As SQLProcedure
 
     Sub New(file As String)
@@ -119,7 +131,44 @@ Public Class Engine
         Dim files As IEnumerable(Of Music) = Music.Fetch(SQL:=query)
 
         For Each file As Music In files
+            Dim media As New MediaFile With {
+                .FileName = file.path,
+                .Id3v2 = New TID3InfoEx With {
+                    .Album = __getValue(file.album, Albums),
+                    .Artist = __getValue(file.artists, Artists),
+                    .Genre = __getValue(file.genres, Genres),
+                    .Title = file.title
+                },
+                .StreamInfo = New TStreamInfo With {
+                    .Length = New TStreamTime With {
+                        .ms = file.length
+                    }
+                }
+            }
 
+            Yield media
+        Next
+    End Function
+
+    Private Function __getValue(Of T As IndexValue)(uid As Long, engine As SQLiteIO(Of T)) As String
+        Dim x As T = engine.GetByKey(uid)
+        If x Is Nothing Then
+            Return ""
+        Else
+            Return x.value
+        End If
+    End Function
+
+    Private Function __like(Of T As uid)(engine As SQLiteIO(Of T), key As String, query As String) As String
+        Dim SQL As String = $"SELECT * FROM {engine.tableName} WHERE LOWER({key}) LIKE '%{LCase(query)}%';"
+        Return SQL
+    End Function
+
+    Public Iterator Function QueryByTitle(title As String) As IEnumerable(Of MediaFile)
+        Dim SQL As String = __like(Music, "title", title)
+
+        For Each file As MediaFile In QueryFile(SQL)
+            Yield file
         Next
     End Function
 
