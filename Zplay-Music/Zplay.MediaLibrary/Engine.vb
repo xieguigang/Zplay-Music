@@ -21,10 +21,10 @@ Public Class Engine
             Call InitDb()
         End If
 
-        Music = New ObjectIO(Of Music)(SQLite)
-        Albums = New ObjectIO(Of Album)(SQLite)
-        Artists = New ObjectIO(Of Artists)(SQLite)
-        Genres = New ObjectIO(Of Genres)(SQLite)
+        Music = New SQLiteIO(Of Music)(SQLite)
+        Albums = New SQLiteIO(Of Album)(SQLite)
+        Artists = New SQLiteIO(Of Artists)(SQLite)
+        Genres = New SQLiteIO(Of Genres)(SQLite)
     End Sub
 
     ''' <summary>
@@ -32,10 +32,10 @@ Public Class Engine
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks>这条记录在进行添加的时候是最后进行的</remarks>
-    Public ReadOnly Property Music As ObjectIO(Of Music)
-    Public ReadOnly Property Albums As ObjectIO(Of Album)
-    Public ReadOnly Property Artists As ObjectIO(Of Artists)
-    Public ReadOnly Property Genres As ObjectIO(Of Genres)
+    Public ReadOnly Property Music As SQLiteIO(Of Music)
+    Public ReadOnly Property Albums As SQLiteIO(Of Album)
+    Public ReadOnly Property Artists As SQLiteIO(Of Artists)
+    Public ReadOnly Property Genres As SQLiteIO(Of Genres)
 
     ''' <summary>
     ''' 初始化SQLite数据库里面的数据表
@@ -113,7 +113,7 @@ Public Class Engine
     ''' <summary>
     ''' SQL SELECT query
     ''' </summary>
-    ''' <param name="query"></param>
+    ''' <param name="query">这个Query只针对<see cref="Music"/>表进行查询</param>
     ''' <returns></returns>
     Public Iterator Function QueryFile(query As String) As IEnumerable(Of MediaFile)
         Dim files As IEnumerable(Of Music) = Music.Fetch(SQL:=query)
@@ -125,103 +125,5 @@ Public Class Engine
 
     Public Overrides Function ToString() As String
         Return Db.ToFileURL
-    End Function
-End Class
-
-Public Class ObjectIO(Of T As uid)
-    Implements IRepository(Of Long, T)
-
-    Public ReadOnly Property Engine As SQLProcedure
-    Public ReadOnly Property tableName As String = GetType(T).GetTableName
-    Public ReadOnly Property Schema As TableSchema
-
-    Sub New(sqlite As SQLProcedure)
-        Engine = sqlite
-        Schema = New TableSchema(GetType(T))
-
-        _maxID_SQL = $"SELECT MAX({NameOf(uid.uid)}) FROM {tableName};"
-    End Sub
-
-    ReadOnly _maxID_SQL As String
-
-    Public Function GetMaxId() As Long
-        Dim reader = Engine.Execute(_maxID_SQL)
-
-        If reader.HasRows Then
-            Call reader.Read()
-
-            Dim v As Object = reader.GetValue(Scan0)
-
-            If IsDBNull(v) Then
-                Return 0
-            Else
-                Dim n As Long =
-                    DirectCast(v, Long)
-                Return n
-            End If
-        Else
-            Return 0
-        End If
-    End Function
-
-    Public Overrides Function ToString() As String
-        Return Engine.ToString
-    End Function
-
-    Public Sub AddOrUpdate(entity As T, key As Long) Implements IRepositoryWrite(Of Long, T).AddOrUpdate
-        If Exists(key) Then
-            Call Engine.Update(entity)
-        Else
-            Call Engine.Insert(entity)
-        End If
-    End Sub
-
-    Const SQL_DELETE As String = "DELETE FROM {0} where uid='{1}';"
-
-    Public Sub Delete(key As Long) Implements IRepositoryWrite(Of Long, T).Delete
-        Dim SQL As String = String.Format(SQL_DELETE, tableName, key)
-        Call Engine.Execute(SQL)
-    End Sub
-
-    Public Iterator Function Fetch(SQL As String) As IEnumerable(Of T)
-        For Each x As T In Engine.Load(Of T)(SQL)
-            Yield x
-        Next
-    End Function
-
-    Public Function AddNew(entity As T) As Long Implements IRepositoryWrite(Of Long, T).AddNew
-        Return Engine.Insert(Schema, entity)
-    End Function
-
-    Public Function Exists(key As Long) As Boolean Implements IRepositoryRead(Of Long, T).Exists
-        Return Engine.RecordExists(Schema, key.ToString)
-    End Function
-
-    Public Function GetAll() As IReadOnlyDictionary(Of Long, T) Implements IRepositoryRead(Of Long, T).GetAll
-        Dim SQL As String = $"SELECT * FROM {tableName};"
-        Dim reader As DbDataReader = Engine.Execute(SQL)
-        Dim buf As IEnumerable(Of T) = Engine.Load(Of T)
-        Dim out As Dictionary(Of Long, T) = buf.ToDictionary(Function(x) x.uid)
-
-        Return out
-    End Function
-
-    Const SQL_SELECT As String = "SELECT * FROM {0} where uid = '{1}';"
-
-    Public Function GetByKey(key As Long) As T Implements IRepositoryRead(Of Long, T).GetByKey
-        Dim SQL As String = String.Format(SQL_SELECT, key)
-        Return Engine.Load(Of T)(SQL).FirstOrDefault
-    End Function
-
-    Public Function GetWhere(clause As Func(Of T, Boolean)) As IReadOnlyDictionary(Of Long, T) Implements IRepositoryRead(Of Long, T).GetWhere
-        Dim result As New Dictionary(Of Long, T)
-
-        For Each x As T In Engine.Load(Of T)()
-            If clause(x) = True Then
-                Call result.Add(x.uid, x)
-            End If
-        Next
-
-        Return result
     End Function
 End Class
