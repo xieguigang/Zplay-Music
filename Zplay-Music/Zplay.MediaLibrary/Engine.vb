@@ -10,6 +10,7 @@ Imports System.Text
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.SecurityString
+Imports Microsoft.VisualBasic.Imaging
 
 ''' <summary>
 ''' This is the zplay-Music media library database engine.
@@ -26,12 +27,20 @@ Public Class Engine
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property SQLite As SQLProcedure
+    Public ReadOnly Property AlbumArts As String
+    Public ReadOnly Property DefaultArt As String
 
     Sub New(file As String)
         Dim exists As Boolean = file.FileExists
 
+        AlbumArts = file.TrimFileExt & ".AlbumArts/"
+        DefaultArt = AlbumArts & "/.default.png"
         Db = file
         SQLite = SQLProcedure.CreateSQLTransaction(url:=Db)
+
+        If Not DefaultArt.FileExists Then
+            Call My.Resources._default.SaveAs(DefaultArt, ImageFormats.Png)
+        End If
 
         If Not exists Then  ' 当数据库文件不存在的时候在建立SQLite连接之后初始化数据表
             Call InitDb()
@@ -123,8 +132,18 @@ Public Class Engine
         media.uid = hashLong(media)
 
         Call Music.AddOrUpdate(media, media.uid)
+        If info.HaveAlbumArt Then
+            Call info.Id3v2.Picture.Bitmap.SaveAs(GetArtPath(media), ImageFormats.Png)
+        Else
+            Call SafeCopyTo(DefaultArt, GetArtPath(media))
+        End If
 
         Return info
+    End Function
+
+    Public Function GetArtPath(key As Music) As String
+        Dim sk As String = $"{key.album},{key.artists},{key.genres}"
+        Return $"{AlbumArts}/{sk.First}/{sk}.png"
     End Function
 
     ReadOnly __md5Hash As New Md5HashProvider

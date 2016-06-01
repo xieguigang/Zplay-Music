@@ -107,6 +107,12 @@ Namespace App
         Public Property Id3v2 As TID3InfoEx
         Public Property StreamInfo As TStreamInfo
 
+        Public ReadOnly Property HaveAlbumArt As Boolean
+            Get
+                Return Not Id3v2.Picture.Bitmap.IsNullOrNothing
+            End Get
+        End Property
+
         ''' <summary>
         ''' Create media file model from the ID3v2 tag data and media stream information. 
         ''' </summary>

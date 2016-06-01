@@ -84,7 +84,7 @@ Public Class FormZplay
         _playList = New List
         Panel1.Controls.Add(_playList)
         _playList.Location = New Point(0, Panel1.Height - _playList.Height)
-        picAlbumArt.BackgroundImage = My.Resources.YuumincoDisc
+        picAlbumArt.BackgroundImage = My.Resources._default
         picAlbumArt.BackColor = Color.Black
 
         Dim config As Config = Config.Load
@@ -141,7 +141,7 @@ Public Class FormZplay
         PlaybackControl1.Paused = False
 
         If play.AlbumArt.IsNullOrNothing Then
-            picAlbumArt.BackgroundImage = My.Resources.YuumincoDisc
+            picAlbumArt.BackgroundImage = My.Resources._default
         End If
 
         Call _osd.ShowNotify(play.ID3v2, picAlbumArt.BackgroundImage)
