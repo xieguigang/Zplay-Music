@@ -1,41 +1,20 @@
-﻿'Imports libZPlay.App
-'Imports libZPlay.InternalTypes
-'Imports Microsoft.VisualBasic.Serialization
+﻿Imports libZPlay.App
+Imports libZPlay.InternalTypes
+Imports Microsoft.VisualBasic.Serialization
+Imports Zplay.MediaLibrary
 
-'Public Class Form1
-'    Public Sub New()
+Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Dim engine As New Engine("x:\test.db")
+        '
+        '     Dim result = engine.AddFile("E:\游戏原声\pastoral landscape\みかん箱,Foxtail-Grass Studio - Romanstone.mp3")
+        Call engine.ScanDIR("E:\日漫\傳頌之物", True)
+        Call engine.ScanDIR("E:\游戏原声\pastoral landscape", True)
 
-'        ' This call is required by the designer.
-'        InitializeComponent()
+        '   Call engine.Music.AddNew(n)
 
-'        ' Add any initialization after the InitializeComponent() call.
+        Dim alll = engine.Music.GetAll
 
-
-'        Dim play As New libZPlay.App.MediaPlayer
-
-'        Call play.Playback("E:\116. 宇多田光Beautiful World.flac")
-
-'        Me.BackgroundImage = play.AlbumArt
-
-'        ticks = play.Playback()
-'        '  play.SeeksByPercent(0.96)
-'    End Sub
-
-'    Private Sub ticks_Tick(sender As MediaPlayer, cur As TStreamTime, p As Double) Handles ticks.Tick
-'        Try
-'            Call Me.Invoke(Sub() Text = $"[{Math.Round(p * 100, 2)}%] " & cur.GetJson)
-'        Catch ex As Exception
-
-'        End Try
-'    End Sub
-
-'    Private Sub ticks_StateValidate(sender As MediaPlayer, stat As TStreamStatus) Handles ticks.StateValidate
-'        MsgBox(stat.GetJson)
-'    End Sub
-
-'    Private Sub ticks_EndOfTrack(sender As MediaPlayer) Handles ticks.EndOfTrack
-'        MsgBox(sender.status.GetJson)
-'    End Sub
-
-'    Dim WithEvents ticks As TickEvent
-'End Class
+        Dim files = engine.QueryByTitle("の").ToArray
+    End Sub
+End Class

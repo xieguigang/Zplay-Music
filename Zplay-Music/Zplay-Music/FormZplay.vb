@@ -15,6 +15,7 @@ Imports Microsoft.Windows.Dialogs
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Windows.Forms
 Imports Microsoft.VisualBasic.Imaging
+Imports Zplay.MediaLibrary
 
 Public Class FormZplay
 
@@ -124,6 +125,10 @@ Public Class FormZplay
 
         Call List1.Clear()
         Call List1.AddList(list)
+
+        Using engine As New Engine(App.HOME & "/Zplay-Library.db")
+            Call engine.ScanDIR("E:\日漫\傳頌之物", True)
+        End Using
     End Sub
 
     Public Sub ChangePlayback(file As String)
