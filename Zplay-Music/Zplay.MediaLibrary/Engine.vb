@@ -120,9 +120,9 @@ Public Class Engine
             .artists = genre.uid
         }
 
-        Dim uid As Long = hashLong(media)
+        media.uid = hashLong(media)
 
-        Call Music.AddOrUpdate(media, uid)
+        Call Music.AddOrUpdate(media, media.uid)
 
         Return info
     End Function
