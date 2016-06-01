@@ -11,6 +11,7 @@ Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.SecurityString
 Imports Microsoft.VisualBasic.Imaging
+Imports System.Drawing
 
 ''' <summary>
 ''' This is the zplay-Music media library database engine.
@@ -164,13 +165,26 @@ Public Class Engine
         Dim files As IEnumerable(Of Music) = Music.Fetch(SQL:=query)
 
         For Each file As Music In files
+            Dim path As String = GetArtPath(file)
+            Dim img As Bitmap
+
+            Try
+                img = Bitmap.FromFile(If(path.FileExists, path, DefaultArt))
+            Catch ex As Exception
+                img = My.Resources._default
+            End Try
+
             Dim media As New MediaFile With {
                 .FileName = file.path,
                 .Id3v2 = New TID3InfoEx With {
                     .Album = __getValue(file.album, Albums),
                     .Artist = __getValue(file.artists, Artists),
                     .Genre = __getValue(file.genres, Genres),
-                    .Title = file.title
+                    .Title = file.title,
+                    .Picture = New TID3Picture With {
+                        .PicturePresent = True,
+                        .Bitmap = img
+                    }
                 },
                 .StreamInfo = New TStreamInfo With {
                     .Length = New TStreamTime With {
