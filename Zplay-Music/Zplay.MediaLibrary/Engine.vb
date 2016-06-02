@@ -220,6 +220,11 @@ Public Class Engine : Inherits ClassObject
         Return SQL
     End Function
 
+    Public Function FetchAll() As IEnumerable(Of MediaFile)
+        Dim SQL As String = $"SELECT * FROM {Music.tableName};"
+        Return QueryFile(SQL)
+    End Function
+
     ''' <summary>
     ''' 通过标题进行查询
     ''' </summary>

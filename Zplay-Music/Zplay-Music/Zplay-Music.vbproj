@@ -150,6 +150,12 @@
     <Compile Include="FormLibrary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MediaLibrary\LibraryCard.Designer.vb">
+      <DependentUpon>LibraryCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MediaLibrary\LibraryCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Notify.vb" />
     <Compile Include="FormAboutZplay.Designer.vb">
       <DependentUpon>FormAboutZplay.vb</DependentUpon>
@@ -214,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="List.resx">
       <DependentUpon>List.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MediaLibrary\LibraryCard.resx">
+      <DependentUpon>LibraryCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

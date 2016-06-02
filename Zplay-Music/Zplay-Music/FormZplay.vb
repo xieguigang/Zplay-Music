@@ -126,7 +126,7 @@ Public Class FormZplay
         Call List1.Clear()
         Call List1.AddList(list)
 
-        Using engine As New Engine(App.LocalData & "/Zplay-Library.db")
+        Using engine As New Engine(Config.MediaLibrary)
             Call engine.AddFiles(list)
         End Using
     End Sub
@@ -281,7 +281,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub OpenLibraryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenLibraryToolStripMenuItem.Click
-        Call New FormLibrary().ShowDialog()
+        Call New FormLibrary().Show()
     End Sub
 
     Private Sub OrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderToolStripMenuItem.Click

@@ -10,6 +10,7 @@ Public Class Config : Implements IDisposable
     Public Property playbackMode As PlaybackModes = PlaybackModes.Order
 
     Public Shared ReadOnly Property DefaultFile As String = App.HOME & "/config.json"
+    Public Shared ReadOnly Property MediaLibrary As String = App.LocalData & "/Zplay-Library.db"
 
     Public Function GetList(eop As Action) As Playlist
         If lastPlaylist.x = ListTypes.DIR Then
