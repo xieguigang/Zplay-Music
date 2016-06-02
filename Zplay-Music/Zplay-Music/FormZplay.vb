@@ -349,4 +349,9 @@ Public Class FormZplay
             cfg.playbackMode = mode
         End Using
     End Sub
+
+    Private Sub FormZplay_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        Call Thread.Sleep(1000)
+        Call App.Exit()
+    End Sub
 End Class
