@@ -151,7 +151,7 @@ Public Class FormZplay
                            Call engine.AddFiles(list, setProgress)
                        End Using
 
-                       Call Thread.Sleep(3 * 1000)
+                       Call Thread.Sleep(6 * 1000)
                        Call _osd.ShowNotify(play.ID3v2, picAlbumArt.BackgroundImage)
 
                        Return True
