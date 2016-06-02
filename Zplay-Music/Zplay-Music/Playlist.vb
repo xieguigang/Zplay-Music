@@ -23,7 +23,7 @@ Public Class Playlist : Inherits libZPlay.App.Playlist
             Dim sz = g.Graphics.MeasureString(s, font)
             Dim loc As New Point((g.Width - sz.Width) / 2, (g.Height - sz.Height) / 2)
 
-            Call g.Graphics.DrawImageUnscaled(My.Resources.Numbers, New Point(0, 0))
+            Call g.Graphics.DrawImageUnscaled(My.Resources.Numbers, New Point(-1, -1))
             Call g.Graphics.DrawString(s, font, Brushes.White, loc)
 
             Return g.ImageResource
