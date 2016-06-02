@@ -110,7 +110,7 @@ Public Class Engine : Inherits ClassObject
     Public Function AddFile(info As MediaFile) As MediaFile
         Dim sql As String ' 创建数据库之中的表的记录
 
-        sql = $"SELECT * FROM {Albums.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Album)}' LIMIT 1;"
+        sql = $"SELECT * FROM {Albums.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Album.Escaping)}' LIMIT 1;"
 
         Dim album As Album = Albums.Fetch(sql).FirstOrDefault      ' album exists
         If album Is Nothing Then
@@ -121,7 +121,7 @@ Public Class Engine : Inherits ClassObject
             Call Albums.AddNew(album)
         End If
 
-        sql = $"SELECT * FROM {Artists.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Artist)}' LIMIT 1;"
+        sql = $"SELECT * FROM {Artists.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Artist.Escaping)}' LIMIT 1;"
         Dim artist As Artists = Artists.Fetch(sql).FirstOrDefault
         If artist Is Nothing Then
             artist = New Artists With {
@@ -131,7 +131,7 @@ Public Class Engine : Inherits ClassObject
             Call Artists.AddNew(artist)
         End If
 
-        sql = $"SELECT * FROM {Genres.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Genre)}' LIMIT 1;"
+        sql = $"SELECT * FROM {Genres.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Genre.Escaping)}' LIMIT 1;"
         Dim genre As Genres = Genres.Fetch(sql).FirstOrDefault
         If genre Is Nothing Then
             genre = New Genres With {
