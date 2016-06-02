@@ -44,7 +44,7 @@ Namespace App
         End Property
 
         Sub New(files As IEnumerable(Of String), EOList As Action, type As ListTypes, URL As String)
-            Call MyBase.New(GetFilesInfo(files), EOList, type, URL)
+            Call MyBase.New(GetFilesInfo(files, True), EOList, type, URL)
         End Sub
 
         Public Function IndexOf(file As String) As Integer

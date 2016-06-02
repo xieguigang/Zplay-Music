@@ -193,6 +193,8 @@ Public Class FormZplay
         Else
             Call __formInvoke.Open()
         End If
+
+        Me.Panel2.BackColor = Color.Black
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
