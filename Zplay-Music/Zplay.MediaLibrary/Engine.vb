@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.SecurityString
 Imports Microsoft.VisualBasic.Imaging
 Imports System.Drawing
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Terminal.Utility
 
 ''' <summary>
 ''' This is the zplay-Music media library database engine.
@@ -90,9 +91,19 @@ Public Class Engine : Inherits ClassObject
         Return list
     End Function
 
-    Public Sub AddFiles(files As IEnumerable(Of MediaFile))
-        For Each file As MediaFile In files
+    Public Sub AddFiles(files As IEnumerable(Of MediaFile), tick As Action(Of Integer))
+        Dim source As MediaFile() = files.ToArray
+        Dim n As Integer = source.Length
+        Dim p As Integer = 0
+        Dim last As Double
+
+        For Each file As MediaFile In source
             Call AddFile(file)
+            p += 1
+            If p / n - last >= 0.01 Then
+                last = p / n
+                Call tick(last * 100)
+            End If
         Next
     End Sub
 

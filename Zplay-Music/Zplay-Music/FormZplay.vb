@@ -16,6 +16,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Windows.Forms
 Imports Microsoft.VisualBasic.Imaging
 Imports Zplay.MediaLibrary
+Imports Microsoft.VisualBasic.Parallel.Tasks
 
 Public Class FormZplay
 
@@ -94,7 +95,7 @@ Public Class FormZplay
             config.lastPlaylist.Name.DirectoryExists Then
 
             Call ChangePlaylist(config.GetList(AddressOf __EOList))
-            Call ChangePlayback(list.ReadNext?.FileName)
+            Call ChangePlayback(list.ReadNext?.FileName, True)
         End If
 
         Select Case config.playbackMode
@@ -131,12 +132,37 @@ Public Class FormZplay
         Call List1.Clear()
         Call List1.AddList(list)
 
-        Using engine As New Engine(Config.MediaLibrary)
-            Call engine.AddFiles(list)
-        End Using
+        Dim task = Function() As Boolean
+                       Using engine As New Engine(Config.MediaLibrary)
+                           Dim msg As New NotifyOsd.Message With {
+                               .Title = "Zplay-Music Imports",
+                               .Message = "Imports from " & list.URI,
+                               .IconURL = _osd.AppIcon,
+                               .BubbleBehavior = NotifyOsd.BubbleBehaviors.ProgressIndicator
+                           }
+                           Dim proBar As New NotifyOsd.Framework.Balloon.ProgressBar(msg, New Point)
+                           Call proBar.Show()
+
+                           proBar.ProgressBar.AnimationSpeed = 995
+
+                           Dim setProgress = Sub(i As Integer)
+                                                 proBar.PercentageValue = i
+                                             End Sub
+                           Call engine.AddFiles(list, setProgress)
+                       End Using
+
+                       Call Thread.Sleep(3 * 1000)
+                       Call _osd.ShowNotify(play.ID3v2, picAlbumArt.BackgroundImage)
+
+                       Return True
+                   End Function
+
+        Call _importsTask.Enqueue(task)
     End Sub
 
-    Public Sub ChangePlayback(file As String)
+    Dim _importsTask As New TaskQueue(Of Boolean)
+
+    Public Sub ChangePlayback(file As String, mute As Boolean)
         If file Is Nothing Then
             Return
         End If
@@ -158,7 +184,9 @@ Public Class FormZplay
             picAlbumArt.BackgroundImage = My.Resources._default
         End If
 
-        Call _osd.ShowNotify(play.ID3v2, picAlbumArt.BackgroundImage)
+        If Not mute Then
+            Call _osd.ShowNotify(play.ID3v2, picAlbumArt.BackgroundImage)
+        End If
     End Sub
 
     Private Sub btnCloselist_Click(sender As Object, e As EventArgs) Handles btnCloselist.Click
@@ -177,6 +205,7 @@ Public Class FormZplay
         Call ticks.Dispose()
         Call play.Dispose()
         Call _osd.Dispose()
+        Call _importsTask.Dispose()
     End Sub
 
     Private Sub ticks_Tick(sender As libZPlay.App.ZplayMusic, cur As TStreamTime, progress As Double) Handles ticks.Tick
@@ -243,13 +272,13 @@ Public Class FormZplay
                     AddressOf __EOList,
                     ListTypes.DIR,
                     DIR.SelectedPath))
-                Call ChangePlayback(list.ReadNext?.FileName)
+                Call ChangePlayback(list.ReadNext?.FileName, True)
             End If
         End Using
     End Sub
 
     Private Sub List1_ChangePlayback(file As String, index As Integer) Handles List1.ChangePlayback
-        Call ChangePlayback(file)
+        Call ChangePlayback(file, False)
         Call list.SetCurrentRead(index)
     End Sub
 
@@ -267,7 +296,7 @@ Public Class FormZplay
         Dim file As String = list.ReadNext?.FileName
 
         If file.FileExists Then
-            Call ChangePlayback(file)
+            Call ChangePlayback(file, False)
         End If
     End Sub
 
@@ -285,7 +314,7 @@ Public Class FormZplay
         Dim file As String = list.ReadPrevious.FileName
 
         If file.FileExists Then
-            Call ChangePlayback(file)
+            Call ChangePlayback(file, False)
         End If
     End Sub
 

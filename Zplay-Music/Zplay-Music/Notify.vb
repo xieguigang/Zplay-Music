@@ -11,6 +11,7 @@ Public Class Notify
 
     Sub New()
         Call My.Resources.notify.FlushStream(sound)
+        Call My.Resources._default.SaveAs(AppIcon, ImageFormats.Png)
     End Sub
 
     Public Sub ShowNotify(tag As TID3InfoEx, albumArt As Image)
@@ -24,15 +25,15 @@ Public Class Notify
         Call osd.SendMessage(msg)
     End Sub
 
+    Public ReadOnly Property AppIcon As String = App.GetAppSysTempFile(".png")
+
     Public Sub ShowMessage(s As String)
-        Dim art As String = App.GetAppSysTempFile(".png")
         Dim msg As New NotifyOsd.Message With {
-            .IconURL = art,
+            .IconURL = AppIcon,
             .Message = s,
             .Title = "Zplay-Music",
             .SoundURL = sound
         }
-        Call My.Resources._default.SaveAs(art, ImageFormats.Png)
         Call osd.SendMessage(msg)
     End Sub
 
