@@ -114,7 +114,7 @@
     </Reference>
     <Reference Include="notify_osd, Version=2.234.5.24, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Notify-OSD.1.0.1\x86\notify_osd.exe</HintPath>
+      <HintPath>..\packages\Notify-OSD.1.0.11\x86\notify_osd.exe</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />

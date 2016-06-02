@@ -126,8 +126,8 @@ Public Class FormZplay
         Call List1.Clear()
         Call List1.AddList(list)
 
-        Using engine As New Engine(App.HOME & "/Zplay-Library.db")
-            Call engine.AddFiles(list.FileList)
+        Using engine As New Engine(App.LocalData & "/Zplay-Library.db")
+            Call engine.AddFiles(list)
         End Using
     End Sub
 

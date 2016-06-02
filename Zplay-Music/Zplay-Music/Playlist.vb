@@ -4,6 +4,9 @@ Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Imaging
 
+''' <summary>
+''' <see cref="IEnumerable(Of MediaFile)"/>
+''' </summary>
 Public Class Playlist : Inherits libZPlay.App.Playlist
 
     Sub New(files As IEnumerable(Of String), EOList As Action, type As ListTypes, URL As String)

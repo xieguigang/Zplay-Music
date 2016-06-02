@@ -90,6 +90,12 @@ Public Class Engine : Inherits ClassObject
         Return list
     End Function
 
+    Public Sub AddFiles(files As IEnumerable(Of MediaFile))
+        For Each file As MediaFile In files
+            Call AddFile(file)
+        Next
+    End Sub
+
     Public Function AddFile(info As MediaFile) As MediaFile
         Dim sql As String ' 创建数据库之中的表的记录
 
