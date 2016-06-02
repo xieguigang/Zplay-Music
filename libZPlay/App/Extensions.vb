@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Runtime.CompilerServices
+Imports System.Windows.Forms
 Imports libZPlay.InternalTypes
 
 Namespace App
@@ -76,6 +77,7 @@ Namespace App
         Public Iterator Function GetFilesInfo(files As IEnumerable(Of String), Optional decodeArt As Boolean = False) As IEnumerable(Of MediaFile)
             SyncLock __tagServices
                 For Each file As String In files
+                    Call Application.DoEvents()
                     Yield __tagServices.GetFileInfo(file, decodeArt)
                 Next
             End SyncLock
