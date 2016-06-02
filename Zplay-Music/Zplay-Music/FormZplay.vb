@@ -111,7 +111,12 @@ Public Class FormZplay
 
     Private Sub __EOList()
         Call play.Stop()
-        Call list.Reset()
+
+        If list.Count = 0 Then
+            Call _osd.ShowMessage("Media files not found!")
+        Else
+            Call list.Reset()
+        End If
     End Sub
 
     Public Sub ChangePlaylist(list As Playlist)
@@ -132,6 +137,10 @@ Public Class FormZplay
     End Sub
 
     Public Sub ChangePlayback(file As String)
+        If file Is Nothing Then
+            Return
+        End If
+
         Call play.Playback(file)
 
         picAlbumArt.BackgroundImage = play.AlbumArt

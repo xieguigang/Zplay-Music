@@ -272,6 +272,7 @@
     <None Include="Resources\Docker-Shrinkage.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\notify.wav_res" />
     <None Include="Resources\start.ico" />
     <None Include="Resources\play.ico" />
     <None Include="Resources\pause.ico" />

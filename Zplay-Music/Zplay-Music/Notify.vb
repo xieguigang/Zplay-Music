@@ -7,6 +7,12 @@ Public Class Notify
 
     Dim osd As New OsdNotifier
 
+    ReadOnly sound As String = App.LocalData & "/notify.wav"
+
+    Sub New()
+        Call My.Resources.notify.FlushStream(sound)
+    End Sub
+
     Public Sub ShowNotify(tag As TID3InfoEx, albumArt As Image)
         Dim art As String = App.GetAppSysTempFile(".png")
         Dim msg As New NotifyOsd.Message With {
@@ -15,6 +21,18 @@ Public Class Notify
             .Message = $"Title: {tag.Title}\nArtist: {tag.Artist}\nAlubm: {tag.Album}\n"
         }
         Call albumArt.SaveAs(art, ImageFormats.Png)
+        Call osd.SendMessage(msg)
+    End Sub
+
+    Public Sub ShowMessage(s As String)
+        Dim art As String = App.GetAppSysTempFile(".png")
+        Dim msg As New NotifyOsd.Message With {
+            .IconURL = art,
+            .Message = s,
+            .Title = "Zplay-Music",
+            .SoundURL = sound
+        }
+        Call My.Resources._default.SaveAs(art, ImageFormats.Png)
         Call osd.SendMessage(msg)
     End Sub
 
