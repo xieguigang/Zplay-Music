@@ -202,6 +202,8 @@ Public Class FormZplay
     End Sub
 
     Private Sub FormZplay_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        On Error Resume Next
+
         Call ticks.Dispose()
         Call play.Dispose()
         Call _osd.Dispose()
