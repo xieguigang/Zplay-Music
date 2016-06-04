@@ -298,6 +298,7 @@
     <None Include="Resources\Paused.png" />
     <None Include="Resources\Paused-highlight.png" />
     <None Include="Resources\default.png" />
+    <None Include="Resources\arrow-back-512.png" />
     <Content Include="wmp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

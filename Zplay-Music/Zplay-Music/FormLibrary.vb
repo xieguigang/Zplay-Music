@@ -15,13 +15,13 @@ Public Class FormLibrary
         ' Initialize MaterialSkinManager
         materialSkinManager = MaterialSkinManager.Instance
         materialSkinManager.AddFormToManage(Me)
-        materialSkinManager.Theme = MaterialSkinManager.Themes.DARK
+        materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT
         materialSkinManager.ColorScheme = New ColorScheme(
-            primary:=Primary.Indigo500,
-            darkPrimary:=Primary.Indigo500,
-            lightPrimary:=Primary.Indigo500,
-            accent:=Accent.LightBlue200,
-            textShade:=TextShade.WHITE)
+            primary:=Primary.LightGreen300,
+            darkPrimary:=Primary.LightGreen300,
+            lightPrimary:=Primary.LightGreen300,
+            accent:=Accent.LightBlue400,
+            textShade:=TextShade.BLACK)
     End Sub
 
     Dim host As FormZplay
