@@ -108,7 +108,7 @@ Public Class FormZplay
         End Select
     End Sub
 
-    Dim list As Playlist
+    Public ReadOnly Property list As Playlist
 
     Public Sub __EOList()
         Call play.Stop()
@@ -121,7 +121,7 @@ Public Class FormZplay
     End Sub
 
     Public Sub ChangePlaylist(list As Playlist, import As Boolean)
-        Me.list = list
+        Me._list = list
         Me.PictureBox1.BackgroundImage = list.DrawListCount
 
         Using config As Config = Config.Load
@@ -285,7 +285,7 @@ Public Class FormZplay
         End Using
     End Sub
 
-    Private Sub List1_ChangePlayback(file As String, index As Integer) Handles List1.ChangePlayback
+    Public Sub ChangePlayback(file As String, index As Integer) Handles List1.ChangePlayback
         Call ChangePlayback(file, False)
         Call list.SetCurrentRead(index)
     End Sub

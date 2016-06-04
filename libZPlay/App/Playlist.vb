@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Language
 
 Namespace App
 
@@ -76,7 +77,7 @@ Namespace App
         End Function
     End Class
 
-    Public MustInherit Class Playlist(Of T)
+    Public MustInherit Class Playlist(Of T) : Inherits ClassObject
         Implements IEnumerable(Of T)
 
         Protected _files As List(Of T)
