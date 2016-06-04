@@ -48,7 +48,7 @@ Partial Class FormLibrary
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.White
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(7, 6)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(749, 618)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(611, 709)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
         'MaterialTabSelector1
@@ -60,7 +60,7 @@ Partial Class FormLibrary
         Me.MaterialTabSelector1.Location = New System.Drawing.Point(0, 64)
         Me.MaterialTabSelector1.MouseState = Microsoft.VisualBasic.Windows.Forms.MouseState.HOVER
         Me.MaterialTabSelector1.Name = "MaterialTabSelector1"
-        Me.MaterialTabSelector1.Size = New System.Drawing.Size(779, 32)
+        Me.MaterialTabSelector1.Size = New System.Drawing.Size(641, 32)
         Me.MaterialTabSelector1.TabIndex = 0
         Me.MaterialTabSelector1.Text = "MaterialTabSelector1"
         '
@@ -78,7 +78,7 @@ Partial Class FormLibrary
         Me.MaterialTabControl1.MouseState = Microsoft.VisualBasic.Windows.Forms.MouseState.HOVER
         Me.MaterialTabControl1.Name = "MaterialTabControl1"
         Me.MaterialTabControl1.SelectedIndex = 0
-        Me.MaterialTabControl1.Size = New System.Drawing.Size(770, 656)
+        Me.MaterialTabControl1.Size = New System.Drawing.Size(632, 747)
         Me.MaterialTabControl1.TabIndex = 1
         '
         'TabPage1
@@ -87,7 +87,7 @@ Partial Class FormLibrary
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(762, 630)
+        Me.TabPage1.Size = New System.Drawing.Size(624, 721)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Artists"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -98,7 +98,7 @@ Partial Class FormLibrary
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(746, 591)
+        Me.TabPage2.Size = New System.Drawing.Size(624, 721)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Albums"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -113,14 +113,14 @@ Partial Class FormLibrary
         Me.ViewAlbums.BackColor = System.Drawing.Color.White
         Me.ViewAlbums.Location = New System.Drawing.Point(6, 6)
         Me.ViewAlbums.Name = "ViewAlbums"
-        Me.ViewAlbums.Size = New System.Drawing.Size(810, 394)
+        Me.ViewAlbums.Size = New System.Drawing.Size(618, 709)
         Me.ViewAlbums.TabIndex = 1
         '
         'TabPage3
         '
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(746, 591)
+        Me.TabPage3.Size = New System.Drawing.Size(624, 721)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Genres"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -130,18 +130,17 @@ Partial Class FormLibrary
         Me.TabPage4.Controls.Add(Me.ListView1)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(746, 591)
+        Me.TabPage4.Size = New System.Drawing.Size(624, 721)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Playlist"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
         'ListView1
         '
-        Me.ListView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ListView1.Location = New System.Drawing.Point(7, 3)
+        Me.ListView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListView1.Location = New System.Drawing.Point(0, 0)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(490, 477)
+        Me.ListView1.Size = New System.Drawing.Size(624, 721)
         Me.ListView1.TabIndex = 0
         '
         'MaterialSingleLineTextField1
@@ -151,7 +150,7 @@ Partial Class FormLibrary
         Me.MaterialSingleLineTextField1.Depth = 0
         Me.MaterialSingleLineTextField1.ForeColor = System.Drawing.Color.White
         Me.MaterialSingleLineTextField1.Hint = "Enter to Search"
-        Me.MaterialSingleLineTextField1.Location = New System.Drawing.Point(502, 68)
+        Me.MaterialSingleLineTextField1.Location = New System.Drawing.Point(412, 68)
         Me.MaterialSingleLineTextField1.MaxLength = 32767
         Me.MaterialSingleLineTextField1.MouseState = Microsoft.VisualBasic.Windows.Forms.MouseState.HOVER
         Me.MaterialSingleLineTextField1.Name = "MaterialSingleLineTextField1"
@@ -159,7 +158,7 @@ Partial Class FormLibrary
         Me.MaterialSingleLineTextField1.SelectedText = ""
         Me.MaterialSingleLineTextField1.SelectionLength = 0
         Me.MaterialSingleLineTextField1.SelectionStart = 0
-        Me.MaterialSingleLineTextField1.Size = New System.Drawing.Size(263, 23)
+        Me.MaterialSingleLineTextField1.Size = New System.Drawing.Size(215, 23)
         Me.MaterialSingleLineTextField1.TabIndex = 2
         Me.MaterialSingleLineTextField1.TabStop = False
         Me.MaterialSingleLineTextField1.UseSystemPasswordChar = False
@@ -169,11 +168,11 @@ Partial Class FormLibrary
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(773, 757)
+        Me.ClientSize = New System.Drawing.Size(635, 848)
         Me.Controls.Add(Me.MaterialSingleLineTextField1)
         Me.Controls.Add(Me.MaterialTabControl1)
         Me.Controls.Add(Me.MaterialTabSelector1)
-        Me.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Cursor = System.Windows.Forms.Cursors.SizeWE
         Me.Name = "FormLibrary"
         Me.Text = "Zplay-Music Media Library"
         Me.MaterialTabControl1.ResumeLayout(False)
