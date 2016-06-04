@@ -51,7 +51,7 @@ Public Class Engine : Inherits ClassObject
         End If
 
         Music = New SQLiteIO(Of Music)(SQLite)
-        Albums = New SQLiteIO(Of Album)(SQLite)
+        Albums = New SQLiteIO(Of Tables.Album)(SQLite)
         Artists = New SQLiteIO(Of Artists)(SQLite)
         Genres = New SQLiteIO(Of Genres)(SQLite)
     End Sub
@@ -62,7 +62,7 @@ Public Class Engine : Inherits ClassObject
     ''' <returns></returns>
     ''' <remarks>这条记录在进行添加的时候是最后进行的</remarks>
     Public ReadOnly Property Music As SQLiteIO(Of Music)
-    Public ReadOnly Property Albums As SQLiteIO(Of Album)
+    Public ReadOnly Property Albums As SQLiteIO(Of Tables.Album)
     Public ReadOnly Property Artists As SQLiteIO(Of Artists)
     Public ReadOnly Property Genres As SQLiteIO(Of Genres)
 
@@ -112,9 +112,9 @@ Public Class Engine : Inherits ClassObject
 
         sql = $"SELECT * FROM {Albums.tableName} WHERE LOWER(value) = '{LCase(info.Id3v2.Album.Escaping)}' LIMIT 1;"
 
-        Dim album As Album = Albums.Fetch(sql).FirstOrDefault      ' album exists
+        Dim album As Tables.Album = Albums.Fetch(sql).FirstOrDefault      ' album exists
         If album Is Nothing Then
-            album = New Album With {
+            album = New Tables.Album With {
                 .uid = Albums.GetMaxId + 1,
                 .value = info.Id3v2.Album
             }

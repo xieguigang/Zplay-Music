@@ -69,6 +69,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\VB_AppFramework.1.0.30\x86\Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic.Windows.Forms">
+      <HintPath>..\packages\VisualBasic.WinForm.1.0.1\x86\Microsoft.VisualBasic.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -98,6 +101,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtVisual.vb" />
+    <Compile Include="Album.vb" />
+    <Compile Include="Controls\AlbumView.Designer.vb">
+      <DependentUpon>AlbumView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AlbumView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EngineAPI.vb" />
     <Compile Include="SQLiteIO.vb" />
     <Compile Include="Engine.vb" />
     <Compile Include="Tables.vb" />
@@ -118,6 +129,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\AlbumView.resx">
+      <DependentUpon>AlbumView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -150,6 +164,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
