@@ -17,11 +17,11 @@ Public Class FormLibrary
         materialSkinManager.AddFormToManage(Me)
         materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT
         materialSkinManager.ColorScheme = New ColorScheme(
-            primary:=Primary.LightGreen300,
-            darkPrimary:=Primary.LightGreen300,
-            lightPrimary:=Primary.LightGreen300,
-            accent:=Accent.LightBlue400,
-            textShade:=TextShade.BLACK)
+            primary:=Primary.Blue300,
+            darkPrimary:=Primary.Blue300,
+            lightPrimary:=Primary.Blue300,
+            accent:=Accent.Amber100,
+            textShade:=TextShade.WHITE)
     End Sub
 
     Dim host As FormZplay
