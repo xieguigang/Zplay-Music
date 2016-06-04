@@ -102,23 +102,27 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a, Version=3.0.32.42178, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\VB_AppFramework.1.0.30\x86\Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a.dll</HintPath>
+      <HintPath>..\packages\VB_AppFramework.1.0.35\x86\Microsoft.VisualBasic.Architecture.Framework_v3.0_22.0.76.201__8da45dcd8060cc9a.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic.Windows.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\VisualBasic.WinForm.1.0.1\x86\Microsoft.VisualBasic.Windows.Forms.dll</HintPath>
+      <HintPath>..\packages\VisualBasic.WinForm.1.0.13\x86\Microsoft.VisualBasic.Windows.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.FeatureAPI, Version=10.0.5968.40149, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Windows.FeatureAPI, Version=10.0.5997.831, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\VisualBasic.WinForm.1.0.1\x86\Microsoft.Windows.FeatureAPI.dll</HintPath>
+      <HintPath>..\packages\VisualBasic.WinForm.1.0.13\x86\Microsoft.Windows.FeatureAPI.dll</HintPath>
     </Reference>
     <Reference Include="notify_osd, Version=2.234.5.24, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Notify-OSD.1.0.11\x86\notify_osd.exe</HintPath>
+      <HintPath>..\packages\Notify-OSD.1.0.12\x86\notify_osd.exe</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite.Linq.DataMapping.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\VisualBasic.DBI.1.0.0\System.Data.SQLite.Linq.DataMapping.Interface.dll</HintPath>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
@@ -267,10 +271,6 @@
     <ProjectReference Include="..\Zplay.MediaLibrary\Zplay.MediaLibrary.vbproj">
       <Project>{d1c46857-fd85-49a1-8619-b2e1219cd5d7}</Project>
       <Name>Zplay.MediaLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="F:\VisualBasic.DBI\SQLite_Interface\SQLite_Interface.vbproj">
-      <Project>{ec288ffe-8fee-4e89-88c1-cd68f92f75bc}</Project>
-      <Name>SQLite_Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

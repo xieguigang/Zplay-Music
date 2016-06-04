@@ -155,10 +155,6 @@
       <Project>{822d0a37-7bb5-4ecb-acc8-8e38bdf1f063}</Project>
       <Name>libZPlay.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="F:\VisualBasic.DBI\SQLite_Interface\SQLite_Interface.vbproj">
-      <Project>{ec288ffe-8fee-4e89-88c1-cd68f92f75bc}</Project>
-      <Name>SQLite_Interface</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,10 +9,6 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Zplay-Music", "Zplay-Music\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Zplay.MediaLibrary", "Zplay.MediaLibrary\Zplay.MediaLibrary.vbproj", "{D1C46857-FD85-49A1-8619-B2E1219CD5D7}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SQLite_Interface", "F:\VisualBasic.DBI\SQLite_Interface\SQLite_Interface.vbproj", "{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Test", "..\libZPlay\Test\Test.vbproj", "{9B6351AD-985C-424D-ACE9-801F42689B25}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,42 +76,6 @@ Global
 		{D1C46857-FD85-49A1-8619-B2E1219CD5D7}.Release|x64.Build.0 = Release|Any CPU
 		{D1C46857-FD85-49A1-8619-B2E1219CD5D7}.Release|x86.ActiveCfg = Release|x86
 		{D1C46857-FD85-49A1-8619-B2E1219CD5D7}.Release|x86.Build.0 = Release|x86
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Debug|x64.ActiveCfg = Debug|x64
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Debug|x64.Build.0 = Debug|x64
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Debug|x86.ActiveCfg = Debug|x86
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Debug|x86.Build.0 = Debug|x86
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Publish|Any CPU.Build.0 = Publish|Any CPU
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Publish|x64.ActiveCfg = Publish|x64
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Publish|x64.Build.0 = Publish|x64
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Publish|x86.ActiveCfg = Publish|x86
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Publish|x86.Build.0 = Publish|x86
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Release|x64.ActiveCfg = Release|x64
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Release|x64.Build.0 = Release|x64
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Release|x86.ActiveCfg = Release|x86
-		{EC288FFE-8FEE-4E89-88C1-CD68F92F75BC}.Release|x86.Build.0 = Release|x86
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Debug|x64.Build.0 = Debug|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Debug|x86.ActiveCfg = Debug|x86
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Debug|x86.Build.0 = Debug|x86
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Publish|Any CPU.ActiveCfg = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Publish|Any CPU.Build.0 = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Publish|x64.ActiveCfg = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Publish|x64.Build.0 = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Publish|x86.ActiveCfg = Release|x86
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Publish|x86.Build.0 = Release|x86
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Release|x64.ActiveCfg = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Release|x64.Build.0 = Release|Any CPU
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Release|x86.ActiveCfg = Release|x86
-		{9B6351AD-985C-424D-ACE9-801F42689B25}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
