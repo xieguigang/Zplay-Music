@@ -32,6 +32,7 @@ Public Class ListView
 
     Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
         Call host.ChangePlaylist(New Playlist(_list.list, AddressOf host.__EOList), False)
+        Call host.PlaybackNext()
     End Sub
 End Class
 

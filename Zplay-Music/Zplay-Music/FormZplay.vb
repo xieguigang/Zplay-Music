@@ -248,7 +248,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub NextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NextToolStripMenuItem.Click
-        Call PlaybackControl1_PlaybackNext()
+        Call PlaybackNext()
     End Sub
 
     Private Sub PlaypauseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlaypauseToolStripMenuItem.Click
@@ -260,7 +260,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub buttonNext_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonNext.Click
-        Call PlaybackControl1_PlaybackNext()
+        Call PlaybackNext()
     End Sub
 
     Private Sub buttonPrevious_Click(sender As Object, e As ThumbnailButtonClickedEventArgs) Handles buttonPrevious.Click
@@ -300,7 +300,7 @@ Public Class FormZplay
         Call List1.Clear()
     End Sub
 
-    Private Sub PlaybackControl1_PlaybackNext() Handles PlaybackControl1.PlaybackNext
+    Public Sub PlaybackNext() Handles PlaybackControl1.PlaybackNext
         Dim file As String = list.ReadNext?.FileName
 
         If file.FileExists Then
