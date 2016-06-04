@@ -52,11 +52,13 @@ Public Class ListView : Implements IDisposable
         list.Extension = New ExtendedProps
         list.Extension.DynamicHash.Properties.Add(NameOf(md5), md5)
 
-        If host.list Is Nothing Then
+        If host.list Is Nothing OrElse host.list.Extension Is Nothing Then
             Call host.ChangePlaylist(list, False)
             Return True
         Else
-            Dim m As String = Scripting.ToString(host.list.Extension.DynamicHash.Properties.TryGetValue(NameOf(md5)))
+            Dim m As String = Scripting.ToString(
+                host.list.Extension.DynamicHash.Properties.TryGetValue(NameOf(md5)))
+
             If Not md5.TextEquals(m) Then
                 Call host.ChangePlaylist(list, False)
                 Return True

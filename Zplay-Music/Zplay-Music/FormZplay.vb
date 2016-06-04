@@ -129,12 +129,14 @@ Public Class FormZplay
             list.Mode = config.playbackMode
         End Using
 
-        Call List1.Clear()
-        Call List1.AddList(list)
+        Call Me.Invoke(Sub()
+                           Call List1.Clear()
+                           Call List1.AddList(list)
 
-        If import Then
-            Call __invokeImports(list)
-        End If
+                           If import Then
+                               Call __invokeImports(list)
+                           End If
+                       End Sub)
     End Sub
 
     Private Sub __invokeImports(list As Playlist)
