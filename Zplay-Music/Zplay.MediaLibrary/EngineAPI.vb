@@ -21,10 +21,11 @@ Public Module EngineAPI
 
     <Extension>
     Public Sub CreateAlbumViews(engine As Engine, ByRef target As FlowLayoutPanel)
-        For Each album As Album In engine.GetAlbums
+        For Each album As Album In engine.GetAlbums.Where(Function(x) x.list.Count > 0)
             Dim view As New AlbumView With {
-                .BackgroundImage = album.list.First.Id3v2.Picture.Bitmap,
-                .Text = album.Name, .Info = album.list.Count & " songs..."
+                .ArtImage = album.list.First.Id3v2.Picture.Bitmap,
+                .Text = album.Name,
+                .Info = album.list.Count & " songs..."
             }
             Call target.Controls.Add(view)
         Next

@@ -2,7 +2,7 @@
 
 Public Class AlbumView
 
-    Public Overrides Property BackgroundImage As Image
+    Public Property ArtImage As Image
         Get
             Return PictureBox1.BackgroundImage
         End Get
