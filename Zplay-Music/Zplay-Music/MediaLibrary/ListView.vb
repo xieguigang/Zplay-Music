@@ -4,7 +4,7 @@ Imports Microsoft.VisualBasic.SecurityString
 Imports Microsoft.VisualBasic.Serialization
 Imports Zplay.MediaLibrary
 
-Public Class ListView
+Public Class ListView : Implements IDisposable
 
     Dim __back As Action
     Dim _list As Album
@@ -91,6 +91,16 @@ Public Class ListView
         End Using
 
         btnBack.BackgroundImage = backg
+    End Sub
+
+    Private Sub ListView_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
+        background.Dispose()
+        btnBack.Dispose()
+        PictureBox1.Dispose()
+
+        For Each item As Control In FlowLayoutPanel1.Controls
+            Call item.Dispose()
+        Next
     End Sub
 End Class
 

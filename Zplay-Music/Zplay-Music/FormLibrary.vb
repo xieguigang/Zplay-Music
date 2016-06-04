@@ -4,7 +4,7 @@ Imports Zplay.MediaLibrary
 
 Public Class FormLibrary
 
-    ReadOnly materialSkinManager As MaterialSkinManager
+    Dim materialSkinManager As MaterialSkinManager
 
     Sub New()
 
@@ -45,5 +45,21 @@ Public Class FormLibrary
         Call ListView1.ShowData(album, Sub()
                                            MaterialTabControl1.SelectedIndex = index
                                        End Sub)
+    End Sub
+
+    Private Sub FormLibrary_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        materialSkinManager.RemoveFormToManage(Me)
+        materialSkinManager = Nothing
+        Call ListView1.Dispose()
+
+        For Each item As Control In Me.ViewAlbums.Controls
+            Call item.Dispose()
+        Next
+        For Each item As Control In Me.ViewsArtists.Controls
+            Call item.Dispose()
+        Next
+        For Each item As Control In Me.viewsGenres.Controls
+            Call item.Dispose()
+        Next
     End Sub
 End Class

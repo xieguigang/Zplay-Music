@@ -327,7 +327,10 @@ Public Class FormZplay
     End Sub
 
     Private Sub OpenLibraryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenLibraryToolStripMenuItem.Click
-        Call New FormLibrary(Me).Show()
+        Dim form As New FormLibrary(Me)
+        Dim run As New CallbackTask(AddressOf form.ShowDialog, Sub()
+                                                                   form.Dispose()
+                                                               End Sub)
     End Sub
 
     Private Sub OrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderToolStripMenuItem.Click
