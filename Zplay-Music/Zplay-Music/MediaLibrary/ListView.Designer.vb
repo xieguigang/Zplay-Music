@@ -29,12 +29,12 @@ Partial Class ListView
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.btnBack = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnBack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -42,7 +42,7 @@ Partial Class ListView
         Me.PictureBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(511, 380)
@@ -105,22 +105,22 @@ Partial Class ListView
         Me.Panel1.Size = New System.Drawing.Size(482, 335)
         Me.Panel1.TabIndex = 6
         '
-        'PictureBox3
+        'btnBack
         '
-        Me.PictureBox3.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.arrow_back_512
-        Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox3.Location = New System.Drawing.Point(31, 15)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(100, 50)
-        Me.PictureBox3.TabIndex = 7
-        Me.PictureBox3.TabStop = False
+        Me.btnBack.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.arrow_back_512
+        Me.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnBack.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnBack.Location = New System.Drawing.Point(17, 14)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(61, 31)
+        Me.btnBack.TabIndex = 7
+        Me.btnBack.TabStop = False
         '
         'ListView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.PictureBox3)
+        Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PictureBox1)
@@ -131,7 +131,7 @@ Partial Class ListView
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -142,5 +142,5 @@ Partial Class ListView
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents btnBack As PictureBox
 End Class

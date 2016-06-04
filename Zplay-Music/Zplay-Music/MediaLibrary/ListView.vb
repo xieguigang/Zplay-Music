@@ -31,7 +31,7 @@ Public Class ListView
         Call PictureBox1_SizeChanged(Nothing, Nothing)
     End Sub
 
-    Private Sub PictureBox3_Click(sender As Object, e As EventArgs)
+    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Call __back()
     End Sub
 
@@ -52,6 +52,13 @@ Public Class ListView
             Call gr.Graphics.DrawImage(background, 0, 0, max, max)
             PictureBox1.BackgroundImage = gr.ImageResource
         End Using
+
+        Dim backg = GDIPlusExtensions.ImageCrop(PictureBox1.BackgroundImage, btnBack.Location, btnBack.Size)
+        Using gr As Graphics = Graphics.FromImage(backg)
+            Call gr.DrawImage(My.Resources.arrow_back_512, 0, 0, btnBack.Width, btnBack.Height)
+        End Using
+
+        btnBack.BackgroundImage = backg
     End Sub
 End Class
 
@@ -65,10 +72,12 @@ Public Class SongView : Inherits UserControl
 
     Private Sub SongView_Load(sender As Object, e As EventArgs) Handles Me.Load
         Size = New Size(Parent.Width, 20)
-        Controls.Add(title)
+
         title = New Label
         title.Location = New Point(10, 5)
         title.ForeColor = Color.Black
+
+        Controls.Add(title)
     End Sub
 
     Private Sub SongView_MouseEnter(sender As Object, e As EventArgs) Handles Me.MouseEnter, title.MouseEnter
