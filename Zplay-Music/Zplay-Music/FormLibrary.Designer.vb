@@ -22,7 +22,7 @@ Partial Class FormLibrary
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.ViewsArtists = New System.Windows.Forms.FlowLayoutPanel()
         Me.MaterialTabSelector1 = New Microsoft.VisualBasic.Windows.Forms.Controls.MaterialTabSelector()
         Me.MaterialTabControl1 = New Microsoft.VisualBasic.Windows.Forms.Controls.MaterialTabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -32,24 +32,26 @@ Partial Class FormLibrary
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.ListView1 = New ZplayMusic.ListView()
         Me.MaterialSingleLineTextField1 = New Microsoft.VisualBasic.Windows.Forms.Controls.MaterialSingleLineTextField()
+        Me.viewsGenres = New System.Windows.Forms.FlowLayoutPanel()
         Me.MaterialTabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.SuspendLayout()
         '
-        'FlowLayoutPanel1
+        'ViewsArtists
         '
-        Me.FlowLayoutPanel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.ViewsArtists.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FlowLayoutPanel1.AutoScroll = True
-        Me.FlowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.White
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(7, 6)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(611, 709)
-        Me.FlowLayoutPanel1.TabIndex = 0
+        Me.ViewsArtists.AutoScroll = True
+        Me.ViewsArtists.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ViewsArtists.BackColor = System.Drawing.Color.White
+        Me.ViewsArtists.Location = New System.Drawing.Point(7, 6)
+        Me.ViewsArtists.Name = "ViewsArtists"
+        Me.ViewsArtists.Size = New System.Drawing.Size(627, 748)
+        Me.ViewsArtists.TabIndex = 0
         '
         'MaterialTabSelector1
         '
@@ -60,7 +62,7 @@ Partial Class FormLibrary
         Me.MaterialTabSelector1.Location = New System.Drawing.Point(0, 64)
         Me.MaterialTabSelector1.MouseState = Microsoft.VisualBasic.Windows.Forms.MouseState.HOVER
         Me.MaterialTabSelector1.Name = "MaterialTabSelector1"
-        Me.MaterialTabSelector1.Size = New System.Drawing.Size(641, 32)
+        Me.MaterialTabSelector1.Size = New System.Drawing.Size(657, 32)
         Me.MaterialTabSelector1.TabIndex = 0
         Me.MaterialTabSelector1.Text = "MaterialTabSelector1"
         '
@@ -78,16 +80,16 @@ Partial Class FormLibrary
         Me.MaterialTabControl1.MouseState = Microsoft.VisualBasic.Windows.Forms.MouseState.HOVER
         Me.MaterialTabControl1.Name = "MaterialTabControl1"
         Me.MaterialTabControl1.SelectedIndex = 0
-        Me.MaterialTabControl1.Size = New System.Drawing.Size(632, 747)
+        Me.MaterialTabControl1.Size = New System.Drawing.Size(648, 786)
         Me.MaterialTabControl1.TabIndex = 1
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.FlowLayoutPanel1)
+        Me.TabPage1.Controls.Add(Me.ViewsArtists)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(624, 721)
+        Me.TabPage1.Size = New System.Drawing.Size(640, 760)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Artists"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -98,7 +100,7 @@ Partial Class FormLibrary
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(624, 721)
+        Me.TabPage2.Size = New System.Drawing.Size(640, 760)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Albums"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -113,14 +115,15 @@ Partial Class FormLibrary
         Me.ViewAlbums.BackColor = System.Drawing.Color.White
         Me.ViewAlbums.Location = New System.Drawing.Point(6, 6)
         Me.ViewAlbums.Name = "ViewAlbums"
-        Me.ViewAlbums.Size = New System.Drawing.Size(618, 709)
+        Me.ViewAlbums.Size = New System.Drawing.Size(634, 748)
         Me.ViewAlbums.TabIndex = 1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.viewsGenres)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(624, 721)
+        Me.TabPage3.Size = New System.Drawing.Size(640, 760)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Genres"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -150,7 +153,7 @@ Partial Class FormLibrary
         Me.MaterialSingleLineTextField1.Depth = 0
         Me.MaterialSingleLineTextField1.ForeColor = System.Drawing.Color.White
         Me.MaterialSingleLineTextField1.Hint = "Enter to Search"
-        Me.MaterialSingleLineTextField1.Location = New System.Drawing.Point(412, 68)
+        Me.MaterialSingleLineTextField1.Location = New System.Drawing.Point(428, 68)
         Me.MaterialSingleLineTextField1.MaxLength = 32767
         Me.MaterialSingleLineTextField1.MouseState = Microsoft.VisualBasic.Windows.Forms.MouseState.HOVER
         Me.MaterialSingleLineTextField1.Name = "MaterialSingleLineTextField1"
@@ -163,12 +166,25 @@ Partial Class FormLibrary
         Me.MaterialSingleLineTextField1.TabStop = False
         Me.MaterialSingleLineTextField1.UseSystemPasswordChar = False
         '
+        'viewsGenres
+        '
+        Me.viewsGenres.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.viewsGenres.AutoScroll = True
+        Me.viewsGenres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.viewsGenres.BackColor = System.Drawing.Color.White
+        Me.viewsGenres.Location = New System.Drawing.Point(3, 6)
+        Me.viewsGenres.Name = "viewsGenres"
+        Me.viewsGenres.Size = New System.Drawing.Size(634, 748)
+        Me.viewsGenres.TabIndex = 2
+        '
         'FormLibrary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(635, 848)
+        Me.ClientSize = New System.Drawing.Size(651, 887)
         Me.Controls.Add(Me.MaterialSingleLineTextField1)
         Me.Controls.Add(Me.MaterialTabControl1)
         Me.Controls.Add(Me.MaterialTabSelector1)
@@ -178,12 +194,13 @@ Partial Class FormLibrary
         Me.MaterialTabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents ViewsArtists As FlowLayoutPanel
     Friend WithEvents MaterialTabSelector1 As Microsoft.VisualBasic.Windows.Forms.Controls.MaterialTabSelector
     Friend WithEvents MaterialTabControl1 As Microsoft.VisualBasic.Windows.Forms.Controls.MaterialTabControl
     Friend WithEvents TabPage1 As TabPage
@@ -193,4 +210,5 @@ Partial Class FormLibrary
     Friend WithEvents ViewAlbums As FlowLayoutPanel
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents ListView1 As ListView
+    Friend WithEvents viewsGenres As FlowLayoutPanel
 End Class

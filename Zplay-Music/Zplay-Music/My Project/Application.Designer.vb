@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.ZplayMusic.FormLibrary
+            Me.MainForm = Global.ZplayMusic.FormZplay
         End Sub
     End Class
 End Namespace

@@ -34,12 +34,16 @@ Public Class FormLibrary
 
     Private Sub FormLibrary_Load(sender As Object, e As EventArgs) Handles Me.Load
         Using engine As New Engine(Config.MediaLibrary)
-            Call engine.CreateAlbumViews(ViewAlbums, Sub(album As Album)
-                                                         MaterialTabControl1.SelectedIndex = 3
-                                                         Call ListView1.ShowData(album, Sub()
-                                                                                            MaterialTabControl1.SelectedIndex = 1
-                                                                                        End Sub)
-                                                     End Sub)
+            Call engine.CreateAlbumViews(ViewAlbums, Sub(album) Call ShowInfo(album, 1))
+            Call engine.CreateArtistViews(ViewsArtists, Sub(album) Call ShowInfo(album, 0))
+            Call engine.CreateGenresViews(viewsGenres, Sub(album) Call ShowInfo(album, 2))
         End Using
+    End Sub
+
+    Private Sub ShowInfo(album As Album, index As Integer)
+        MaterialTabControl1.SelectedIndex = 3
+        Call ListView1.ShowData(album, Sub()
+                                           MaterialTabControl1.SelectedIndex = index
+                                       End Sub)
     End Sub
 End Class
