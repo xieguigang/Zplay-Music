@@ -56,7 +56,7 @@ Partial Class ListView
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 108)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(474, 222)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(478, 222)
         Me.FlowLayoutPanel1.TabIndex = 1
         '
         'PictureBox2
@@ -102,17 +102,17 @@ Partial Class ListView
         Me.Panel1.Font = New System.Drawing.Font("Microsoft YaHei", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel1.Location = New System.Drawing.Point(13, 258)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(482, 335)
+        Me.Panel1.Size = New System.Drawing.Size(486, 335)
         Me.Panel1.TabIndex = 6
         '
         'btnBack
         '
         Me.btnBack.BackgroundImage = Global.ZplayMusic.My.Resources.Resources.arrow_back_512
-        Me.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnBack.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnBack.Location = New System.Drawing.Point(17, 14)
+        Me.btnBack.Location = New System.Drawing.Point(17, 23)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(61, 31)
+        Me.btnBack.Size = New System.Drawing.Size(53, 31)
         Me.btnBack.TabIndex = 7
         Me.btnBack.TabStop = False
         '
