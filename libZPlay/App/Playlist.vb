@@ -47,6 +47,10 @@ Namespace App
             Call MyBase.New(GetFilesInfo(files, True), EOList, type, URL)
         End Sub
 
+        Sub New(files As IEnumerable(Of MediaFile), eol As Action)
+            Call MyBase.New(files, eol, ListTypes.M3u, "null")
+        End Sub
+
         Public Function IndexOf(file As String) As Integer
             Dim i As Integer = 0
 

@@ -94,8 +94,8 @@ Public Class FormZplay
         If config.lastPlaylist.Name.FileExists OrElse
             config.lastPlaylist.Name.DirectoryExists Then
 
-            Call ChangePlaylist(config.GetList(AddressOf __EOList))
-            Call ChangePlayback(list.ReadNext?.FileName, True)
+            Call ChangePlaylist(config.GetList(AddressOf __EOList), False)
+            Call ChangePlayback(list.ReadNext?.FileName, False)
         End If
 
         Select Case config.playbackMode
@@ -110,7 +110,7 @@ Public Class FormZplay
 
     Dim list As Playlist
 
-    Private Sub __EOList()
+    Public Sub __EOList()
         Call play.Stop()
 
         If list.Count = 0 Then
@@ -120,7 +120,7 @@ Public Class FormZplay
         End If
     End Sub
 
-    Public Sub ChangePlaylist(list As Playlist)
+    Public Sub ChangePlaylist(list As Playlist, import As Boolean)
         Me.list = list
         Me.PictureBox1.BackgroundImage = list.DrawListCount
 
@@ -132,6 +132,12 @@ Public Class FormZplay
         Call List1.Clear()
         Call List1.AddList(list)
 
+        If import Then
+            Call __invokeImports(list)
+        End If
+    End Sub
+
+    Private Sub __invokeImports(list As Playlist)
         Dim task = Function() As Boolean
                        Using engine As New Engine(Config.MediaLibrary)
                            Dim msg As New NotifyOsd.Message With {
@@ -273,7 +279,7 @@ Public Class FormZplay
                     Playlist.GetFiles(DIR.SelectedPath, False),
                     AddressOf __EOList,
                     ListTypes.DIR,
-                    DIR.SelectedPath))
+                    DIR.SelectedPath), True)
                 Call ChangePlayback(list.ReadNext?.FileName, True)
             End If
         End Using
@@ -321,7 +327,7 @@ Public Class FormZplay
     End Sub
 
     Private Sub OpenLibraryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenLibraryToolStripMenuItem.Click
-        Call New FormLibrary().Show()
+        Call New FormLibrary(Me).Show()
     End Sub
 
     Private Sub OrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderToolStripMenuItem.Click

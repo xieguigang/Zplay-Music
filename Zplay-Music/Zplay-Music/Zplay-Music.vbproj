@@ -156,6 +156,12 @@
     <Compile Include="MediaLibrary\LibraryCard.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="MediaLibrary\ListView.Designer.vb">
+      <DependentUpon>ListView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MediaLibrary\ListView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Notify.vb" />
     <Compile Include="FormAboutZplay.Designer.vb">
       <DependentUpon>FormAboutZplay.vb</DependentUpon>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MediaLibrary\LibraryCard.resx">
       <DependentUpon>LibraryCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MediaLibrary\ListView.resx">
+      <DependentUpon>ListView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

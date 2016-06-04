@@ -13,6 +13,10 @@ Public Class Playlist : Inherits libZPlay.App.Playlist
         Call MyBase.New(files, EOList, type, URL)
     End Sub
 
+    Sub New(files As IEnumerable(Of MediaFile), EOList As Action)
+        Call MyBase.New(files, eol:=EOList)
+    End Sub
+
     Public Function DrawListCount() As Image
         Dim s As String = _files.Count.ToString
         Dim font As New Font(FontFace.MicrosoftYaHei, 8)

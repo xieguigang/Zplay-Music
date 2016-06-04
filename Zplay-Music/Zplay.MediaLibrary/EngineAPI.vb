@@ -20,7 +20,7 @@ Public Module EngineAPI
     End Function
 
     <Extension>
-    Public Sub CreateAlbumViews(engine As Engine, ByRef target As FlowLayoutPanel)
+    Public Sub CreateAlbumViews(engine As Engine, ByRef target As FlowLayoutPanel, onClick As Action(Of Album))
         For Each album As Album In engine.GetAlbums.Where(Function(x) x.list.Count > 0)
             Dim view As New AlbumView With {
                 .ArtImage = album.list.First.Id3v2.Picture.Bitmap,
@@ -28,6 +28,9 @@ Public Module EngineAPI
                 .Info = album.list.Count & " songs..."
             }
             Call target.Controls.Add(view)
+            Call Application.DoEvents()
+
+            AddHandler view.OnClick, Sub() Call onClick(album)
         Next
     End Sub
 End Module
