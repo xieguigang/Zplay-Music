@@ -330,7 +330,9 @@ Public Class FormZplay
         Dim form As New FormLibrary(Me)
         Dim run As New CallbackTask(AddressOf form.ShowDialog, Sub()
                                                                    form.Dispose()
+                                                                   Call GC.SuppressFinalize(form)
                                                                End Sub)
+        Call run.Start()
     End Sub
 
     Private Sub OrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderToolStripMenuItem.Click

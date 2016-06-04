@@ -94,6 +94,8 @@ Public Class ListView : Implements IDisposable
     End Sub
 
     Private Sub ListView_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
+        On Error Resume Next
+
         background.Dispose()
         btnBack.Dispose()
         PictureBox1.Dispose()
