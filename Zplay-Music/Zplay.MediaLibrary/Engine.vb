@@ -1,19 +1,19 @@
 ﻿Imports System
 Imports System.Data.Common
 Imports System.Data.SQLite.Linq.DataMapping.Interface
-Imports libZPlay.App
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
-Imports Zplay.MediaLibrary.Tables
-Imports Microsoft.VisualBasic
-Imports libZPlay.InternalTypes
+Imports System.Drawing
 Imports System.Text
-Imports Microsoft.VisualBasic.Serialization
+Imports libZPlay.App
+Imports libZPlay.InternalTypes
+Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.SecurityString
-Imports Microsoft.VisualBasic.Imaging
-Imports System.Drawing
-Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Terminal.Utility
+Imports Zplay.MediaLibrary.Tables
 
 ''' <summary>
 ''' This is the zplay-Music media library database engine.
