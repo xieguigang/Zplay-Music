@@ -310,6 +310,9 @@ Public Class FormZplay
         End If
     End Sub
 
+    ''' <summary>
+    ''' 改变播放控制状态
+    ''' </summary>
     Private Sub PlaybackControl1_PlaybackPlay() Handles PlaybackControl1.PlaybackPlay
         If ticks.StopStatus Then
             Call play.Playback()
@@ -368,5 +371,11 @@ Public Class FormZplay
     Private Sub FormZplay_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         Call Thread.Sleep(1000)
         Call App.Exit()
+    End Sub
+
+    Private Sub NotifyIcon1_Click(sender As Object, e As MouseEventArgs) Handles NotifyIcon1.Click
+        If e.Button = MouseButtons.Left Then
+            Call PlaybackControl1_PlaybackPlay()
+        End If
     End Sub
 End Class
