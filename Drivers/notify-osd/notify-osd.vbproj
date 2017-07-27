@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{95734D4D-9603-464A-B67D-A5BC97150D90}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>NotifyOsd.Program</StartupObject>
+    <RootNamespace>NotifyOsd</RootNamespace>
+    <AssemblyName>notify_osd</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\bin\Client\</OutputPath>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>X:\nuget_publish\notify-osd\x64\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>X:\nuget_publish\notify-osd\x86\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Publish\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Publish\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>X:\nuget_publish\notify-osd\x86\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>notify_osd.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\Daemon.vb" />
+    <Compile Include="App\CLI.vb" />
+    <Compile Include="BubblesDisplay\FormOsdValueAdjuster.Designer.vb">
+      <DependentUpon>FormOsdValueAdjuster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BubblesDisplay\FormOsdValueAdjuster.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BubblesDisplay\ProcessingBar\FormOsdProgressIndicator.Designer.vb">
+      <DependentUpon>FormOsdProgressIndicator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BubblesDisplay\ProcessingBar\FormOsdProgressIndicator.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BubblesDisplay\ProcessingBar\ProcessingBar.designer.vb">
+      <DependentUpon>ProcessingBar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BubblesDisplay\ProcessingBar\ProcessingBar.vb" />
+    <Compile Include="Framework\Balloon\ValueAdjuster.vb" />
+    <Compile Include="Framework\Balloon\ProgressBar.vb" />
+    <Compile Include="Framework\Components\BubbleBehaviors.vb" />
+    <Compile Include="Framework\Components\RenderParameters.vb" />
+    <Compile Include="Framework\Components\Message.vb" />
+    <Compile Include="Framework\Services.vb" />
+    <Compile Include="Framework\Components\MessageRender.vb" />
+    <Compile Include="Framework\Mods\GaussBlur.vb" />
+    <Compile Include="Framework\Balloon\OsdNotifier.vb" />
+    <Compile Include="BubblesDisplay\FormOsdNotify.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BubblesDisplay\FormOsdNotify.Designer.vb">
+      <DependentUpon>FormOsdNotify.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\Program.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Framework\Mods\WinMM.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BubblesDisplay\FormOsdNotify.resx">
+      <DependentUpon>FormOsdNotify.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BubblesDisplay\ProcessingBar\ProcessingBar.resx">
+      <DependentUpon>ProcessingBar.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\PanelFrame.png" />
+    <None Include="Resources\UBUNTU.png" />
+    <None Include="Resources\NotificationMainPanel_top.png" />
+    <None Include="Resources\NotificationMainPanel_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cmd.ico" />
+    <None Include="Resources\ProcessingbarRes.png" />
+    <None Include="Resources\NotificationMainPanel_top_RIGHT.png" />
+    <None Include="Resources\NotificationMainPanel_top_LEFT.png" />
+    <None Include="Resources\NotificationMainPanel_bottom_Right.png" />
+    <None Include="Resources\NotificationMainPanel_bottom_LEFT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\repo\sciBASIC\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
+      <Project>{fecce1fd-e1d4-49e3-a668-60bb5e7aed99}</Project>
+      <Name>+Microsoft.VisualBasic.Architecture.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

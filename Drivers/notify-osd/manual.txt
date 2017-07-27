@@ -1,0 +1,38 @@
+﻿notify-osd [version 1.0.534.6]
+Module AssemblyName: file:///E:/Notify_OSD/Test.Project/bin/Debug/notify_osd.exe
+Root namespace: NotifyOsd
+
+
+All of the command that available in this program has been list below:
+
+ /send_message:  Display a user message.
+ /start:         Starts the notify-osd services on your desktop, if the services_id is already exists in the memory mappings file names, then this startup will be ignored
+ /stop:          Stop the notify-osd services, needs a url to deletes the memory mappings file.
+ --about:        Show the about message of this application.
+
+Commands
+--------------------------------------------------------------------------------
+1.  Help for command '/send_message':
+
+  Information:  Display a user message.
+  Usage:        E:\Notify_OSD\Test.Project\bin\Debug\notify_osd.exe /send_message -svr <service_id> -msg <messages>
+  Example:      notify_osd /send_message 
+
+2.  Help for command '/start':
+
+  Information:  Starts the notify-osd services on your desktop, if the services_id is already exists in the memory mappings file names, then this startup will be ignored
+  Usage:        E:\Notify_OSD\Test.Project\bin\Debug\notify_osd.exe /start <service_id>
+  Example:      notify_osd /start 
+
+3.  Help for command '/stop':
+
+  Information:  Stop the notify-osd services, needs a url to deletes the memory mappings file.
+  Usage:        E:\Notify_OSD\Test.Project\bin\Debug\notify_osd.exe /stop <service_id>
+  Example:      notify_osd /stop 
+
+4.  Help for command '--about':
+
+  Information:  Show the about message of this application.
+  Usage:        E:\Notify_OSD\Test.Project\bin\Debug\notify_osd.exe 
+  Example:      notify_osd --about 
+
