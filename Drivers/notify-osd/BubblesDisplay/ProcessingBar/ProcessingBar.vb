@@ -103,7 +103,7 @@ Namespace BubblesDisplay
         Dim _Animated As Integer
 
         Public Sub InvokeAnimation()
-            Dim Gr As GDIPlusDeviceHandle
+            Dim Gr As Graphics2D
 
             SyncLock Me._render
                 Gr = New Size(Me._getWidth(), Me._render.Height).CreateGDIDevice(Me.BackColor)
@@ -134,12 +134,12 @@ Namespace BubblesDisplay
         Public Shared Function Corping(source As Image, Rect As Rectangle) As Image
             Dim bit As Bitmap = New Bitmap(Clone(source), source.Width, source.Height)
             Dim cropBitmap As Bitmap = New Bitmap(Rect.Width, Rect.Height)
-            Dim Gr As Graphics = Graphics.FromImage(cropBitmap)
+            Dim g As Graphics = Graphics.FromImage(cropBitmap)
 
-            Gr.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-            Gr.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighQuality
-            Gr.CompositingQuality = Drawing2D.CompositingQuality.HighQuality
-            Gr.DrawImage(bit, 0, 0, Rect, GraphicsUnit.Pixel)
+            g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+            g.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighQuality
+            g.CompositingQuality = Drawing2D.CompositingQuality.HighQuality
+            g.DrawImage(bit, 0, 0, Rect, GraphicsUnit.Pixel)
 
             Return cropBitmap
         End Function

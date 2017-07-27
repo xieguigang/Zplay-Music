@@ -1,8 +1,6 @@
 ﻿Imports libZPlay.App
-Imports ZplayMusic
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.ComponentModel.DataStructures
-Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
 
 Public Class List : Implements IEnumerable(Of ListItem)
 
@@ -25,7 +23,7 @@ Public Class List : Implements IEnumerable(Of ListItem)
     End Sub
 
     Public Sub AddList(list As Playlist)
-        Dim i As New Pointer
+        Dim i As int = 0
 
         For Each file In list
             Call Add(file, ++i)
@@ -134,7 +132,7 @@ Public Class ListItem : Inherits PictureBox
             [as] = Mid([as], 1, al) & "..."
         End If
 
-        Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
+        Using g As Graphics2D = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
             size = g.Graphics.MeasureString("00:00", font)
             h = (sz.Height - size.Height) / 2
             rw = sz.Width - size.Width - 3
@@ -145,7 +143,7 @@ Public Class ListItem : Inherits PictureBox
             normal = g.ImageResource
         End Using
 
-        Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.Black)
+        Using g As Graphics2D = sz.CreateGDIDevice(Color.Black)
             g.Graphics.DrawString(ts, font, br, New Point(t, h))
             g.Graphics.DrawString([as], font, br, New Point(a, h))
             g.Graphics.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))
@@ -154,7 +152,7 @@ Public Class ListItem : Inherits PictureBox
 
         br = New SolidBrush(highlightFore)
 
-        Using g As GDIPlusDeviceHandle = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
+        Using g As Graphics2D = sz.CreateGDIDevice(Color.FromArgb(27, 27, 27))
             g.Graphics.DrawString(ts, font, br, New Point(t, h))
             g.Graphics.DrawString([as], font, br, New Point(a, h))
             g.Graphics.DrawString(file.StreamInfo.Length.FormatTime, font, br, New Point(l, h))

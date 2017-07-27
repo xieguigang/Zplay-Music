@@ -98,7 +98,7 @@ Namespace App
                     If _orders Is Nothing Then
                         _orders = _files.ToArray
                     End If
-                    _files = New List(Of T)(_files.Randomize)
+                    _files = New List(Of T)(_files.Shuffles)
                 ElseIf Mode = PlaybackModes.Order Then
                     If Not _orders Is Nothing Then
                         _files = New List(Of T)(_orders)

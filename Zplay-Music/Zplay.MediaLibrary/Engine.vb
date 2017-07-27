@@ -1,18 +1,12 @@
-﻿Imports System
-Imports System.Data.Common
-Imports System.Data.SQLite.Linq.DataMapping.Interface
+﻿Imports System.Data.SQLite.Linq.DataMapping.Interface
 Imports System.Drawing
 Imports System.Text
 Imports libZPlay.App
 Imports libZPlay.InternalTypes
-Imports Microsoft.VisualBasic
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.SecurityString
-Imports Microsoft.VisualBasic.Serialization
-Imports Microsoft.VisualBasic.Terminal.Utility
 Imports Zplay.MediaLibrary.Tables
 
 ''' <summary>
@@ -37,7 +31,7 @@ Public Class Engine : Inherits ClassObject
     Sub New(file As String)
         Dim exists As Boolean = file.FileExists
 
-        AlbumArts = file.TrimFileExt & ".AlbumArts/"
+        AlbumArts = file.TrimSuffix & ".AlbumArts/"
         DefaultArt = AlbumArts & "/.default.png"
         Db = file
         SQLite = SQLProcedure.CreateSQLTransaction(url:=Db)

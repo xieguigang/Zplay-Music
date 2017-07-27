@@ -1,8 +1,10 @@
 ﻿Imports libZPlay.App
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.SecurityString
-Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Language
 Imports Zplay.MediaLibrary
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 
 Public Class ListView : Implements IDisposable
 
@@ -50,14 +52,14 @@ Public Class ListView : Implements IDisposable
         Dim md5 As String = list.ToArray.GetXml.GetMd5Hash
 
         list.Extension = New ExtendedProps
-        list.Extension.DynamicHash.Properties.Add(NameOf(md5), md5)
+        list.Extension.DynamicHashTable.Properties.Add(NameOf(md5), md5)
 
         If host.list Is Nothing OrElse host.list.Extension Is Nothing Then
             Call host.ChangePlaylist(list, False)
             Return True
         Else
             Dim m As String = Scripting.ToString(
-                host.list.Extension.DynamicHash.Properties.TryGetValue(NameOf(md5)))
+                host.list.Extension.DynamicHashTable.Properties.TryGetValue(NameOf(md5)))
 
             If Not md5.TextEquals(m) Then
                 Call host.ChangePlaylist(list, False)
@@ -82,12 +84,12 @@ Public Class ListView : Implements IDisposable
         Dim sz = PictureBox1.Size
         Dim max As Integer = {sz.Width, sz.Height}.Max
 
-        Using gr As GDIPlusDeviceHandle = New Size(max, max).CreateGDIDevice
+        Using gr As Graphics2D = New Size(max, max).CreateGDIDevice
             Call gr.Graphics.DrawImage(background, 0, 0, max, max)
             PictureBox1.BackgroundImage = gr.ImageResource
         End Using
 
-        Dim backg = GDIPlusExtensions.ImageCrop(PictureBox1.BackgroundImage, btnBack.Location, btnBack.Size)
+        Dim backg = PictureBox1.BackgroundImage.ImageCrop(btnBack.Location, btnBack.Size)
         Using gr As Graphics = Graphics.FromImage(backg)
             Call gr.DrawImage(My.Resources.arrow_back_512, 0, 0, btnBack.Width, btnBack.Height)
         End Using

@@ -60,8 +60,8 @@ Module MessageRender
             message As String = If(String.IsNullOrEmpty(msg.Message), "", msg.Message.Replace("\n", vbCrLf))
         Dim titleSize As SizeF = _textMeasures.MeasureString(title, params.TitleFont)
         Dim msgSize As SizeF = _textMeasures.MeasureString(message, params.MessageFont)
-        Dim margins As Size = New Size(15, 5)
-        Dim grSize As Point = New Point With {
+        Dim margins As New Size(15, 5)
+        Dim grSize As New Point With {
             .X = Math.Max(titleSize.Width, msgSize.Width) + params.IconSize + margins.Width * 3,
             .Y = margins.Height * 2 + 5 + titleSize.Height + msgSize.Height + 25
         }
@@ -73,8 +73,7 @@ Module MessageRender
             grSize = New Point(352, grSize.Y)
         End If
 
-        Using grDraw As GDIPlusDeviceHandle =
-            New Size(grSize.X, grSize.Y + params.YDelta) _
+        Using grDraw As Graphics2D = New Size(grSize.X, grSize.Y + params.YDelta) _
             .CreateGDIDevice(Color.Transparent)
 
             grDraw.Graphics.CompositingQuality = Drawing2D.CompositingQuality.HighQuality

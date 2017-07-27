@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language
-Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Linq
 Imports libZPlay.InternalTypes
 
@@ -25,36 +25,40 @@ Namespace App.CUE
         Sub New(cue As String)
             Dim lines As String() = cue.ReadAllLines
             Dim i As New Pointer(Scan0)
-            Dim s As String = Nothing
+            Dim str As New Value(Of String)
             Dim key As String
 
-            Do While lines(++i).ShadowCopy(s).FirstOrDefault <> " "c
-                If InStr(s, "REM", CompareMethod.Text) = 1 Then
-                    s = Mid(s, 5)
-                End If
-                key = s.Split.First
-                s = Mid(s, key.Length + 1).Trim
+            Do While (str = lines(++i)).FirstOrDefault <> " "c
+                With str.value
+                    If InStr(.ref, "REM", CompareMethod.Text) = 1 Then
+                        str.value = Mid(.ref, 5)
+                    End If
+                    key = str.value.Split.First
+                    str.value = Mid(str, key.Length + 1).Trim
+                End With
 
-                If key.TextEquals("DATE") Then
-                    [Date] = s.GetString
-                ElseIf key.TextEquals("PERFORMER") Then
-                    Performer = s.GetString
-                ElseIf key.TextEquals("CATALOG") Then
-                    Catalog = s.GetString
-                ElseIf key.TextEquals("DISCID") Then
-                    DiscId = s.GetString
-                ElseIf key.TextEquals("COMMENT") Then
-                    Comment = s.GetString
-                ElseIf key.TextEquals("GENRE") Then
-                    Genre = s.GetString
-                ElseIf key.TextEquals("TITLE") Then
-                    Title = s.GetString
-                ElseIf key.TextEquals("FILE") Then
-                    Dim tokens As String() = CommandLine.GetTokens(s)
-                    File = New NamedValue(Of String)(
-                        tokens(Scan0),
-                        tokens(1))
-                End If
+                With str.value
+                    If key.TextEquals("DATE") Then
+                        [Date] = .GetString
+                    ElseIf key.TextEquals("PERFORMER") Then
+                        Performer = .GetString
+                    ElseIf key.TextEquals("CATALOG") Then
+                        Catalog = .GetString
+                    ElseIf key.TextEquals("DISCID") Then
+                        DiscId = .GetString
+                    ElseIf key.TextEquals("COMMENT") Then
+                        Comment = .GetString
+                    ElseIf key.TextEquals("GENRE") Then
+                        Genre = .GetString
+                    ElseIf key.TextEquals("TITLE") Then
+                        Title = .GetString
+                    ElseIf key.TextEquals("FILE") Then
+                        Dim tokens As String() = CommandLine.GetTokens(.ref)
+                        File = New NamedValue(Of String)(
+                            tokens(Scan0),
+                            tokens(1))
+                    End If
+                End With
             Loop
 
             Tracks = Track.TracksParser(

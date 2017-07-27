@@ -2,6 +2,7 @@
 Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms
 Imports libZPlay.InternalTypes
+Imports Microsoft.VisualBasic.Language.C
 
 Namespace App
 
@@ -33,12 +34,12 @@ Namespace App
 
         <Extension>
         Public Function FormatTime(time As TStreamTime) As String
-            Return $"{ZeroFill(time.hms.minute, 2)}:{ZeroFill(time.hms.second, 2)}"
+            Return $"{FormatZero(time.hms.minute, 2)}:{FormatZero(time.hms.second, 2)}"
         End Function
 
         <Extension>
         Public Function FormatTime(time As TimeSpan) As String
-            Return $"{ZeroFill(time.Minutes, 2)}:{ZeroFill(time.Seconds, 2)}"
+            Return $"{FormatZero(time.Minutes, 2)}:{FormatZero(time.Seconds, 2)}"
         End Function
 
         <Extension>

@@ -1,7 +1,8 @@
 ﻿Imports libZPlay.App
 Imports libZPlay.InternalTypes
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Text
 
 Public Class Config : Implements IDisposable
 
@@ -13,7 +14,7 @@ Public Class Config : Implements IDisposable
     Public Shared ReadOnly Property MediaLibrary As String = App.LocalData & "/Zplay-Library.db"
 
     Public Function GetList(eop As Action) As Playlist
-        If lastPlaylist.x = ListTypes.DIR Then
+        If lastPlaylist.Value = ListTypes.DIR Then
             Return New Playlist(
                 Playlist.GetFiles(lastPlaylist.Name, False),
                 eop,
@@ -35,7 +36,7 @@ Public Class Config : Implements IDisposable
     End Function
 
     Sub Save()
-        Call Me.GetJson.SaveTo(DefaultFile, Encodings.UTF8.GetEncodings)
+        Call Me.GetJson.SaveTo(DefaultFile, Encodings.UTF8.CodePage)
     End Sub
 
 #Region "IDisposable Support"
