@@ -100,14 +100,6 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic.Windows.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\VisualBasic.WinForm.1.0.13\x86\Microsoft.VisualBasic.Windows.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Windows.FeatureAPI, Version=10.0.5997.831, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\VisualBasic.WinForm.1.0.13\x86\Microsoft.Windows.FeatureAPI.dll</HintPath>
-    </Reference>
     <Reference Include="notify_osd, Version=2.234.5.24, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Notify-OSD.1.0.12\x86\notify_osd.exe</HintPath>
@@ -267,6 +259,14 @@
     <ProjectReference Include="..\..\Drivers\libZPlay\libZPlay.Extensions.vbproj">
       <Project>{822d0a37-7bb5-4ecb-acc8-8e38bdf1f063}</Project>
       <Name>libZPlay.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drivers\Windows\Microsoft.VisualBasic.Windows.Forms\Microsoft.VisualBasic.Windows.Forms.vbproj">
+      <Project>{21d7fd22-6aed-4e65-b2ef-f9f5565cf80e}</Project>
+      <Name>Microsoft.VisualBasic.Windows.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drivers\Windows\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
+      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
+      <Name>Microsoft.Windows.FeatureAPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zplay.MediaLibrary\Zplay.MediaLibrary.vbproj">
       <Project>{d1c46857-fd85-49a1-8619-b2e1219cd5d7}</Project>

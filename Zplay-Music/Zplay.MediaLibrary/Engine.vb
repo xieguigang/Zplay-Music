@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.SecurityString
 Imports Zplay.MediaLibrary.Tables
+Imports id = Zplay.MediaLibrary.Tables.uid
 
 ''' <summary>
 ''' This is the zplay-Music media library database engine.
@@ -220,7 +221,7 @@ Public Class Engine : Inherits ClassObject
         End If
     End Function
 
-    Private Function __like(Of T As uid)(engine As SQLiteIO(Of T), key As String, query As String) As String
+    Private Function __like(Of T As id)(engine As SQLiteIO(Of T), key As String, query As String) As String
         Dim SQL As String = $"SELECT * FROM {engine.tableName} WHERE LOWER({key}) LIKE '%{LCase(query)}%';"
         Return SQL
     End Function

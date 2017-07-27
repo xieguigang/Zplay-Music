@@ -11,7 +11,7 @@ Public Module ArtVisual
     End Function
 
     Private Function __draw(file As MediaFile, back As Color) As Image
-        Using gdi As GDIPlusDeviceHandle = New Size(250, 100).CreateGDIDevice(back)
+        Using gdi As Graphics2D = New Size(250, 100).CreateGDIDevice(back)
             Dim res As Image = If(
                 file.Id3v2.Picture.Bitmap.IsNullOrNothing,
                 My.Resources._default,

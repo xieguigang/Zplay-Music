@@ -1,6 +1,6 @@
 ﻿Imports System.Data.Linq.Mapping
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
-Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Tables
 
