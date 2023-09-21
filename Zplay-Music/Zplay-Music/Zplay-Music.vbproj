@@ -253,17 +253,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\repo\sciBASIC\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
-      <Project>{fecce1fd-e1d4-49e3-a668-60bb5e7aed99}</Project>
-      <Name>+Microsoft.VisualBasic.Architecture.Framework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Drivers\libZPlay\libZPlay.Extensions.vbproj">
       <Project>{822d0a37-7bb5-4ecb-acc8-8e38bdf1f063}</Project>
       <Name>libZPlay.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Drivers\Windows\Microsoft.VisualBasic.Windows.Forms\Microsoft.VisualBasic.Windows.Forms.vbproj">
-      <Project>{21d7fd22-6aed-4e65-b2ef-f9f5565cf80e}</Project>
-      <Name>Microsoft.VisualBasic.Windows.Forms</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Drivers\Windows\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
       <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
