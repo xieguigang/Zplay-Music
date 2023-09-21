@@ -1,19 +1,20 @@
-﻿
+﻿Imports Microsoft.VisualBasic.Parallel.MMFProtocol
+
 ''' <summary>
 ''' 编程的API接口
 ''' </summary>
-Public Class Services : Implements System.IDisposable
+Public Class Services : Implements IDisposable
 
-    Dim Socket As Microsoft.VisualBasic.MMFProtocol.MMFSocket
+    Dim Socket As MMFSocket
 
-    Public ReadOnly Property ServicesSocket As MMFProtocol.MMFSocket
+    Public ReadOnly Property ServicesSocket As MMFSocket
         Get
-            Return New MMFProtocol.MMFSocket(Socket.URI)
+            Return New MMFSocket(Socket.URI)
         End Get
     End Property
 
     Sub New(uri As String)
-        Me.Socket = New MMFProtocol.MMFSocket(uri)
+        Me.Socket = New MMFSocket(uri)
     End Sub
 
     Public Shared Function Start(serviceName As String, Optional ProcessExe As String = "./notify_osd.exe", Optional WelcomeMessage As String = "") As Services

@@ -77,7 +77,7 @@ Namespace App
         End Function
     End Class
 
-    Public MustInherit Class Playlist(Of T) : Inherits ClassObject
+    Public MustInherit Class Playlist(Of T)
         Implements IEnumerable(Of T)
 
         Protected _files As List(Of T)
@@ -171,7 +171,7 @@ Namespace App
         End Function
 
         Public Iterator Function GetEnumerator() As IEnumerator(Of T) Implements IEnumerable(Of T).GetEnumerator
-            For Each x In _files
+            For Each x As T In _files
                 Yield x
             Next
         End Function

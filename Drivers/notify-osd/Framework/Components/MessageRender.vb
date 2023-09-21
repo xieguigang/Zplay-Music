@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 
 Module MessageRender
 
@@ -45,7 +46,7 @@ Module MessageRender
             ex = New Exception("[Message] " & MSG.GetJson, ex)
             ex = New Exception("[Parameters] " & Renderer.GetJson, ex)
 
-            Dim exMsg As String = App.BugsFormatter(ex)
+            Dim exMsg As String = ErrorLog.BugsFormatter(ex)
             Call FileIO.FileSystem.WriteAllText(App.HOME & "/notify-osd.log", exMsg & vbCrLf, append:=True)
 
             Return Nothing

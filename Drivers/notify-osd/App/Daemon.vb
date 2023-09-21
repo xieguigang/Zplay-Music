@@ -1,7 +1,7 @@
-﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports System.Text.Encoding
-Imports Microsoft.VisualBasic.MMFProtocol
+﻿Imports System.Text.Encoding
 Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Parallel.MMFProtocol
 Imports NotifyOsd.Framework.Balloon
 
 ''' <summary>
@@ -38,7 +38,7 @@ Module DaemonProcess
         If args Is Nothing Then
             Return -1
         Else
-            Call $"New message ""{args.CLICommandArgvs}""".__DEBUG_ECHO
+            Call $"New message ""{args.cli}""".__DEBUG_ECHO
         End If
 
         Dim Osd_Message As Message =

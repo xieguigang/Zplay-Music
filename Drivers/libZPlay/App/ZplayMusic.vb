@@ -101,7 +101,7 @@ Namespace App
 #End Region
     End Class
 
-    Public Class MediaFile : Inherits ClassObject
+    Public Class MediaFile
 
         Public Property FileName As String
         Public Property Id3v2 As TID3InfoEx

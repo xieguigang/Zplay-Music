@@ -69,10 +69,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Data.SQLite.Linq.DataMapping.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\VisualBasic.DBI.1.0.0\System.Data.SQLite.Linq.DataMapping.Interface.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows" />
@@ -154,6 +150,10 @@
     <None Include="Resources\default.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
+      <Project>{6ad6db93-c743-4be2-8c19-e4c3062aac99}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Drivers\libZPlay\libZPlay.Extensions.vbproj">
       <Project>{822d0a37-7bb5-4ecb-acc8-8e38bdf1f063}</Project>
       <Name>libZPlay.Extensions</Name>

@@ -1,5 +1,4 @@
-﻿Imports System.Data.SQLite.Linq.DataMapping.Interface
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports System.Text
 Imports libZPlay.App
 Imports libZPlay.InternalTypes
@@ -13,7 +12,7 @@ Imports id = Zplay.MediaLibrary.Tables.uid
 ''' <summary>
 ''' This is the zplay-Music media library database engine.
 ''' </summary>
-Public Class Engine : Inherits ClassObject
+Public Class Engine
     Implements IDisposable
 
     ''' <summary>

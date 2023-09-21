@@ -1,9 +1,9 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.MMFProtocol
+Imports Microsoft.VisualBasic.Parallel.MMFProtocol
 
 Module CLI
 
-    Public ReadOnly Property ProcessLock As MMFProtocol.ProcessLock
+    Public ReadOnly Property ProcessLock As ProcessLock
 
     <ExportAPI("/start",
                Info:="Starts the notify-osd services on your desktop, if the services_id is already exists in the memory mappings file names, then this startup will be ignored",

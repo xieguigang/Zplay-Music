@@ -1,16 +1,15 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.ComponentModel.DataStructures
+﻿Imports libZPlay.InternalTypes
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
-Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Linq
-Imports libZPlay.InternalTypes
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace App.CUE
 
     ''' <summary>
     ''' Parser for cue list
     ''' </summary>
-    Public Class Cue : Inherits ClassObject
+    Public Class Cue
 
         Public Property [Date] As String
         Public Property Genre As String
@@ -29,15 +28,15 @@ Namespace App.CUE
             Dim key As String
 
             Do While (str = lines(++i)).FirstOrDefault <> " "c
-                With str.value
-                    If InStr(.ref, "REM", CompareMethod.Text) = 1 Then
-                        str.value = Mid(.ref, 5)
+                With str.Value
+                    If InStr(.ByRef, "REM", CompareMethod.Text) = 1 Then
+                        str.Value = Mid(.ByRef, 5)
                     End If
-                    key = str.value.Split.First
-                    str.value = Mid(str, key.Length + 1).Trim
+                    key = str.Value.Split.First
+                    str.Value = Mid(str, key.Length + 1).Trim
                 End With
 
-                With str.value
+                With str.Value
                     If key.TextEquals("DATE") Then
                         [Date] = .GetString
                     ElseIf key.TextEquals("PERFORMER") Then
@@ -53,7 +52,7 @@ Namespace App.CUE
                     ElseIf key.TextEquals("TITLE") Then
                         Title = .GetString
                     ElseIf key.TextEquals("FILE") Then
-                        Dim tokens As String() = CommandLine.GetTokens(.ref)
+                        Dim tokens As String() = CommandLine.GetTokens(.ByRef)
                         File = New NamedValue(Of String)(
                             tokens(Scan0),
                             tokens(1))
@@ -63,7 +62,8 @@ Namespace App.CUE
 
             Tracks = Track.TracksParser(
             lines.Skip(CType(i, Integer) - 1) _
-                .ToArray(AddressOf Trim)).ToArray
+                .Select(AddressOf Strings.Trim)) _
+                .ToArray
         End Sub
 
         ''' <summary>

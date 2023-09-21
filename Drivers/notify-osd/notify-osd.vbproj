@@ -262,6 +262,12 @@
     <None Include="Resources\NotificationMainPanel_bottom_Right.png" />
     <None Include="Resources\NotificationMainPanel_bottom_LEFT.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
+      <Project>{6ad6db93-c743-4be2-8c19-e4c3062aac99}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
